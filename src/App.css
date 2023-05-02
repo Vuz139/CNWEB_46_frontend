@@ -1,38 +1,102 @@
-/* .App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{
+  font-size: 62.5%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a{
+  text-decoration: none;
+  color: black;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header{
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  border-radius: 4px;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 2px 2px rgba(0, 0,0,0.2);
+}
+
+.header__logo{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  overflow: hidden;
+  cursor: pointer;
+
+}
+.header__name{
+  margin-left: 4px;
+  font-size: 2.2rem;
+  color: rgb(92, 92, 229);
+}
+.header__logo img{
+
+  height: 100%;
+}
+
+.header__navigation{
+  font-size: 1.8rem;
+  color: rgb(86, 76, 76);
+}
+.header__navigation a {
+  padding: 0 0.8rem;
+
+
+}
+.header__navigation a:hover{
+  color: rgb(240, 64, 64);
+}
+.header__icons{
+  font-size: 3rem;
+}
+.header__cart{
+  
+  cursor: pointer;
+  color:rgb(86, 76, 76);
+  position: relative;
+}
+
+.header__cart__amount{
+  position: absolute;
+  top: -8px;
+  right: -1px;
+  background: rgb(202, 82, 82);
+  border-radius: 50%;
+  padding: 3px;
   color: white;
+  font-size: 1.4rem;
 }
 
-.App-link {
-  color: #61dafb;
+.header__user{
+  position: relative;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.header__user:hover .header__user__menu{
+  display: flex;
+}
+.header__user__menu{
+  position: absolute;
+  top: 100%;
+  display: none;
+  flex-direction: column;
+  background: rgb(237, 235, 235);
+  /* padding: 6px; */
+  box-shadow: 1px 1px 1px rgba(0, 0,0,0.2);
+  color: white;
+  border-radius: 4px;
+  font-size: 1.4rem;
+}
+.header__user__menu a {
+  padding: 6px 8px;
+  color: #3b3838;
+}
+.header__user__menu a:hover{
+  background: rgb(232, 162, 162);
+}
