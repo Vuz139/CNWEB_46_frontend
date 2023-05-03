@@ -1,4 +1,12 @@
 /* cart */
+.cartWrapper{
+  padding: 8px;
+}
+.cartTitle{
+  font-size: 24px;
+  color: rgb(73, 73, 255);
+  padding: 12px;
+}
 .cart-header {
     font-weight: bold;
     font-size: 1.25em;
