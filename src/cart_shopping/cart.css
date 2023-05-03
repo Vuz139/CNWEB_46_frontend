@@ -48,8 +48,10 @@
   
   .cart-item-image {
     width: 75px;
-    height: auto;
+    height: 75px;
     border-radius: 10px;
+    border: 1px solid #eee;
+    
   }
   
   .btn-danger {
