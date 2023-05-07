@@ -49,18 +49,18 @@ const Header = () => {
 			</div>
 			{width > 786 && (
 				<div className="header__navigation">
-					<a href="#">Home</a>
-					<a href="#">Products</a>
+					<Link to={"/"}>Home</Link>
+					<Link to={"/product"}>Products</Link>
 					<a href="#">About</a>
 					<a href="#">Me</a>
 				</div>
 			)}
 			<div className="header__icons">
-				<span className="header__cart">
+				<Link to={"/cart"} className="header__cart header__icon">
 					<BsCart4 />
 					<span className="header__cart__amount">6</span>
-				</span>
-				<span className="header__user">
+				</Link>
+				<span className="header__user header__icon">
 					{" "}
 					<HiOutlineUserCircle />
 					<div className="header__user__menu">
@@ -69,8 +69,8 @@ const Header = () => {
 						<Link to={"login"}>Login</Link>
 						{width <= 786 && (
 							<>
-								<a href="#">Home</a>
-								<a href="#">Products</a>
+								<Link to={"/"}>Home</Link>
+								<Link to={"/product"}>Products</Link>
 								<a href="#">About</a>
 								<a href="#">Me</a>
 							</>

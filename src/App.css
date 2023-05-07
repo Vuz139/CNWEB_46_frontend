@@ -12,6 +12,9 @@
 html{
   font-size: 62.5%;
 }
+ul{
+  list-style: none;
+}
 a{
   text-decoration: none;
   color: black;
@@ -86,9 +89,14 @@ body{
 }
 .header__cart{
   
-  cursor: pointer;
   color:rgb(86, 76, 76);
   position: relative;
+  /* font-size: 3rem; */
+  animation: all 0.5s linear;
+}
+.header__icon:hover{
+  cursor: pointer;
+  font-size: 4rem;
 }
 
 .header__cart__amount{
@@ -114,7 +122,6 @@ body{
   display: none;
   flex-direction: column;
   background: rgb(237, 235, 235);
-  /* padding: 6px; */
   box-shadow: 1px 1px 1px rgba(0, 0,0,0.2);
   color: white;
   border-radius: 4px;
