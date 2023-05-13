@@ -43,7 +43,9 @@ const Header = () => {
 					onChange={handleSearchInputChange}
 					onKeyDown={handleSearchSummit}
 				/>
-				<span className="header__search__icon">
+				<span
+					onClick={handleSearchSummit}
+					className="header__search__icon">
 					<BsSearch />
 				</span>
 			</div>
@@ -66,7 +68,7 @@ const Header = () => {
 					<div className="header__user__menu">
 						<a href="#">User</a>
 						<a href="#">New Product</a>
-						<Link to={"login"}>Login</Link>
+						<Link to={"/login"}>Login</Link>
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>

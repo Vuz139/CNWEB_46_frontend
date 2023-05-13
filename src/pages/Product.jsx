@@ -1,5 +1,6 @@
 import React from "react";
 import "../product_details_page/style.css";
+import Comment from "../components/Comment";
 const Product = () => {
 	const product = {
 		name: "Robot",
@@ -99,6 +100,24 @@ const Product = () => {
 					</div>
 				</div>
 			</section>
+			<h1 style={{}}>Đánh giá: </h1>
+			<div
+				className="comments_wrapper"
+				style={{
+					marginTop: "8px",
+					height: "400px",
+					overflow: "auto",
+					backgroundColor: "#c8dfec",
+					border: "2px solid gray",
+					borderRadius: "10px",
+				}}>
+				<Comment />
+				<Comment />
+				<Comment />
+				<Comment />
+				<Comment />
+				<Comment />
+			</div>
 		</div>
 	);
 };
