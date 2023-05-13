@@ -1,139 +1,128 @@
-// import './style.css';
-import React from "react";
-
+import React, { useState } from "react";
+import "./style.css";
+import { Link } from "react-router-dom";
 function Signup() {
+	const [formData, setFormData] = useState({
+		username: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setFormData((prevState) => ({ ...prevState, [name]: value }));
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(formData);
+		// do something with formData, like send to server
+	};
+
 	return (
-		// <div>
-		//     <h1>Signup</h1>
-		// </div>
-		<div className="wrapper">
-			<h1 className="header-w3ls">Astronauts sign up & login Form</h1>
-			<div className="art-bothside">
-				<div className="mid-cls">
-					<div className="art-right-w3ls">
-						<h2>Astronauts sign up and login</h2>
-						<p>
-							consectetur adipiscing elit, sed do eiusmod tempor
-							incididunt Lorem ipsum dolor sit amet
-						</p>
-						<form action="#" method="post">
-							<div className="main">
-								<div className="form-left-to-w3l">
-									<input
-										type="text"
-										name="name"
-										placeholder="Name"
-										required
-									/>
-								</div>
-								<div className="form-right-w3ls">
-									<input
-										type="email"
-										name="email"
-										placeholder="Email"
-										required
-									/>
-								</div>
+		<section className="w3l-form-36">
+			<div className="form-36-mian section-gap">
+				<div className="wrapper">
+					<div className="form-inner-cont">
+						<h3>Create your account</h3>
+						<form onSubmit={handleSubmit} className="signin-form">
+							<div className="form-input">
+								<span
+									className="fa fa-user-o"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="text"
+									name="username"
+									placeholder="Username"
+									value={formData.username}
+									onChange={handleChange}
+									required
+								/>
 							</div>
-							<div className="main">
-								<div className="form-left-to-w3l">
-									<input
-										type="password"
-										name="password"
-										placeholder="Password"
-										id="password"
-										required
-									/>
-									<div className="clear" />
-								</div>
-								<div className="form-right-w3ls ">
-									<input
-										type="password"
-										placeholder="Confirm Password"
-										id="confirm_password"
-										required
-									/>
-								</div>
+							<div className="form-input">
+								<span
+									className="fa fa-envelope-o"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="email"
+									name="email"
+									placeholder="Email"
+									value={formData.email}
+									onChange={handleChange}
+									required
+								/>
 							</div>
-							<div className="btnn">
-								<button type="submit">Sign Up</button>
+							<div className="form-input">
+								<span
+									className="fa fa-key"
+									aria-hidden="true"></span>
+								<input
+									type="password"
+									name="password"
+									placeholder="Password"
+									value={formData.password}
+									onChange={handleChange}
+									required
+								/>
+							</div>
+							<div className="form-input">
+								<span
+									className="fa fa-key"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="password"
+									name="confirmPassword"
+									placeholder="Confirm Password"
+									value={formData.confirmPassword}
+									onChange={handleChange}
+									required
+								/>
+							</div>
+
+							<div className="login-remember d-grid">
+								<button
+									type="submit"
+									className="btn theme-button">
+									Signup
+								</button>
 							</div>
 						</form>
-						<div className="banner-agileits-btm">
-							<div className="w3layouts_more-buttn">
-								<h3>
-									Already have an account..?{" "}
-									<a
-										href="#small-dialog1"
-										className="play-icon popup-with-zoom-anim">
-										login
-									</a>
-								</h3>
-							</div>
-							<div
-								id="small-dialog1"
-								className="mfp-hide w3ls_small_dialog wthree_pop">
-								<div className="agileits_modal_body">
-									{/* login form */}
-									<div className="letter-w3ls">
-										<form action="#" method="post">
-											<div className="form-left-to-w3l">
-												<input
-													type="text"
-													name="name"
-													placeholder="Name"
-													required
-												/>
-											</div>
-											<div className="form-right-w3ls">
-												<input
-													type="email"
-													name="email"
-													placeholder="Email"
-													required
-												/>
-											</div>
-											<div className="form-right-w3ls ">
-												<input
-													type="password"
-													name="password"
-													placeholder="Password"
-													required
-												/>
-											</div>
-											<div className="btnn">
-												<button type="submit">
-													LOGIN
-												</button>
-												<br />
-											</div>
-										</form>
-										<div className="clear" />
+						<div className="social-icons">
+							<p className="continue">
+								<span>Or</span>
+							</p>
+							<div className="social-login">
+								<a href="#facebook">
+									<div className="facebook">
+										<span
+											className="fa fa-facebook"
+											aria-hidden="true">
+											Fb
+										</span>
 									</div>
-									{/* //login form */}
-								</div>
+								</a>
+								<a href="#google">
+									<div className="google">
+										<span
+											className="fa fa-google-plus"
+											aria-hidden="true">
+											G
+										</span>
+									</div>
+								</a>
 							</div>
 						</div>
-					</div>
-					<div className="art-left-w3ls">
-						<img
-							src="images/right1.jpg"
-							className="img-fluid"
-							alt=""
-						/>
+						<p className="signup">
+							Already a member?{" "}
+							<Link to={"/login"} className="signuplink">
+								Login
+							</Link>
+						</p>
 					</div>
 				</div>
 			</div>
-			<div className="copy">
-				<p>
-					&copy;2018 Astronauts sign up & login Form. All Rights
-					Reserved | Design by{" "}
-					<a href="#" target="_blank" rel="noopener noreferrer">
-						W3Layouts
-					</a>
-				</p>
-			</div>
-		</div>
+		</section>
 	);
 }
 

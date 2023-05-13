@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css";
+import png from "./1.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
 	return (
 		<section className="w3l-hotair-form">
-			<h1>Report Login Form</h1>
+			<h1>Group 46</h1>
 			<div className="container">
 				<div className="workinghny-form-grid">
 					<div className="main-hotair">
@@ -28,6 +29,12 @@ const Login = () => {
 									required
 									autoFocus
 								/>
+								<label className="check-remaind">
+									<input type="checkbox" />
+									<span className="checkmark"></span>
+									<p className="remember">Remember me</p>
+								</label>
+								<br />
 								<button className="btn" type="submit">
 									Log In
 								</button>
@@ -39,11 +46,7 @@ const Login = () => {
 						</div>
 						<div className="w3l_form align-self">
 							<div className="left_grid_info">
-								<img
-									src="images/1.png"
-									alt=""
-									className="img-fluid"
-								/>
+								<img src={png} className="img-fluid" />
 							</div>
 						</div>
 					</div>
