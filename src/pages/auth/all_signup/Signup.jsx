@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import './style.css';
 
 function Signup () {
@@ -102,20 +103,20 @@ function Signup () {
             </div>
             <p className="signup">
               Already a member?{" "}
-              <a href="login.html" className="signuplink">
+              <Link to="/login" className="signuplink">
                 Login
-              </a>
+              </Link>
             </p>
           </div>
 
-          <div className="copy-right">
+          {/* <div className="copy-right">
             <p>
               © 2020 Stock Signup Form. All rights reserved | Design by{" "}
               <a href="http://w3layouts.com/" target="_blank">
                 W3Layouts
               </a>
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
