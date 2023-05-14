@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import './style.css';
+import { Link } from "react-router-dom";
 
 function Signup () {
   const [formData, setFormData] = useState({
@@ -10,68 +10,76 @@ function Signup () {
     confirmPassword: "",
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  };
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setFormData((prevState) => ({ ...prevState, [name]: value }));
+	};
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData);
-    // do something with formData, like send to server
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(formData);
+		// do something with formData, like send to server
+	};
 
-  return (
-    <section className="w3l-form-36">
-      <div className="form-36-mian section-gap">
-        <div className="wrapper">
-          <div className="form-inner-cont">
-            <h3>Create your account</h3>
-            <form onSubmit={handleSubmit} className="signin-form">
-              <div className="form-input">
-                <span className="fa fa-user-o" aria-hidden="true"></span>{" "}
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-input">
-                <span className="fa fa-envelope-o" aria-hidden="true"></span>{" "}
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-input">
-                <span className="fa fa-key" aria-hidden="true"></span>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-input">
-                <span className="fa fa-key" aria-hidden="true"></span>{" "}
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+	return (
+		<section className="w3l-form-36">
+			<div className="form-36-mian section-gap">
+				<div className="wrapper">
+					<div className="form-inner-cont">
+						<h3>Create your account</h3>
+						<form onSubmit={handleSubmit} className="signin-form">
+							<div className="form-input">
+								<span
+									className="fa fa-user-o"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="text"
+									name="username"
+									placeholder="Username"
+									value={formData.username}
+									onChange={handleChange}
+									required
+								/>
+							</div>
+							<div className="form-input">
+								<span
+									className="fa fa-envelope-o"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="email"
+									name="email"
+									placeholder="Email"
+									value={formData.email}
+									onChange={handleChange}
+									required
+								/>
+							</div>
+							<div className="form-input">
+								<span
+									className="fa fa-key"
+									aria-hidden="true"></span>
+								<input
+									type="password"
+									name="password"
+									placeholder="Password"
+									value={formData.password}
+									onChange={handleChange}
+									required
+								/>
+							</div>
+							<div className="form-input">
+								<span
+									className="fa fa-key"
+									aria-hidden="true"></span>{" "}
+								<input
+									type="password"
+									name="confirmPassword"
+									placeholder="Confirm Password"
+									value={formData.confirmPassword}
+									onChange={handleChange}
+									required
+								/>
+							</div>
 
               <div className="login-remember d-grid">
                 <label className="check-remaind">

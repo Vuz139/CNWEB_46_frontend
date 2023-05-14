@@ -1,3 +1,10 @@
 import React from "react";
+import "./Footer.css";
+const Footer = () => {
+	return <div className="footer">@Made by group 46</div>;
+};
 
-function 
+export default Footer;
+
+
+
