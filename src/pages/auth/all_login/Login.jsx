@@ -2,7 +2,9 @@ import React from "react";
 import './style.css';
 import { Link } from "react-router-dom";
 
-const Login = () => {
+
+
+function Login() {
 	return (
 		// <div>
 		// 	<h1>Login</h1>
@@ -36,7 +38,7 @@ const Login = () => {
 					</button>
 				  </form>
 				  <p className="account">
-					Don't have an account? <a href="#signup">Register</a>
+					Don't have an account? <Link to="/signup">Register</Link>
 				  </p>
 				</div>
 				<div className="w3l_form align-self">
@@ -51,14 +53,16 @@ const Login = () => {
 			  </div>
 			</div>
 		  </div>
-		  <div className="copyright">
+		  {/* <div className="copyright">
 			<p className="copy-footer-29">
 			  © 2021 Report Login Form. All rights reserved | Design by{" "}
 			  <a href="#">W3layouts</a>
 			</p>
-		  </div>
+		  </div> */}
 		</section>
-	);
+  
+	)
 };
 
 export default Login;
+
