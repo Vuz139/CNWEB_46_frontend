@@ -44,7 +44,7 @@ function Login() {
 				<div className="w3l_form align-self">
 				  <div className="left_grid_info">
 					<img
-					  src="images/1.png"
+					  src="./sign.png"
 					  alt=""
 					  className="img-fluid"
 					/>
