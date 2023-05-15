@@ -1,5 +1,5 @@
 import React from "react";
-import "../product_details_page/style.css";
+import "../CSS/product.css";
 import Comment from "../components/Comment";
 const Product = () => {
 	const product = {

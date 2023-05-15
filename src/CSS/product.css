@@ -206,10 +206,12 @@ a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
+    width: 80%;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 .testimonial-box{
-    width: 500px;
+    width: 100%;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
     background-color: #ffffff;
     padding: 20px;

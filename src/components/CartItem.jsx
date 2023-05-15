@@ -1,5 +1,5 @@
 import React from "react";
-import "../cart_shopping/cart.css";
+import "../CSS/cart.css";
 const CartItem = () => {
 	return (
 		<div class="cart-row">
