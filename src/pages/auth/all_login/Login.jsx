@@ -12,7 +12,7 @@ const Login = () => {
 					<div className="main-hotair">
 						<div className="content-wthree">
 							<h2>Log In</h2>
-							<form action="#" method="post">
+							<form action="" method="post">
 								<input
 									type="text"
 									className="text"
