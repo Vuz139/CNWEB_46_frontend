@@ -12,6 +12,8 @@ import Product from "./pages/Product";
 import ShoppingCart from "./pages/ShoppingCart";
 import { Provider } from "react-redux";
 import { store } from "./redux/index";
+import Home from "./pages/Home";
+import ListProducts from "./pages/ListProducts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,8 +26,8 @@ root.render(
 						element={
 							<>
 								<Header />
-								<App />
-								<Footer />{" "}
+								<Home />
+								{/* <Footer />{" "} */}
 							</>
 						}
 					/>
@@ -45,7 +47,7 @@ root.render(
 						element={
 							<>
 								<Header />
-								<Product />
+								<ListProducts />
 								<Footer />
 							</>
 						}

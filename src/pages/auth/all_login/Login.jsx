@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-import png from "./1.png";
+import png from "./sign.png";
 
 function Login() {
 	return (
