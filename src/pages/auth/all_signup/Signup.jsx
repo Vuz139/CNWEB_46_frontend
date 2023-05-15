@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "./style.css";
+import './style.css';
 import { Link } from "react-router-dom";
-function Signup() {
-	const [formData, setFormData] = useState({
-		username: "",
-		email: "",
-		password: "",
-		confirmPassword: "",
-	});
+
+function Signup () {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -80,50 +81,54 @@ function Signup() {
 								/>
 							</div>
 
-							<div className="login-remember d-grid">
-								<button
-									type="submit"
-									className="btn theme-button">
-									Signup
-								</button>
-							</div>
-						</form>
-						<div className="social-icons">
-							<p className="continue">
-								<span>Or</span>
-							</p>
-							<div className="social-login">
-								<a href="#facebook">
-									<div className="facebook">
-										<span
-											className="fa fa-facebook"
-											aria-hidden="true">
-											Fb
-										</span>
-									</div>
-								</a>
-								<a href="#google">
-									<div className="google">
-										<span
-											className="fa fa-google-plus"
-											aria-hidden="true">
-											G
-										</span>
-									</div>
-								</a>
-							</div>
-						</div>
-						<p className="signup">
-							Already a member?{" "}
-							<Link to={"/login"} className="signuplink">
-								Login
-							</Link>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
-}
+              <div className="login-remember d-grid">
+                <label className="check-remaind">
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                  <p className="remember">Remember me</p>
+                </label>
+                <button type="submit" className="btn theme-button">
+                  Signup
+                </button>
+              </div>
+            </form>
+            <div className="social-icons">
+              <p className="continue">
+                <span>Or</span>
+              </p>
+              <div className="social-login">
+                <a href="#facebook">
+                  <div className="facebook">
+                    <span className="fa fa-facebook" aria-hidden="true">Fb</span>
+                  </div>
+                </a>
+                <a href="#google">
+                  <div className="google">
+                    <span className="fa fa-google-plus" aria-hidden="true">G</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <p className="signup">
+              Already a member?{" "}
+              <Link to="/login" className="signuplink">
+                Login
+              </Link>
+            </p>
+          </div>
+
+          {/* <div className="copy-right">
+            <p>
+              © 2020 Stock Signup Form. All rights reserved | Design by{" "}
+              <a href="http://w3layouts.com/" target="_blank">
+                W3Layouts
+              </a>
+            </p>
+          </div> */}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Signup;

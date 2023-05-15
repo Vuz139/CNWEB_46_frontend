@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
-import png from "./1.png";
 import { Link } from "react-router-dom";
+import png from "./1.png";
 
-const Login = () => {
+function Login() {
 	return (
 		<section className="w3l-hotair-form">
 			<h1>Group 46</h1>
@@ -54,6 +54,6 @@ const Login = () => {
 			</div>
 		</section>
 	);
-};
+}
 
 export default Login;
