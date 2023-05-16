@@ -1,24 +1,32 @@
 import React, { useState } from "react";
-import './style.css';
+import "./style.css";
 import { Link } from "react-router-dom";
-
-function Signup () {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+import { createUser } from "../../../requests/users.request";
+import { setAccessToken } from "../../../utils/storage.util";
+function Signup() {
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setFormData((prevState) => ({ ...prevState, [name]: value }));
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
+		if (formData.password != formData.confirmPassword) {
+			return;
+		}
+		formData.role = "user";
 		console.log(formData);
-		// do something with formData, like send to server
+		const result = await createUser(formData).then((res) => res);
+		if (result.success) {
+			setAccessToken(result.token);
+		}
 	};
 
 	return (
@@ -34,9 +42,9 @@ function Signup () {
 									aria-hidden="true"></span>{" "}
 								<input
 									type="text"
-									name="username"
+									name="name"
 									placeholder="Username"
-									value={formData.username}
+									value={formData.name}
 									onChange={handleChange}
 									required
 								/>
@@ -81,43 +89,53 @@ function Signup () {
 								/>
 							</div>
 
-              <div className="login-remember d-grid">
-                <label className="check-remaind">
-                  <input type="checkbox" />
-                  <span className="checkmark"></span>
-                  <p className="remember">Remember me</p>
-                </label>
-                <button type="submit" className="btn theme-button">
-                  Signup
-                </button>
-              </div>
-            </form>
-            <div className="social-icons">
-              <p className="continue">
-                <span>Or</span>
-              </p>
-              <div className="social-login">
-                <a href="#facebook">
-                  <div className="facebook">
-                    <span className="fa fa-facebook" aria-hidden="true">Fb</span>
-                  </div>
-                </a>
-                <a href="#google">
-                  <div className="google">
-                    <span className="fa fa-google-plus" aria-hidden="true">G</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <p className="signup">
-              Already a member?{" "}
-              <Link to="/login" className="signuplink">
-                Login
-              </Link>
-            </p>
-          </div>
+							<div className="login-remember d-grid">
+								<label className="check-remaind">
+									<input type="checkbox" />
+									<span className="checkmark"></span>
+									<p className="remember">Remember me</p>
+								</label>
+								<button
+									type="submit"
+									className="btn theme-button">
+									Signup
+								</button>
+							</div>
+						</form>
+						<div className="social-icons">
+							<p className="continue">
+								<span>Or</span>
+							</p>
+							<div className="social-login">
+								<a href="#facebook">
+									<div className="facebook">
+										<span
+											className="fa fa-facebook"
+											aria-hidden="true">
+											Fb
+										</span>
+									</div>
+								</a>
+								<a href="#google">
+									<div className="google">
+										<span
+											className="fa fa-google-plus"
+											aria-hidden="true">
+											G
+										</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<p className="signup">
+							Already a member?{" "}
+							<Link to="/login" className="signuplink">
+								Login
+							</Link>
+						</p>
+					</div>
 
-          {/* <div className="copy-right">
+					{/* <div className="copy-right">
             <p>
               © 2020 Stock Signup Form. All rights reserved | Design by{" "}
               <a href="http://w3layouts.com/" target="_blank">
@@ -125,10 +143,10 @@ function Signup () {
               </a>
             </p>
           </div> */}
-        </div>
-      </div>
-    </section>
-  );
-};
+				</div>
+			</div>
+		</section>
+	);
+}
 
 export default Signup;

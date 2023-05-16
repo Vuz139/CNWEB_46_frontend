@@ -2,8 +2,8 @@ import "./home.css";
 import "../components/products/product.css";
 import { useState } from "react";
 import React from "react";
-import ListProducts from "./ListProducts";
 import ProductWrapper from "../components/products/ProductWrapper";
+import Sidebar from "../components/Sidebar";
 function Home() {
 	const [currentPage, setCurrentPage] = useState(1);
 
@@ -17,7 +17,6 @@ function Home() {
 		{ id: 1, content: "Item 1" },
 		{ id: 2, content: "Item 2" },
 		{ id: 3, content: "Item 3" },
-		// ...
 	];
 
 	// Số item hiển thị trên mỗi trang
@@ -32,7 +31,9 @@ function Home() {
 	return (
 		<div className="grid">
 			<div className="grid__row">
-				<div className="col-3 sm-0">day la menu</div>
+				<div className="col-3 sm-0">
+					<Sidebar />
+				</div>
 				<div className="col-9 sm-full">
 					<ProductWrapper />
 

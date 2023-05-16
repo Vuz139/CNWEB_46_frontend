@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/Footer.css";
+import "../assets/CSS/Footer.css";
 const Footer = () => {
 	return <div className="footer">@Made by group 46</div>;
 };
