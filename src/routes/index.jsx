@@ -13,6 +13,8 @@ import Home from "../pages/Home";
 import ListProducts from "../pages/ListProducts";
 import Error404 from "../components/public/Error404";
 import Error403 from "../components/public/Error403";
+import AuthLayout from "../layouts/auth/AuthLayout";
+import ProductWrapper from "../components/products/ProductWrapper";
 
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
@@ -20,7 +22,7 @@ const ProtectedRoute = ({ children, roles }) => {
 
 	if (user) {
 		if (roles && !roles.includes(user.role))
-			return <Navigate to="/40" replace />;
+			return <Navigate to="/401" replace />;
 		return children;
 	}
 
@@ -39,6 +41,7 @@ const AppRoutes = () => {
 					<>
 						<Header />
 						<Home />
+						<Footer />
 					</>
 				}
 			/>
@@ -72,6 +75,14 @@ const AppRoutes = () => {
 						<ShoppingCart />
 						<Footer />
 					</>
+				}
+			/>
+			<Route
+				path="/admin"
+				element={
+					<AuthLayout>
+						<ProductWrapper />
+					</AuthLayout>
 				}
 			/>
 		</Routes>

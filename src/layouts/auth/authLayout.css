@@ -1,0 +1,33 @@
+.authContainer {
+	display: flex;
+	margin: auto;
+	max-width: 1200px;
+	position: relative;
+}
+.authContainer header {
+	width: 300px;
+}
+.authContainer section {
+	flex: 1;
+}
+
+.authSidebarWrapper {
+	border: 1px solid #222;
+	height: 100%;
+}
+.authSidebar__arrow {
+	font-size: 2rem;
+	padding: 4px;
+	background-color: beige;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.authSidebar__item {
+	font-size: 2rem;
+	font-weight: 600;
+	padding: 1rem 1rem;
+}
+.authSidebar__item:hover {
+	background-color: antiquewhite;
+	cursor: pointer;
+}
