@@ -19,10 +19,10 @@ const ShoppingCart = () => {
 				<CartItem />
 				<CartItem />
 				<CartItem />
-				<CartItem />
 				<div class="cart-total">
 					<strong class="cart-total-title">Tổng Cộng:</strong>
 					<span class="cart-total-price">Chưa tính</span>
+					<button>Thanh toan</button>
 				</div>
 			</div>
 		</div>

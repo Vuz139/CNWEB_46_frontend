@@ -9,6 +9,8 @@ import Login from "./pages/auth/all_login/Login";
 import Me from "./pages/auth/all_me/Me";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ShoppingCart from "./pages/ShoppingCart";
+import Home from "./pages/Home"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,7 +39,28 @@ root.render(
 				/>
 				<Route path="/signup" element={<Signup />} />
 				<Route path="me" element={<Me />} />
+				<Route
+					path="/ShoppingCart"
+					element={
+						<>
+							<Header />
+							<ShoppingCart />
+							<Footer />{" "}
+						</>
+					}
+				/>
+				<Route
+					path="/Home"
+					element={
+						<>
+							<Header />
+							<Home/>
+							<Footer />{" "}
+						</>
+					}
+				/>
 			</Routes>
+			
 		</BrowserRouter>
 	</React.StrictMode>,
 );

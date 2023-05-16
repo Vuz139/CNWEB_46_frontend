@@ -56,10 +56,10 @@ const Header = () => {
 				</div>
 			)}
 			<div className="header__icons">
-				<span className="header__cart">
+				<Link to ={"/ShoppingCart"} className="header__cart">
 					<BsCart4 />
 					<span className="header__cart__amount">6</span>
-				</span>
+				</Link>
 				<span className="header__user">
 					{" "}
 					<HiOutlineUserCircle />
