@@ -2,7 +2,11 @@ import React from "react";
 import "./authLayout.css";
 import { BsArrowLeft } from "react-icons/bs";
 import { RiGroupLine, RiGiftLine, RiProductHuntLine } from "react-icons/ri";
+import { Link, useLocation } from "react-router-dom";
 const AuthSidebar = () => {
+	const location = useLocation();
+	// console.log("check location: ", location);
+
 	return (
 		<div className="authSidebarWrapper">
 			<span className="authSidebar__arrow">
@@ -12,12 +16,22 @@ const AuthSidebar = () => {
 				<li className="authSidebar__item">
 					List User <RiGroupLine />
 				</li>
-				<li className="authSidebar__item">
+				<Link
+					to={"orders"}
+					className={`authSidebar__item ${
+						location.pathname.includes("orders") ? "on" : "off"
+					}`}>
+					{" "}
 					List Order <RiGiftLine />
-				</li>
-				<li className="authSidebar__item">
+				</Link>
+
+				<Link
+					to={"products"}
+					className={`authSidebar__item ${
+						location.pathname.includes("product") ? "on" : "off"
+					} `}>
 					List Product <RiProductHuntLine />
-				</li>
+				</Link>
 				<li className="authSidebar__item">Statistic</li>
 			</ul>
 		</div>

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { BsCart4, BsSearch } from "react-icons/bs";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Button from "./Button";
+import { logout } from "../redux/userSlice";
 
 const Header = () => {
 	const [width, setWidth] = useState(window.innerWidth);
 	const [searchInput, setSearchInput] = useState("");
+
+	const user = useSelector((state) => state.user);
+	const dispatch = useDispatch();
+
 	useEffect(() => {
 		function handleResize() {
 			setWidth(window.innerWidth);
@@ -23,6 +30,11 @@ const Header = () => {
 			e.preventDefault();
 			// Search -- todo
 		}
+	};
+	const handleLogout = (e) => {
+		e.preventDefault();
+		dispatch(logout());
+		console.log(">>>check user: ", user);
 	};
 
 	return (
@@ -68,7 +80,11 @@ const Header = () => {
 					<div className="header__user__menu">
 						<a href="#">User</a>
 						<a href="#">New Product</a>
-						<Link to={"/login"}>Login</Link>
+						{user && user.id ? (
+							<a onClick={handleLogout}>Logout</a>
+						) : (
+							<Link to={"/login"}>Login</Link>
+						)}
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>

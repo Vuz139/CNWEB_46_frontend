@@ -3,13 +3,15 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { createUser } from "../../../requests/users.request";
 import { setAccessToken } from "../../../utils/storage.util";
-function Signup() {
+import Button from "../../../components/Button";
+function SignUp() {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		password: "",
 		confirmPassword: "",
 	});
+	const [loading, setLoading] = useState(false);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -22,10 +24,16 @@ function Signup() {
 			return;
 		}
 		formData.role = "user";
-		console.log(formData);
-		const result = await createUser(formData).then((res) => res);
-		if (result.success) {
-			setAccessToken(result.token);
+		try {
+			setLoading(true);
+			const result = await createUser(formData).then((res) => res);
+			if (result.success) {
+				setAccessToken(result.token);
+			}
+		} catch (error) {
+			alert("Đăng kí không thành công");
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -90,23 +98,18 @@ function Signup() {
 							</div>
 
 							<div className="login-remember d-grid">
-								<label className="check-remaind">
-									<input type="checkbox" />
-									<span className="checkmark"></span>
-									<p className="remember">Remember me</p>
-								</label>
-								<button
-									type="submit"
-									className="btn theme-button">
-									Signup
-								</button>
+								<Button
+									onClick={(e) => handleSubmit(e)}
+									title={"Sign Up"}
+									loading={loading}
+								/>
 							</div>
 						</form>
-						<div className="social-icons">
+						{/* <div className="social-icons">
 							<p className="continue">
 								<span>Or</span>
 							</p>
-							<div className="social-login">
+							{/* <div className="social-login">
 								<a href="#facebook">
 									<div className="facebook">
 										<span
@@ -125,8 +128,8 @@ function Signup() {
 										</span>
 									</div>
 								</a>
-							</div>
-						</div>
+							</div> */}
+						{/* </div> */}
 						<p className="signup">
 							Already a member?{" "}
 							<Link to="/login" className="signuplink">
@@ -134,19 +137,10 @@ function Signup() {
 							</Link>
 						</p>
 					</div>
-
-					{/* <div className="copy-right">
-            <p>
-              © 2020 Stock Signup Form. All rights reserved | Design by{" "}
-              <a href="http://w3layouts.com/" target="_blank">
-                W3Layouts
-              </a>
-            </p>
-          </div> */}
 				</div>
 			</div>
 		</section>
 	);
 }
 
-export default Signup;
+export default SignUp;

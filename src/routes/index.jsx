@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Signup from "../pages/auth/all_signup/Signup";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+
 import Login from "../pages/auth/all_login/Login";
 import Me from "../pages/auth/all_me/Me";
 import Header from "../components/Header";
@@ -15,6 +15,8 @@ import Error404 from "../components/public/Error404";
 import Error403 from "../components/public/Error403";
 import AuthLayout from "../layouts/auth/AuthLayout";
 import ProductWrapper from "../components/products/ProductWrapper";
+import SignUp from "../pages/auth/all_signup/Signup";
+import ListOrder from "../pages/orders/ListOrder";
 
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
@@ -55,7 +57,7 @@ const AppRoutes = () => {
 					</>
 				}
 			/>
-			<Route path="/signup" element={<Signup />} />
+			<Route path="/signup" element={<SignUp />} />
 			<Route
 				path="/product"
 				element={
@@ -81,10 +83,12 @@ const AppRoutes = () => {
 				path="/admin"
 				element={
 					<AuthLayout>
-						<ProductWrapper />
+						<Outlet />
 					</AuthLayout>
-				}
-			/>
+				}>
+				<Route path="orders" element={<ListOrder />} />
+				<Route path="products" element={<ProductWrapper />} />
+			</Route>
 		</Routes>
 	);
 };

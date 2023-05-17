@@ -8,7 +8,6 @@
 	box-sizing: border-box;
 	font-family: sans-serif;
 }
-
 html {
 	font-size: 62.5%;
 }
@@ -21,6 +20,9 @@ a {
 }
 body {
 	padding: 4px;
+}
+.on {
+	background-color: aquamarine;
 }
 .header {
 	max-width: 1200px;
@@ -152,10 +154,10 @@ body {
 	align-items: center;
 }
 .loading__icon {
-	height: 50vh;
+	font-size: 2rem;
+	padding: 8px;
 	display: flex;
 	flex-direction: column-reverse;
-
 	align-items: center;
 }
 .loading__icon span {
@@ -223,4 +225,66 @@ body {
 }
 .error403Page__link a:hover {
 	background-color: #999;
+}
+
+/* orders */
+.order-container {
+	font-size: 1.6rem;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.order-info {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.order-status {
+	font-weight: bold;
+}
+
+.order-actions {
+	display: flex;
+	justify-content: flex-end;
+}
+.order-actions button:hover {
+	opacity: 0.6;
+	color: wheat;
+}
+.order-action-accept {
+	padding: 8px;
+	background-color: rgb(138, 208, 33);
+	border-radius: 8px;
+	border: none;
+}
+.order-action-cancel {
+	padding: 8px;
+	background-color: rgb(158, 101, 101);
+	border-radius: 8px;
+	border: none;
+	margin: 0 4px;
+}
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.pagination-button {
+	margin: 0 5px;
+	padding: 8px;
+	font-size: 1.6rem;
+	background-color: rgb(244, 189, 117);
+	cursor: pointer;
+}
+
+.filter-container {
+	margin-top: 10px;
+	font-size: 1.6rem;
+}
+
+.filter-label {
+	margin-right: 5px;
 }

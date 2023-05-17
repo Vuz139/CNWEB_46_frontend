@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./style.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import png from "./sign.png";
 import { login } from "../../../requests/users.request";
+import Button from "../../../components/Button";
+import { useDispatch } from "react-redux";
+import { loginRedux } from "../../../redux/userSlice";
 
 function Login() {
 	const [formData, setFormData] = useState({ email: "", password: "" });
+	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleFormChange = (event) => {
 		const { name, value } = event.target;
@@ -15,11 +20,18 @@ function Login() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		console.log(formData);
-		const result = await login(formData);
-
-		if (result.success) {
-			navigate("/", { replace: true });
+		try {
+			setLoading(true);
+			const result = await login(formData);
+			console.log(result);
+			if (result.success) {
+				dispatch(loginRedux(result.user));
+				navigate("/", { replace: true });
+			}
+		} catch (err) {
+			alert("Đăng nhập thất bại!");
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -58,12 +70,12 @@ function Login() {
 									<p className="remember">Remember me</p>
 								</label>
 								<br />
-								<button
-									onClick={handleSubmit}
-									className="btn"
-									type="submit">
-									Log In
-								</button>
+
+								<Button
+									title={"Log In"}
+									loading={loading}
+									onClick={(e) => handleSubmit(e)}
+								/>
 							</form>
 							<p className="account">
 								Don't have an account?{" "}
