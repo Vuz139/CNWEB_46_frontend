@@ -1,16 +1,25 @@
 import axios from "axios";
 import { getAccessToken, removeAccessToken } from "../utils/storage.util";
 export const api = axios.create({
-	baseURL: "http://localhost:4001" + "/api/v1",
+	baseURL: "http://localhost:4001/api/v1",
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "*/*",
 	},
 });
 
+export const apiImage = axios.create({
+	baseURL: "http://localhost:4001/api/v1",
+	headers: {
+		"Content-Type": "multipart/form-data",
+		Authorization: "Bearer " + getAccessToken(),
+	},
+});
+
 api.interceptors.request.use(
 	(config) => {
 		const token = getAccessToken();
+
 		// add token to headers
 		if (token && config?.headers) {
 			config.headers["Authorization"] = "Bearer " + token;
@@ -25,9 +34,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
 	(response) => response,
 	(error) => {
-		if (error.response?.status === 401) {
-			removeAccessToken();
-		}
+		// if (error.response?.status === 401) {
+		// 	removeAccessToken();
+		// }
 
 		// const configData = JSON.parse(error.config?.data);
 		// if (!configData.silent) {

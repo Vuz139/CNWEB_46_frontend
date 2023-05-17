@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { createUser } from "../../../requests/users.request";
-import { setAccessToken } from "../../../utils/storage.util";
+
 import Button from "../../../components/Button";
 function SignUp() {
 	const [formData, setFormData] = useState({
@@ -11,6 +11,8 @@ function SignUp() {
 		password: "",
 		confirmPassword: "",
 	});
+	const [avatar, setAvatar] = useState(null);
+
 	const [loading, setLoading] = useState(false);
 
 	const handleChange = (event) => {
@@ -21,17 +23,29 @@ function SignUp() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (formData.password != formData.confirmPassword) {
+			alert("Password do not match with confirm password");
 			return;
 		}
 		formData.role = "user";
 		try {
 			setLoading(true);
-			const result = await createUser(formData).then((res) => res);
+
+			const result = await createUser(formData, avatar && avatar[0]);
+
+			console.log(result);
 			if (result.success) {
-				setAccessToken(result.token);
+				alert("User created successfully");
+				setFormData({
+					name: "",
+					email: "",
+					password: "",
+					confirmPassword: "",
+				});
+				setAvatar(null);
 			}
 		} catch (error) {
-			alert("Đăng kí không thành công");
+			console.log(error);
+			alert(error.errMessage || "Đăng ký không thành công");
 		} finally {
 			setLoading(false);
 		}
@@ -96,6 +110,18 @@ function SignUp() {
 									required
 								/>
 							</div>
+							<div className="form-input">
+								<span className="fa fa-key" aria-hidden="false">
+									Avatar
+								</span>{" "}
+								<input
+									type="file"
+									onChange={(e) => {
+										setAvatar(e.target.files);
+									}}
+									placeholder="Avatar"
+								/>
+							</div>
 
 							<div className="login-remember d-grid">
 								<Button
@@ -105,31 +131,7 @@ function SignUp() {
 								/>
 							</div>
 						</form>
-						{/* <div className="social-icons">
-							<p className="continue">
-								<span>Or</span>
-							</p>
-							{/* <div className="social-login">
-								<a href="#facebook">
-									<div className="facebook">
-										<span
-											className="fa fa-facebook"
-											aria-hidden="true">
-											Fb
-										</span>
-									</div>
-								</a>
-								<a href="#google">
-									<div className="google">
-										<span
-											className="fa fa-google-plus"
-											aria-hidden="true">
-											G
-										</span>
-									</div>
-								</a>
-							</div> */}
-						{/* </div> */}
+
 						<p className="signup">
 							Already a member?{" "}
 							<Link to="/login" className="signuplink">
