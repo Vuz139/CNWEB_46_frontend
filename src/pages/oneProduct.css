@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+.sp{
+    display: block;
+    background-color: white;
+    height: 33rem;
+    /* border: solid 1px red ; */
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.anhSp {
+    display: block;
+    height: 60%;
+    width: 100%;
+}
+.thong_tin{
+    display: block;
+    height: 40%;
+    /* background-color: aqua; */
+}
+
+.description{
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+.rate{
+    display: inline-block;
+
+    
+}
+
+.sell{
+    display: inline-block;
+    margin-left: 40%;
+}

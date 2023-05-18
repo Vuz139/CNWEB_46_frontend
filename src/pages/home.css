@@ -1,3 +1,7 @@
+.anhTest{
+    width: 30px;
+  height: 30px;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +34,7 @@
     display: grid;
     grid-template-columns: repeat(4, auto);
     gap : 8px;
-    background-color: chocolate;
+    background-color: white;
     font-size: 2rem;
     margin-left:5px;
     border: red 2px solid;
@@ -40,8 +44,9 @@
 }
 .item{
     display: block;
-    height: 25rem;
+    height: 33rem;
     background-color: aquamarine;
+    width: 100%;
 }
 
 
