@@ -9,7 +9,8 @@ import { logout } from "../redux/userSlice";
 const Header = () => {
 	const [width, setWidth] = useState(window.innerWidth);
 	const [searchInput, setSearchInput] = useState("");
-
+	const endPointImage =
+		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 	const user = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const Header = () => {
 			{width > 786 && (
 				<div className="header__navigation">
 					<Link to={"/"}>Home</Link>
-					<Link to={"/product"}>Products</Link>
+					<Link to={"/products"}>Products</Link>
 					<a href="#">About</a>
 					<a href="#">Me</a>
 				</div>
@@ -75,11 +76,25 @@ const Header = () => {
 					<span className="header__cart__amount">6</span>
 				</Link>
 				<span className="header__user header__icon">
-					{" "}
-					<HiOutlineUserCircle />
+					{user && user.id ? (
+						<img
+							style={{
+								width: "100%",
+								height: "100%",
+								borderRadius: "50%",
+							}}
+							src={
+								`${endPointImage}/${user.avatar}` ||
+								"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX-BH0rwTlqY-_4BGCB_EYWt0vkOJkI8aBDQ&usqp=CAU"
+							}
+						/>
+					) : (
+						<HiOutlineUserCircle />
+					)}
+
 					<div className="header__user__menu">
 						<a href="#">User</a>
-						<a href="#">New Product</a>
+						<Link to={"/admin/newProduct"}>New Product</Link>
 						{user && user.id ? (
 							<a onClick={handleLogout}>Logout</a>
 						) : (
@@ -88,7 +103,7 @@ const Header = () => {
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>
-								<Link to={"/product"}>Products</Link>
+								<Link to={"/products"}>Products</Link>
 								<a href="#">About</a>
 								<a href="#">Me</a>
 							</>

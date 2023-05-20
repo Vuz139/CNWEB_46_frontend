@@ -32,6 +32,13 @@ const AuthSidebar = () => {
 					} `}>
 					List Product <RiProductHuntLine />
 				</Link>
+				<Link
+					to={"newProduct"}
+					className={`authSidebar__item ${
+						location.pathname.includes("newProduct") ? "on" : "off"
+					} `}>
+					New Product <RiProductHuntLine />
+				</Link>
 				<li className="authSidebar__item">Statistic</li>
 			</ul>
 		</div>

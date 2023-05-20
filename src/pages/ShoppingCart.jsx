@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/CSS/cart.css";
+import Button from "../components/Button";
 import CartItem from "../components/CartItem";
 const ShoppingCart = () => {
 	return (
@@ -21,8 +22,9 @@ const ShoppingCart = () => {
 				<CartItem />
 				<div class="cart-total">
 					<strong class="cart-total-title">Tổng Cộng:</strong>
-					<span class="cart-total-price">Chưa tính</span>
-					<button>Thanh toan</button>
+					<span class="cart-total-price">Chưa tính</span> <br />{" "}
+					<br />
+					<Button title={"Thanh toán"} />
 				</div>
 			</div>
 		</div>

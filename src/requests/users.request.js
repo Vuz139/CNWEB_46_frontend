@@ -3,7 +3,6 @@ import { api, apiImage } from "./api";
 import { getAccessToken, setAccessToken } from "../utils/storage.util";
 
 export const addAvatar = async (avatar) => {
-	console.log(">>> check avatar: ", avatar);
 	try {
 		const formData = new FormData();
 		formData.append("file", avatar);
@@ -21,22 +20,21 @@ export const getListUsers = async (params) => {
 };
 
 export const createUser = async (body, avatar = null) => {
-	console.log(">>avtar: ", avatar);
 	const response = await api.post("/user/register", body);
-	console.log(response);
-	setAccessToken(response.data?.token);
 
-	if (avatar) await addAvatar(avatar);
-	return response.data;
+	setAccessToken(response?.token);
+
+	avatar && (await addAvatar(avatar));
+	return response;
 };
 
 export const updateUser = async (id, body) => {
 	const response = await api.put(`/users/${id}`, body);
-	return response.data;
+	return response;
 };
 
 export const login = async (body) => {
 	const response = await api.post("/user/login", body);
-	setAccessToken(response.data?.token);
-	return response.data;
+	setAccessToken(response?.token);
+	return response;
 };

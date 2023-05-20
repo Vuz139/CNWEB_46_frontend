@@ -11,6 +11,7 @@ const CartItem = () => {
 					height="100"
 				/>
 				<span class="cart-item-title">
+					<h2>TEN SAN PHAM</h2>
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 					Quasi aut quod optio a eum, quos vitae excepturi ea
 					laboriosam tempore ad rerum perspiciatis assumenda pariatur.

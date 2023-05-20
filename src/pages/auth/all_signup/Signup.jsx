@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { createUser } from "../../../requests/users.request";
-
 import Button from "../../../components/Button";
 function SignUp() {
 	const [formData, setFormData] = useState({

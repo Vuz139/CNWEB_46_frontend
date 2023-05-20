@@ -14,10 +14,12 @@ import ListProducts from "../pages/ListProducts";
 import Error404 from "../components/public/Error404";
 import Error403 from "../components/public/Error403";
 import AuthLayout from "../layouts/auth/AuthLayout";
-import ProductWrapper from "../components/products/ProductWrapper";
+
 import SignUp from "../pages/auth/all_signup/Signup";
 import ListOrder from "../pages/orders/ListOrder";
-
+import Product from "../pages/Product";
+import NewProduct from "../pages/admin/NewProduct";
+import ListProductRow from "../pages/admin/ListProductRow";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 	console.log(">>>Check user: ", roles);
@@ -35,7 +37,7 @@ const AppRoutes = () => {
 	return (
 		<Routes>
 			<Route path="/*" element={<Error404 />} />
-			<Route path="/403*" element={<Error403 />} />
+			<Route path="/403" element={<Error403 />} />
 
 			<Route
 				path="/"
@@ -59,11 +61,21 @@ const AppRoutes = () => {
 			/>
 			<Route path="/signup" element={<SignUp />} />
 			<Route
-				path="/product"
+				path="/products"
 				element={
 					<>
 						<Header />
 						<ListProducts />
+						<Footer />
+					</>
+				}
+			/>
+			<Route
+				path="/product/:id"
+				element={
+					<>
+						<Header />
+						<Product />
 						<Footer />
 					</>
 				}
@@ -86,8 +98,9 @@ const AppRoutes = () => {
 						<Outlet />
 					</AuthLayout>
 				}>
+				<Route path="newProduct" element={<NewProduct />} />
 				<Route path="orders" element={<ListOrder />} />
-				<Route path="products" element={<ProductWrapper />} />
+				<Route path="products" element={<ListProductRow />} />
 			</Route>
 		</Routes>
 	);

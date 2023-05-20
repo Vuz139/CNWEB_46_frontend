@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAccessToken, removeAccessToken } from "../utils/storage.util";
 export const api = axios.create({
-	baseURL: "http://localhost:4001/api/v1",
+	baseURL: process.env.REACT_APP_END_POINT,
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "*/*",
@@ -9,12 +9,27 @@ export const api = axios.create({
 });
 
 export const apiImage = axios.create({
-	baseURL: "http://localhost:4001/api/v1",
+	baseURL: process.env.REACT_APP_END_POINT,
 	headers: {
 		"Content-Type": "multipart/form-data",
-		Authorization: "Bearer " + getAccessToken(),
+		Accept: "image/*",
 	},
 });
+
+apiImage.interceptors.request.use(
+	(config) => {
+		const token = getAccessToken();
+
+		// add token to headers
+		if (token && config?.headers) {
+			config.headers["Authorization"] = "Bearer " + token;
+		}
+		return config;
+	},
+	(error) => {
+		Promise.reject(error);
+	},
+);
 
 api.interceptors.request.use(
 	(config) => {
@@ -32,7 +47,7 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-	(response) => response,
+	(response) => response.data,
 	(error) => {
 		// if (error.response?.status === 401) {
 		// 	removeAccessToken();

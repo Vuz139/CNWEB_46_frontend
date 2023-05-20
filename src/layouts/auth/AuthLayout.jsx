@@ -10,7 +10,7 @@ const AuthLayout = ({ children }) => {
 				<header>
 					<AuthSidebar />
 				</header>
-				<section>{children}</section>
+				<section style={{ padding: "16px" }}>{children}</section>
 			</div>
 			<Footer />
 		</>
