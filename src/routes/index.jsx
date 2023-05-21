@@ -20,13 +20,14 @@ import ListOrder from "../pages/orders/ListOrder";
 import Product from "../pages/Product";
 import NewProduct from "../pages/admin/NewProduct";
 import ListProductRow from "../pages/admin/ListProductRow";
+import ListUser from "../pages/admin/ListUser";
+import AppLayout from "../layouts/AppLayout";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
-	console.log(">>>Check user: ", roles);
 
 	if (user) {
 		if (roles && !roles.includes(user.role))
-			return <Navigate to="/401" replace />;
+			return <Navigate to="/403" replace />;
 		return children;
 	}
 
@@ -63,11 +64,9 @@ const AppRoutes = () => {
 			<Route
 				path="/products"
 				element={
-					<>
-						<Header />
+					<AppLayout>
 						<ListProducts />
-						<Footer />
-					</>
+					</AppLayout>
 				}
 			/>
 			<Route
@@ -94,11 +93,14 @@ const AppRoutes = () => {
 			<Route
 				path="/admin"
 				element={
-					<AuthLayout>
-						<Outlet />
-					</AuthLayout>
+					<ProtectedRoute roles={"admin"}>
+						<AuthLayout>
+							<Outlet />
+						</AuthLayout>
+					</ProtectedRoute>
 				}>
 				<Route path="newProduct" element={<NewProduct />} />
+				<Route path="users" element={<ListUser />} />
 				<Route path="orders" element={<ListOrder />} />
 				<Route path="products" element={<ListProductRow />} />
 			</Route>

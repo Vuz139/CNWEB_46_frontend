@@ -7,7 +7,7 @@ const ProductItem = ({ product }) => {
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 
 	return (
-		<Link to={"/product/4"} className="col-4 m-3 sm-6">
+		<Link to={`/product/${product.id}`} className="col-4 m-3 sm-6">
 			<div className="productContainer">
 				<div className="sp">
 					<img
@@ -20,14 +20,8 @@ const ProductItem = ({ product }) => {
 						alt="normal"
 					/>
 					<div className="thong_tin">
-						<p className="description">
-							Lorem ipsum, dolor sit amet consectetur adipisicing
-							elit. Repudiandae, ipsa, porro illum voluptates quae
-							rerum maxime recusandae tenetur est quaerat earum
-							aliquam odio veritatis optio eaque temporibus
-							consectetur? Commodi, ipsam.
-						</p>
-						<p className="sp__cost">$12</p>
+						<p className="description">{product.description}</p>
+						<p className="sp__cost">${product.price}</p>
 						<div>
 							<p className="rate">
 								<div class="reviews">

@@ -1,9 +1,18 @@
 import React from "react";
 import { ImSpinner3 } from "react-icons/im";
 
-const Button = ({ loading = false, title, onClick }) => {
+const Button = ({
+	loading = false,
+	title,
+	onClick,
+	type = "primary",
+	children,
+}) => {
 	return (
-		<button onClick={onClick} type="submit" className="btn theme-button">
+		<button
+			onClick={onClick}
+			type="submit"
+			className={`btn ${type} theme-button`}>
 			{loading ? (
 				<div className="loading__icon ">
 					<span>
@@ -11,7 +20,7 @@ const Button = ({ loading = false, title, onClick }) => {
 					</span>
 				</div>
 			) : (
-				title
+				title || children
 			)}
 		</button>
 	);

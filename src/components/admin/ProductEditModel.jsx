@@ -6,13 +6,7 @@ const ProductEditModel = ({ productUpdate, onClickHide }) => {
 	const [loading, setLoading] = useState(false);
 
 	const [product, setProduct] = useState({
-		id: productUpdate.id,
-		name: productUpdate.name,
-		description: productUpdate.description,
-		category: productUpdate.category,
-		price: productUpdate.price,
-		seller: productUpdate.seller,
-		stock: productUpdate.stock,
+		...productUpdate,
 	});
 	const handleOnChangeProduct = (e) => {
 		e.preventDefault();

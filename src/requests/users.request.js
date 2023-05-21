@@ -14,9 +14,16 @@ export const addAvatar = async (avatar) => {
 	}
 };
 
-export const getListUsers = async (params) => {
-	const response = await api.get("/users", { params });
-	return response.data;
+export const getListUsers = async (take = 10, skip = 0, keyword = "") => {
+	console.log("take: ", take);
+	const response = await api.get("/admin/users", {
+		params: {
+			take,
+			skip,
+			keyword,
+		},
+	});
+	return response;
 };
 
 export const createUser = async (body, avatar = null) => {
@@ -29,7 +36,7 @@ export const createUser = async (body, avatar = null) => {
 };
 
 export const updateUser = async (id, body) => {
-	const response = await api.put(`/users/${id}`, body);
+	const response = await api.put(`/admin/user/${id}`, body);
 	return response;
 };
 

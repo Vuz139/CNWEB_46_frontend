@@ -3,9 +3,10 @@ import Loading from "../../components/public/Loading";
 import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
 import ProductEditModel from "../../components/admin/ProductEditModel";
+import Pagination from "../../components/public/Pagination";
 const ListProductRow = () => {
 	const [state, setState] = useState({
-		take: 20,
+		take: 10,
 		page: 1,
 		keyword: "",
 		price: 0,
@@ -13,11 +14,14 @@ const ListProductRow = () => {
 		seller: "",
 	});
 	const [showModal, setShowModal] = useState(false);
+	const [total, setTotal] = useState(0);
 	const [productEdit, setProductEdit] = useState({});
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
+	const numOfPages = Math.ceil(total / state.take);
+
 	const fetchData = async () => {
 		try {
 			setLoading(true);
@@ -28,6 +32,7 @@ const ListProductRow = () => {
 			);
 			if (res.status === "success") {
 				setProducts(res.products);
+				setTotal(res.total);
 			}
 		} catch (error) {
 			console.log(error);
@@ -86,9 +91,10 @@ const ListProductRow = () => {
 					{products.map((product) => (
 						<tr>
 							<td>{product.id}</td>
-							<td>
+							<td style={{ objectFit: "cover" }}>
 								<img
 									class="product-image"
+									style={{ height: "100px", width: "100px" }}
 									src={
 										product?.images &&
 										product.images.length > 0
@@ -121,6 +127,11 @@ const ListProductRow = () => {
 					))}
 				</tbody>
 			</table>
+			<Pagination
+				numOfPages={numOfPages}
+				state={state}
+				setState={setState}
+			/>
 		</div>
 	);
 };

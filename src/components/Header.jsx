@@ -66,8 +66,8 @@ const Header = () => {
 				<div className="header__navigation">
 					<Link to={"/"}>Home</Link>
 					<Link to={"/products"}>Products</Link>
-					<a href="#">About</a>
-					<a href="#">Me</a>
+					{/* <a href="#">About</a>
+					<a href="#">Me</a> */}
 				</div>
 			)}
 			<div className="header__icons">
@@ -95,18 +95,19 @@ const Header = () => {
 					<div className="header__user__menu">
 						<a href="#">User</a>
 						<Link to={"/admin/newProduct"}>New Product</Link>
-						{user && user.id ? (
-							<a onClick={handleLogout}>Logout</a>
-						) : (
-							<Link to={"/login"}>Login</Link>
-						)}
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>
 								<Link to={"/products"}>Products</Link>
-								<a href="#">About</a>
-								<a href="#">Me</a>
+								{/* <a href="#">About</a>
+								<a href="#">Me</a> */}
 							</>
+						)}
+
+						{user && user.id ? (
+							<a onClick={handleLogout}>Logout</a>
+						) : (
+							<Link to={"/login"}>Login</Link>
 						)}
 					</div>
 				</span>
