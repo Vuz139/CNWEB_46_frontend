@@ -7,7 +7,12 @@ const AuthLayout = ({ children }) => {
 		<>
 			<Header />
 			<div className="authContainer">
-				<header>
+				<header
+					style={{
+						margin: "0 8px",
+						padding: "4px",
+						border: "1px solid #ccc",
+					}}>
 					<AuthSidebar />
 				</header>
 				<section
@@ -16,6 +21,7 @@ const AuthLayout = ({ children }) => {
 						overflowY: "auto",
 						height: "77vh",
 						zIndex: "1",
+						border: "1px solid #ccc",
 					}}>
 					{children}
 				</section>

@@ -25,7 +25,7 @@ const AuthSidebar = () => {
 					}`}>
 					<span
 						style={{
-							display: `${showSidebar ? "block" : "none"}`,
+							display: `${showSidebar ? "inline-block" : "none"}`,
 						}}>
 						List User{" "}
 					</span>
@@ -39,7 +39,7 @@ const AuthSidebar = () => {
 					{" "}
 					<span
 						style={{
-							display: `${showSidebar ? "block" : "none"}`,
+							display: `${showSidebar ? "inline-block" : "none"}`,
 						}}>
 						List Order{" "}
 					</span>

@@ -3,12 +3,8 @@
 	margin: 12px auto;
 	max-width: 1200px;
 	position: relative;
+}
 
-	/* min-height: 90vh; */
-}
-.authContainer header {
-	/* min-width: 200px; */
-}
 .authContainer section {
 	flex: 1;
 }

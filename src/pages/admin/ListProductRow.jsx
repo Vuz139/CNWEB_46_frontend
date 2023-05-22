@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
 import ProductEditModel from "../../components/admin/ProductEditModel";
 import Pagination from "../../components/public/Pagination";
+import { BsSearch } from "react-icons/bs";
 const ListProductRow = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -21,6 +22,19 @@ const ListProductRow = () => {
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 	const numOfPages = Math.ceil(total / state.take);
+
+	const [debounce, setDebounce] = useState("");
+
+	useEffect(() => {
+		const temp = setTimeout(() => {
+			setState((prev) => ({
+				...prev,
+				keyword: debounce,
+			}));
+		}, 1000);
+
+		return () => clearTimeout(temp);
+	}, [debounce]);
 
 	const fetchData = async () => {
 		try {
@@ -64,7 +78,6 @@ const ListProductRow = () => {
 			});
 	};
 
-	if (loading) return <Loading />;
 	return (
 		<div>
 			{showModal && (
@@ -73,60 +86,96 @@ const ListProductRow = () => {
 					onClickHide={() => setShowModal(false)}
 				/>
 			)}
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Image</th>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Category</th>
-						<th>Price</th>
-						<th>Stock</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{products.map((product) => (
+			<div
+				style={{
+					margin: "12px",
+					border: "1px solid #ccc",
+					borderRadius: "22px",
+					display: "inline-block",
+					padding: "4px 12px",
+				}}>
+				<input
+					style={{
+						outline: "none",
+						border: "none",
+						padding: "4px 8px",
+						backgroundColor: "transparent",
+						fontSize: "16px",
+					}}
+					onChange={(e) => setDebounce(e.target.value)}
+					value={debounce}
+					type="text"
+					placeholder="Search?"
+				/>
+				<span style={{ fontSize: "16px" }}>
+					<BsSearch />
+				</span>
+			</div>
+			{loading ? (
+				<Loading />
+			) : (
+				<table>
+					<thead>
 						<tr>
-							<td>{product.id}</td>
-							<td style={{ objectFit: "cover" }}>
-								<img
-									class="product-image"
-									style={{ height: "100px", width: "100px" }}
-									src={
-										product?.images &&
-										product.images.length > 0
-											? `${endPointImg}/${product.images[0].path}`
-											: ""
-									}
-									alt="Product image"
-								/>
-							</td>
-							<td>{product.name}</td>
-							<td>{product.description}</td>
-							<td>{product.category}</td>
-							<td>${product.price}</td>
-							<td>{product.stock}</td>
-							<td>
-								<button
-									onClick={(e) => handleUpdate(e, product)}
-									class="edit-button">
-									Edit
-								</button>
-							</td>
-							<td>
-								<button
-									onClick={(e) => handleRemove(e, product.id)}
-									class="delete-button">
-									Delete
-								</button>
-							</td>
+							<th>ID</th>
+							<th style={{ width: "100px" }}>Image</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Stock</th>
+							<th colSpan={2}></th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{products.map((product) => (
+							<tr>
+								<td>{product.id}</td>
+								<td style={{ objectFit: "cover" }}>
+									<img
+										class="product-image"
+										style={{
+											height: "100px",
+											width: "100px",
+										}}
+										src={
+											product?.images &&
+											product.images.length > 0
+												? `${endPointImg}/${product.images[0].path}`
+												: ""
+										}
+										alt="Product image"
+									/>
+								</td>
+								<td>{product.name}</td>
+								<td>{product.description.slice(0, 150)}...</td>
+								<td>{product.category}</td>
+								<td>${product.price}</td>
+								<td>{product.stock}</td>
+								<td>
+									<button
+										onClick={(e) =>
+											handleUpdate(e, product)
+										}
+										class="edit-button">
+										Edit
+									</button>
+								</td>
+								<td>
+									<button
+										onClick={(e) =>
+											handleRemove(e, product.id)
+										}
+										class="delete-button">
+										Delete
+									</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			)}
+
 			<Pagination
 				numOfPages={numOfPages}
 				state={state}

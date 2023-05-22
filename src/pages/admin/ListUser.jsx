@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getListUsers } from "../../requests/users.request";
 import UserEdit from "../../components/admin/UserEdit";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import Button from "../../components/Button";
 import Pagination from "../../components/public/Pagination";
 const ListUser = () => {
@@ -40,6 +41,20 @@ const ListUser = () => {
 			setLoading(false);
 		}
 	};
+
+	const [debounce, setDebounce] = useState("");
+
+	useEffect(() => {
+		const temp = setTimeout(() => {
+			setState((prev) => ({
+				...prev,
+				keyword: debounce,
+			}));
+		}, 1000);
+
+		return () => clearTimeout(temp);
+	}, [debounce]);
+
 	useEffect(() => {
 		fetchData();
 	}, [state, showModal]);
@@ -61,7 +76,6 @@ const ListUser = () => {
 		e.preventDefault();
 	};
 
-	if (loading) return <Loading />;
 	return (
 		<div>
 			<div>
@@ -72,60 +86,91 @@ const ListUser = () => {
 					/>
 				)}
 			</div>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Avatar</th>
-						<th>Name</th>
-						<th>Email</th>
-
-						<th>Role</th>
-
-						<th colSpan={2}></th>
-					</tr>
-				</thead>
-				<tbody>
-					{users.map((user) => (
+			<div
+				style={{
+					margin: "12px",
+					border: "1px solid #ccc",
+					borderRadius: "22px",
+					display: "inline-block",
+					padding: "4px 12px",
+				}}>
+				<input
+					style={{
+						outline: "none",
+						border: "none",
+						padding: "4px 8px",
+						backgroundColor: "transparent",
+						fontSize: "16px",
+					}}
+					onChange={(e) => setDebounce(e.target.value)}
+					value={debounce}
+					type="text"
+					placeholder="Search?"
+				/>
+				<span style={{ fontSize: "16px" }}>
+					<BsSearch />
+				</span>
+			</div>
+			{loading ? (
+				<Loading />
+			) : (
+				<table>
+					<thead>
 						<tr>
-							<td>{user.id}</td>
-							<td style={{ objectFit: "cover" }}>
-								<img
-									class="product-image"
-									style={{
-										height: "100px",
-										width: "100px",
-									}}
-									src={
-										user?.avatar
-											? `${endPointImg}/${user.avatar}`
-											: ""
-									}
-									alt="User image"
-								/>
-							</td>
-							<td>{user.name}</td>
-							<td>{user.email}</td>
-							<td>{user.role}</td>
+							<th>ID</th>
+							<th>Avatar</th>
+							<th>Name</th>
+							<th>Email</th>
 
-							<td>
-								<button
-									onClick={(e) => handleUpdate(e, user)}
-									class="edit-button">
-									Edit
-								</button>
-							</td>
-							<td>
-								<button
-									onClick={(e) => handleRemove(e, user.id)}
-									class="delete-button">
-									Delete
-								</button>
-							</td>
+							<th>Role</th>
+
+							<th colSpan={2}></th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{users.map((user) => (
+							<tr>
+								<td>{user.id}</td>
+								<td style={{ objectFit: "cover" }}>
+									<img
+										class="product-image"
+										style={{
+											height: "100px",
+											width: "100px",
+										}}
+										src={
+											user?.avatar
+												? `${endPointImg}/${user.avatar}`
+												: ""
+										}
+										alt="User image"
+									/>
+								</td>
+								<td>{user.name}</td>
+								<td>{user.email}</td>
+								<td>{user.role}</td>
+
+								<td>
+									<button
+										onClick={(e) => handleUpdate(e, user)}
+										class="edit-button">
+										Edit
+									</button>
+								</td>
+								<td>
+									<button
+										onClick={(e) =>
+											handleRemove(e, user.id)
+										}
+										class="delete-button">
+										Delete
+									</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			)}
 
 			<Pagination
 				handleStateChange={handleStateChange}

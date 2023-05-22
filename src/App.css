@@ -126,6 +126,7 @@ button.btn {
 }
 .header__icons {
 	font-size: 3rem;
+	line-height: 100%;
 }
 
 .header__cart {
@@ -136,7 +137,7 @@ button.btn {
 }
 .header__icon:hover {
 	cursor: pointer;
-	font-size: 4rem;
+	font-size: 3.5rem;
 }
 
 .header__cart__amount {
@@ -148,6 +149,7 @@ button.btn {
 	padding: 3px;
 	color: white;
 	font-size: 1.4rem;
+	line-height: 1.4;
 }
 
 .header__user {
@@ -156,7 +158,7 @@ button.btn {
 	height: 30px;
 	display: inline-block;
 	margin-left: 3px;
-	z-index: 99;
+	z-index: 9;
 }
 .header__user:hover {
 	scale: calc(120%);
@@ -176,7 +178,7 @@ button.btn {
 	border-radius: 4px;
 	font-size: 1.4rem;
 	animation: fadeIn 0.3s ease;
-	z-index: 99;
+	z-index: 9;
 }
 @keyframes fadeIn {
 	from {
@@ -431,14 +433,13 @@ th {
 /* CSS cho modal */
 .modal {
 	position: fixed;
-	z-index: 1;
 	left: 0;
-	top: 0;
+	top: 80px;
 	width: 100%;
-	/* height: 100%; */
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
 	animation: topDown ease 0.4s;
+	z-index: 99;
 }
 @keyframes topDown {
 	from {
@@ -461,11 +462,15 @@ th {
 
 .close-button {
 	color: #aaa;
+	padding: 16px;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 	cursor: pointer;
 	user-select: none;
+}
+.close-button:hover {
+	scale: calc(140%);
 }
 
 .edit-form input {
