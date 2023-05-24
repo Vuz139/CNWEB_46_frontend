@@ -17,55 +17,7 @@ import Home from "./pages/home/Home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<>
-								<Header />
-								<Home />
-								<App />
-								<Footer />{" "}
-							</>
-						}
-					/>
-					<Route
-						path="/login"
-						element={
-							<>
-								<Header />
-								<Login />
-								<Footer />{" "}
-							</>
-						}
-					/>
-					<Route path="/signup" element={<Signup />} />
-					<Route
-						path="/product"
-						element={
-							<>
-								<Header />
-								<Product />
-								<Footer />
-							</>
-						}
-					/>
-					<Route path="/me" element={<Me />} />
-					<Route
-						path="/cart"
-						element={
-							<>
-								<Header />
-								<ShoppingCart />
-								<Footer />
-							</>
-						}
-					/>
-				</Routes>
-			</BrowserRouter>
-		</Provider>
+		<App />
 	</React.StrictMode>,
 );
 

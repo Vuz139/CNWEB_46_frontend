@@ -1,24 +1,53 @@
 import React, { useState } from "react";
-import './style.css';
+import "./style.css";
 import { Link } from "react-router-dom";
+import { createUser } from "../../../requests/users.request";
+import Button from "../../../components/Button";
+function SignUp() {
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
+	const [avatar, setAvatar] = useState(null);
 
-function Signup () {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+	const [loading, setLoading] = useState(false);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setFormData((prevState) => ({ ...prevState, [name]: value }));
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(formData);
-		// do something with formData, like send to server
+		if (formData.password != formData.confirmPassword) {
+			alert("Password do not match with confirm password");
+			return;
+		}
+		formData.role = "user";
+		try {
+			setLoading(true);
+
+			const result = await createUser(formData, avatar && avatar[0]);
+
+			console.log(result);
+			if (result.success) {
+				alert("User created successfully");
+				setFormData({
+					name: "",
+					email: "",
+					password: "",
+					confirmPassword: "",
+				});
+				setAvatar(null);
+			}
+		} catch (error) {
+			console.log(error);
+			alert(error.errMessage || "Đăng ký không thành công");
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -34,9 +63,9 @@ function Signup () {
 									aria-hidden="true"></span>{" "}
 								<input
 									type="text"
-									name="username"
+									name="name"
 									placeholder="Username"
-									value={formData.username}
+									value={formData.name}
 									onChange={handleChange}
 									required
 								/>
@@ -80,55 +109,39 @@ function Signup () {
 									required
 								/>
 							</div>
+							<div className="form-input">
+								<span className="fa fa-key" aria-hidden="false">
+									Avatar
+								</span>{" "}
+								<input
+									type="file"
+									onChange={(e) => {
+										setAvatar(e.target.files);
+									}}
+									placeholder="Avatar"
+								/>
+							</div>
 
-              <div className="login-remember d-grid">
-                <label className="check-remaind">
-                  <input type="checkbox" />
-                  <span className="checkmark"></span>
-                  <p className="remember">Remember me</p>
-                </label>
-                <button type="submit" className="btn theme-button">
-                  Signup
-                </button>
-              </div>
-            </form>
-            <div className="social-icons">
-              <p className="continue">
-                <span>Or</span>
-              </p>
-              <div className="social-login">
-                <a href="#facebook">
-                  <div className="facebook">
-                    <span className="fa fa-facebook" aria-hidden="true">Fb</span>
-                  </div>
-                </a>
-                <a href="#google">
-                  <div className="google">
-                    <span className="fa fa-google-plus" aria-hidden="true">G</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <p className="signup">
-              Already a member?{" "}
-              <Link to="/login" className="signuplink">
-                Login
-              </Link>
-            </p>
-          </div>
+							<div className="login-remember d-grid">
+								<Button
+									onClick={(e) => handleSubmit(e)}
+									title={"Sign Up"}
+									loading={loading}
+								/>
+							</div>
+						</form>
 
-          {/* <div className="copy-right">
-            <p>
-              © 2020 Stock Signup Form. All rights reserved | Design by{" "}
-              <a href="http://w3layouts.com/" target="_blank">
-                W3Layouts
-              </a>
-            </p>
-          </div> */}
-        </div>
-      </div>
-    </section>
-  );
-};
+						<p className="signup">
+							Already a member?{" "}
+							<Link to="/login" className="signuplink">
+								Login
+							</Link>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+}
 
-export default Signup;
+export default SignUp;
