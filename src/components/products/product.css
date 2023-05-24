@@ -52,6 +52,11 @@
 		flex: 0 0 50%;
 		padding: 0.8rem 1rem;
 	}
+	.sm-12 {
+		max-width: 100%;
+		flex: 0 0 100%;
+		padding: 0.8rem 1rem;
+	}
 	.sm-0 {
 		display: none;
 	}

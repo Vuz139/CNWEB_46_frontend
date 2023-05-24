@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
 import ProductEditModel from "../../components/admin/ProductEditModel";
 import Pagination from "../../components/public/Pagination";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 const ListProductRow = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -13,6 +13,7 @@ const ListProductRow = () => {
 		price: 0,
 		stock: 0,
 		seller: "",
+		orderBy: ["id", "DESC"],
 	});
 	const [showModal, setShowModal] = useState(false);
 	const [total, setTotal] = useState(0);
@@ -36,6 +37,29 @@ const ListProductRow = () => {
 		return () => clearTimeout(temp);
 	}, [debounce]);
 
+	const handleOrderChange = (e) => {
+		const name = e.target.getAttribute("name");
+		console.log(">>> check name:", name);
+		if (state.orderBy[0] === name) {
+			if (state.orderBy[1] === "ASC") {
+				setState((prev) => ({
+					...prev,
+					orderBy: [name, "DESC"],
+				}));
+			} else {
+				setState((prev) => ({
+					...prev,
+					orderBy: [name, "ASC"],
+				}));
+			}
+		} else {
+			setState((prev) => ({
+				...prev,
+				orderBy: [name, "ASC"],
+			}));
+		}
+	};
+
 	const fetchData = async () => {
 		try {
 			setLoading(true);
@@ -43,6 +67,7 @@ const ListProductRow = () => {
 				state.take,
 				state.page,
 				state.keyword,
+				state.orderBy,
 			);
 			if (res.status === "success") {
 				setProducts(res.products);
@@ -117,14 +142,80 @@ const ListProductRow = () => {
 				<table>
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th name="id" onClick={handleOrderChange}>
+								ID
+								{state.orderBy[0] === "id" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
 							<th style={{ width: "100px" }}>Image</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Category</th>
-							<th>Price</th>
-							<th>Stock</th>
-							<th colSpan={2}></th>
+							<th name="name" onClick={handleOrderChange}>
+								Name
+								{state.orderBy[0] === "name" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th name="description" onClick={handleOrderChange}>
+								Description
+								{state.orderBy[0] === "description" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th name="category" onClick={handleOrderChange}>
+								Category
+								{state.orderBy[0] === "category" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th name="price" onClick={handleOrderChange}>
+								Price
+								{state.orderBy[0] === "price" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th name="stock" onClick={handleOrderChange}>
+								Stock
+								{state.orderBy[0] === "stock" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -160,8 +251,6 @@ const ListProductRow = () => {
 										class="edit-button">
 										Edit
 									</button>
-								</td>
-								<td>
 									<button
 										onClick={(e) =>
 											handleRemove(e, product.id)
@@ -170,6 +259,9 @@ const ListProductRow = () => {
 										Delete
 									</button>
 								</td>
+								{/* <td>
+									
+								</td> */}
 							</tr>
 						))}
 					</tbody>

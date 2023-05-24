@@ -1,18 +1,22 @@
 export const setAccessToken = (token) => {
 	if (token) {
 		localStorage.setItem(
-			process.env.ACCESS_TOKEN_KEY || "access_token",
+			process.env.REACT_APP_ACCESS_TOKEN_KEY || "access_token",
 			token,
 		);
 	}
 };
 
 export const getAccessToken = () => {
-	return localStorage.getItem(process.env.ACCESS_TOKEN_KEY || "access_token");
+	return localStorage.getItem(
+		process.env.REACT_APP_ACCESS_TOKEN_KEY || "access_token",
+	);
 };
 
 export const removeAccessToken = () => {
-	localStorage.removeItem(process.env.ACCESS_TOKEN_KEY || "access_token");
+	localStorage.removeItem(
+		process.env.REACT_APP_ACCESS_TOKEN_KEY || "access_token",
+	);
 };
 
 export const setUser = (user) => {

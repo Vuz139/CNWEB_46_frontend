@@ -3,9 +3,9 @@ import Loading from "../../components/public/Loading";
 import { useState, useEffect } from "react";
 import { getListUsers } from "../../requests/users.request";
 import UserEdit from "../../components/admin/UserEdit";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
-import Button from "../../components/Button";
+
+import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
+
 import Pagination from "../../components/public/Pagination";
 const ListUser = () => {
 	const [state, setState] = useState({
@@ -13,6 +13,7 @@ const ListUser = () => {
 		skip: 0,
 		page: 1,
 		keyword: "",
+		orderBy: ["id", "DESC"],
 	});
 	const [total, setTotal] = useState(0);
 	const [showModal, setShowModal] = useState(false);
@@ -30,6 +31,7 @@ const ListUser = () => {
 				state.take,
 				state.skip,
 				state.keyword,
+				state.orderBy,
 			);
 			if (res.status === "success") {
 				setUsers(res.users);
@@ -42,6 +44,28 @@ const ListUser = () => {
 		}
 	};
 
+	const handleOrderChange = (e) => {
+		const name = e.target.getAttribute("name");
+		console.log(">>> check name:", name);
+		if (state.orderBy[0] === name) {
+			if (state.orderBy[1] === "ASC") {
+				setState((prev) => ({
+					...prev,
+					orderBy: [name, "DESC"],
+				}));
+			} else {
+				setState((prev) => ({
+					...prev,
+					orderBy: [name, "ASC"],
+				}));
+			}
+		} else {
+			setState((prev) => ({
+				...prev,
+				orderBy: [name, "ASC"],
+			}));
+		}
+	};
 	const [debounce, setDebounce] = useState("");
 
 	useEffect(() => {
@@ -117,12 +141,56 @@ const ListUser = () => {
 				<table>
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th name="id" onClick={handleOrderChange}>
+								ID
+								{state.orderBy[0] === "id" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
 							<th>Avatar</th>
-							<th>Name</th>
-							<th>Email</th>
+							<th name="name" onClick={handleOrderChange}>
+								Name
+								{state.orderBy[0] === "name" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
+							<th name="email" onClick={handleOrderChange}>
+								Email
+								{state.orderBy[0] === "email" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
 
-							<th>Role</th>
+							<th name="role" onClick={handleOrderChange}>
+								Role
+								{state.orderBy[0] === "role" ? (
+									state.orderBy[1] === "ASC" ? (
+										<BsArrowUp />
+									) : (
+										<BsArrowDown />
+									)
+								) : (
+									""
+								)}
+							</th>
 
 							<th colSpan={2}></th>
 						</tr>
@@ -156,8 +224,6 @@ const ListUser = () => {
 										class="edit-button">
 										Edit
 									</button>
-								</td>
-								<td>
 									<button
 										onClick={(e) =>
 											handleRemove(e, user.id)

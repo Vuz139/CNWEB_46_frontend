@@ -14,9 +14,14 @@ export const addAvatar = async (avatar) => {
 	}
 };
 
-export const getListUsers = async (take = 10, skip = 0, keyword = "") => {
+export const getListUsers = async (
+	take = 10,
+	skip = 0,
+	keyword = "",
+	orderBy = ["id", "DESC"],
+) => {
 	console.log("take: ", take);
-	const response = await api.get("/admin/users", {
+	const response = await api.get(`/admin/users?orderBy=${orderBy}`, {
 		params: {
 			take,
 			skip,

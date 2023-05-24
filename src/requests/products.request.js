@@ -18,19 +18,24 @@ export const addImage = async (productId, image) => {
 	}
 };
 
-export const getAllProducts = async (
+export const getAllProducts = async ({
 	take = 10,
 	page = 1,
 	keyword = "",
+	orderBy = ["ratings", "desc"],
 	query = "",
-) => {
-	const res = await api.get(`/products?${query}`, {
-		params: {
-			take,
-			page,
-			keyword,
+}) => {
+	console.log(">>>check query: " + query);
+	const res = await api.get(
+		`/products?${query}&${orderBy.length > 0 && `orderBy=[${orderBy}]`}`,
+		{
+			params: {
+				take,
+				page,
+				keyword,
+			},
 		},
-	});
+	);
 
 	return res;
 };

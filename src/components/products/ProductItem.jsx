@@ -7,7 +7,7 @@ const ProductItem = ({ product }) => {
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 
 	return (
-		<Link to={`/product/${product.id}`} className="col-4 m-3 sm-6">
+		<Link to={`/product/${product.id}`} className="col-4 m-3 sm-12">
 			<div className="productContainer">
 				<div className="sp">
 					<img
