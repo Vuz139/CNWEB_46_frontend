@@ -2,10 +2,14 @@ import './home.css';
 import { useState } from 'react';
 import React from 'react';
 import OneProduct from './OneProduct';
+
+import logo from './bg.jpg'
+
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const information = {
-        image:'https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/347628946_788957156083409_6973421327972198626_n.png?stp=dst-png_p843x403&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=jy4P5EvwsN0AX-bw-Ow&_nc_ht=scontent.fhan14-4.fna&oh=00_AfD4GJXtP5gsDLa7L2kGni7I7PDCtGYJqA_O4gdlM279gw&oe=6469E86C',
+        // image:'https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/347628946_788957156083409_6973421327972198626_n.png?stp=dst-png_p843x403&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=jy4P5EvwsN0AX-bw-Ow&_nc_ht=scontent.fhan14-4.fna&oh=00_AfD4GJXtP5gsDLa7L2kGni7I7PDCtGYJqA_O4gdlM279gw&oe=6469E86C',
+        image:logo,
         nameProduct:'abcvasasd',
         costProduct: 1000,
         sell: 10002,
