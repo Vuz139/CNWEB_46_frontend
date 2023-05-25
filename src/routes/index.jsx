@@ -16,7 +16,7 @@ import Error403 from "../components/public/Error403";
 import AuthLayout from "../layouts/auth/AuthLayout";
 
 import SignUp from "../pages/auth/all_signup/Signup";
-import ListOrder from "../pages/orders/ListOrder";
+import ListOrder from "../pages/admin/ListOrder";
 import Product from "../pages/Product";
 import NewProduct from "../pages/admin/NewProduct";
 import ListProductRow from "../pages/admin/ListProductRow";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsCart4, BsSearch } from "react-icons/bs";
+import { BsCart4, BsSearch, BsBoxArrowInRight } from "react-icons/bs";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -101,7 +101,26 @@ const Header = () => {
 						)}
 
 						{user && user.id ? (
-							<a onClick={handleLogout}>Logout</a>
+							<a
+								style={{
+									display: "inline-flex",
+									alignItems: "center",
+									gap: "4px",
+								}}
+								onClick={handleLogout}>
+								<span style={{ display: "inline-flex" }}>
+									Logout
+								</span>
+								<span
+									style={{
+										display: "inline-flex",
+										fontSize: "1.8rem",
+									}}>
+									<BsBoxArrowInRight
+										style={{ marginTop: "3px" }}
+									/>
+								</span>
+							</a>
 						) : (
 							<Link to={"/login"}>Login</Link>
 						)}
