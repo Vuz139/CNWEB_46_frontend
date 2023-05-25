@@ -4,22 +4,23 @@ import useDebounce from "../utils/debounce";
 import Loading from "../components/public/Loading";
 import "./oneProduct.css";
 import { getAllProducts } from "../requests/products.request";
-import { AiFillStar, AiOutlineDown } from "react-icons/ai";
-import { BsFillStarFill } from "react-icons/bs";
+import { AiOutlineDown } from "react-icons/ai";
 import FIlterStar from "../components/products/FIlterStar";
+import Slider from "../components/products/Slider";
+import { useSelector } from "react-redux";
+
 const ListProducts = () => {
+	const maxProduct = useSelector((state) => state.product);
 	const [state, setState] = useState({
 		take: 10,
 		page: 1,
 		keyword: "",
-		price: 10000,
+		price: Number(maxProduct?.price) || 30000,
 		ratings: 0,
 		category: "",
 		seller: "",
 	});
 	const [searchValue, setSearchValue] = useState("");
-	const maxPrice = 3000;
-	const [sliderValue, setSliderValue] = useState(50);
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -58,7 +59,7 @@ const ListProducts = () => {
 		setSearchValue("");
 		setState({
 			keyword: "",
-			price: 10000,
+			price: Number(maxProduct.price),
 			ratings: 0,
 			category: "",
 			seller: "",
@@ -68,36 +69,25 @@ const ListProducts = () => {
 	const handleSearchChange = (e) => {
 		setSearchValue(e.target.value);
 	};
-	const handleDrag = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
-		const x = e.clientX - bounds.left;
-		const percentage = (x / bounds.width) * 100;
-		if (percentage > 100) setSliderValue(100);
-		else if (percentage < 0) setSliderValue(0);
-		else {
-			setSliderValue(percentage);
-		}
-	};
 
-	const handleDragEnd = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
-		const x = e.clientX - bounds.left;
-		const percentage = (x / bounds.width) * 100;
-		if (percentage > 100) setSliderValue(100);
-		else if (percentage < 0) setSliderValue(0);
-		else {
-			setSliderValue(percentage);
-		}
-	};
 	const handleRatingChange = (rate) => {
 		setState((prev) => ({
 			...prev,
 			ratings: rate,
 		}));
 	};
-
+	const handleCategoryChange = (e) => {
+		setState((prev) => ({
+			...prev,
+			category: e.target.value,
+		}));
+	};
+	const handleSellerChange = (e) => {
+		setState((prev) => ({
+			...prev,
+			seller: e.target.value,
+		}));
+	};
 	return (
 		<div className="list-product">
 			<div className="list-product__sidebar">
@@ -112,26 +102,40 @@ const ListProducts = () => {
 				<div className="sidebar__categoroy">
 					<h2 className="sidebar__field-name">Category</h2>
 					<div className="category__item">
-						<button className="category__btn active">All</button>
-						<button className="category__btn">Office</button>
-						<button className="category__btn">Living Room</button>
-						<button className="category__btn">Kitchen</button>
-						<button className="category__btn">Bedroom</button>
-						<button className="category__btn">Dining</button>
-						<button className="category__btn">Kids</button>
+						<button
+							value={""}
+							onClick={handleCategoryChange}
+							className={`category__btn ${
+								state.category === "" ? "active" : ""
+							}`}>
+							All
+						</button>
+						{maxProduct?.category?.map((c) => (
+							<button
+								value={c}
+								onClick={handleCategoryChange}
+								className={`category__btn ${
+									state.category === c ? "active" : ""
+								}`}>
+								{c}
+							</button>
+						))}
 					</div>
 				</div>
 				<div className="sidebar__company">
 					<h2 className="sidebar__field-name">Company</h2>
 					<div className="sidebar__select">
-						<label htmlFor="company">
+						<label htmlFor="seller">
 							<AiOutlineDown style={{ fontWeight: "700" }} />
 						</label>
-						<select name="company" id="company">
-							<option value="all">all</option>
-							<option value="marcos">marcos</option>
-							<option value="liddy">liddy</option>
-							<option value="ikea">ikea</option>
+						<select
+							onChange={handleSellerChange}
+							name="seller"
+							id="seller">
+							<option value="">all</option>
+							{maxProduct?.seller?.map((se) => (
+								<option value={se}>{se}</option>
+							))}
 						</select>
 					</div>
 				</div>
@@ -172,23 +176,7 @@ const ListProducts = () => {
 						/>
 					</div>
 				</div>
-				<div className="sidebar__price">
-					<h2 className="sidebar__field-name">Price</h2>
-					<p style={{ textAlign: "left" }}>
-						${((sliderValue * maxPrice) / 100).toFixed(2)}
-					</p>
-					<div className="volume-slider">
-						<div
-							className="bar"
-							style={{ width: `${sliderValue}%` }}></div>
-						<div
-							style={{ left: `${sliderValue}%` }}
-							draggable
-							onDrag={handleDrag}
-							onDragEnd={handleDragEnd}
-							className="handle"></div>
-					</div>
-				</div>
+				<Slider setState={setState} maxPrice={maxProduct?.price} />
 
 				<div className="sidebar__clear">
 					<button onClick={handleClearFilter}> Clear filter</button>

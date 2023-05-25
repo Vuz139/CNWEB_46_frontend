@@ -45,11 +45,6 @@ const Product = () => {
 		<Loading />
 	) : (
 		<div class="product-page-container">
-			<span class="link-route">
-				<a href="#">Home</a> {">"}
-				<span href="#">Product</span>
-			</span>
-
 			<section id="product-page">
 				<div class="product-page-img">
 					<div

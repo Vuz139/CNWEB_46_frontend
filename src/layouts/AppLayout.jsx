@@ -4,10 +4,28 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Meta from "../components/Meta";
 import { useLocation } from "react-router";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getProductConfigs } from "../requests/products.request";
+import { setProduct } from "../redux/productSlice";
 
 const AppLayout = ({ children }) => {
 	const location = useLocation();
-	// console.log(">>>check location: ", location);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const fetProductConfig = async () => {
+			try {
+				const res = await getProductConfigs();
+				if (res.status === "success") {
+					dispatch(setProduct(res.data));
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetProductConfig();
+	}, []);
 	return (
 		<div className="appLayout">
 			<Header />

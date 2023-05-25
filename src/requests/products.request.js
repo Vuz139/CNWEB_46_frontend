@@ -25,7 +25,6 @@ export const getAllProducts = async ({
 	orderBy = ["ratings", "desc"],
 	query = "",
 }) => {
-	console.log(">>>check query: " + query);
 	const res = await api.get(
 		`/products?${query}&${orderBy.length > 0 && `orderBy=[${orderBy}]`}`,
 		{
@@ -38,6 +37,9 @@ export const getAllProducts = async ({
 	);
 
 	return res;
+};
+export const getProductConfigs = async () => {
+	return await api.get("/product/max");
 };
 
 export const createProduct = async (product, image = null) => {

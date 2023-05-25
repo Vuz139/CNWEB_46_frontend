@@ -5,6 +5,7 @@ import { getAllProducts, removeProduct } from "../../requests/products.request";
 import ProductEditModel from "../../components/admin/ProductEditModel";
 import Pagination from "../../components/public/Pagination";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const ListProductRow = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -223,20 +224,22 @@ const ListProductRow = () => {
 							<tr>
 								<td>{product.id}</td>
 								<td style={{ objectFit: "cover" }}>
-									<img
-										class="product-image"
-										style={{
-											height: "100px",
-											width: "100px",
-										}}
-										src={
-											product?.images &&
-											product.images.length > 0
-												? `${endPointImg}/${product.images[0].path}`
-												: ""
-										}
-										alt="Product image"
-									/>
+									<Link to={"/product/" + product.id}>
+										<img
+											class="product-image"
+											style={{
+												height: "100px",
+												width: "100px",
+											}}
+											src={
+												product?.images &&
+												product.images.length > 0
+													? `${endPointImg}/${product.images[0].path}`
+													: ""
+											}
+											alt="Product image"
+										/>
+									</Link>
 								</td>
 								<td>{product.name}</td>
 								<td>{product.description.slice(0, 150)}...</td>

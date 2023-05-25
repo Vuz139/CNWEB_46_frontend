@@ -72,11 +72,9 @@ const AppRoutes = () => {
 			<Route
 				path="/product/:id"
 				element={
-					<>
-						<Header />
+					<AppLayout>
 						<Product />
-						<Footer />
-					</>
+					</AppLayout>
 				}
 			/>
 			<Route path="/me" element={<Me />} />
