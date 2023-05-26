@@ -9,7 +9,7 @@ import { useLocation } from "react-router";
 const AuthLayout = ({ children }) => {
 	const location = useLocation();
 	const title = location.pathname.split("/");
-	console.log(">>>title", title);
+	// console.log(">>>title", title);
 	return (
 		<>
 			<Header />
@@ -26,16 +26,7 @@ const AuthLayout = ({ children }) => {
 					}}>
 					<AuthSidebar />
 				</header>
-				<section
-					style={{
-						padding: "16px",
-						overflowY: "auto",
-						height: "77vh",
-						zIndex: "1",
-						border: "1px solid #ccc",
-					}}>
-					{children}
-				</section>
+				<section>{children}</section>
 			</div>
 			<Footer />
 		</>

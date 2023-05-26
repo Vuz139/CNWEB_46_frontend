@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../assets/CSS/product.css";
-import Comment from "../components/Comment";
 import { FaStar } from "react-icons/fa";
-
 import { useParams } from "react-router";
 import { getProductById } from "../requests/products.request";
 import Loading from "../components/public/Loading";
+import CommentWrapper from "../components/products/CommentWrapper";
 const Product = () => {
 	const [currProduct, setCurrProduct] = useState({});
 	const [loading, setLoading] = useState(false);
 	const params = useParams();
-
 	useEffect(() => {
 		const getProduct = async () => {
 			try {
 				setLoading(true);
-
 				const resp = await getProductById(params.id);
 				if (resp.status === "success") {
 					setCurrProduct({ ...resp.product });
@@ -143,24 +140,7 @@ const Product = () => {
 					</div>
 				</div>
 			</section>
-			<h1 style={{}}>Đánh giá: </h1>
-			<div
-				className="comments_wrapper"
-				style={{
-					marginTop: "8px",
-					height: "400px",
-					overflow: "auto",
-					backgroundColor: "#c8dfec",
-					border: "2px solid gray",
-					borderRadius: "10px",
-				}}>
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-			</div>
+			<CommentWrapper productId={currProduct?.id} />
 		</div>
 	);
 };

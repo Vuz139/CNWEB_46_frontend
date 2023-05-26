@@ -57,3 +57,18 @@ export const removeProduct = async (productId) => {
 	const res = await api.delete(`/product/${productId}`);
 	return res;
 };
+
+export const getReviews = async ({ productId, take = 5, skip = 0 }) => {
+	return await api.get(`/reviews/${productId}`, {
+		params: {
+			take,
+			skip,
+		},
+	});
+};
+
+export const createReview = async (body) => {
+	return await api.post("/review", {
+		...body,
+	});
+};

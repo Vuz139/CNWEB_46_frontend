@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ProductWrapper from "../components/products/ProductWrapper";
 import useDebounce from "../utils/debounce";
-import Loading from "../components/public/Loading";
 import "./oneProduct.css";
 import { getAllProducts } from "../requests/products.request";
 import { AiOutlineDown } from "react-icons/ai";
 import FIlterStar from "../components/products/FIlterStar";
 import Slider from "../components/products/Slider";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
 
 const ListProducts = () => {
+	const location = useLocation();
+	console.log(">>> check location:", location.search.slice(1));
 	const maxProduct = useSelector((state) => state.product);
 	const [state, setState] = useState({
 		take: 10,
@@ -20,7 +22,8 @@ const ListProducts = () => {
 		category: "",
 		seller: "",
 	});
-	const [searchValue, setSearchValue] = useState("");
+
+	const [searchValue, setSearchValue] = useState(location.search?.slice(1));
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -182,7 +185,7 @@ const ListProducts = () => {
 					<button onClick={handleClearFilter}> Clear filter</button>
 				</div>
 			</div>
-			{loading ? <Loading /> : <ProductWrapper products={products} />}
+			<ProductWrapper products={products} loading={loading} />
 		</div>
 	);
 };

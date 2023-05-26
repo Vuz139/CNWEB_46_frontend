@@ -136,10 +136,11 @@ const NewProduct = () => {
 						id="category"
 						required>
 						<option value="">____Category___</option>
-						<option value="Quần áo">Quần áo</option>
+						<option value="Thời trang">Thời trang</option>
 						<option value="Học tập">Học tập</option>
 						<option value="Giải trí">Giải trí</option>
 						<option value="Âm nhạc">Âm nhạc</option>
+						<option value="Khác">Khác</option>
 					</select>
 				</div>
 				<div className="form-group">

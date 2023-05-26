@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { BsCart4, BsSearch, BsBoxArrowInRight } from "react-icons/bs";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
 import logo from "../assets/images/logo1.png";
 
 const Header = () => {
+	const navigate = useNavigate();
 	const [width, setWidth] = useState(window.innerWidth);
 	const [searchInput, setSearchInput] = useState("");
 	const endPointImage =
@@ -28,7 +29,7 @@ const Header = () => {
 	const handleSearchSummit = (e) => {
 		if (e.keyCode === 13) {
 			e.preventDefault();
-			// Search -- todo
+			navigate(`/products?${searchInput}`, { replace: true });
 		}
 	};
 	const handleLogout = (e) => {

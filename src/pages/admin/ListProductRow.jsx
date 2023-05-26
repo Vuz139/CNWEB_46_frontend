@@ -6,6 +6,8 @@ import ProductEditModel from "../../components/admin/ProductEditModel";
 import Pagination from "../../components/public/Pagination";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import useDebounce from "../../utils/debounce";
+import ProductRemoveModal from "../../components/admin/ProductRemoveModal";
 const ListProductRow = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -17,6 +19,7 @@ const ListProductRow = () => {
 		orderBy: ["id", "DESC"],
 	});
 	const [showModal, setShowModal] = useState(false);
+	const [showRemoveModal, setShowRemoveModal] = useState(0);
 	const [total, setTotal] = useState(0);
 	const [productEdit, setProductEdit] = useState({});
 	const [products, setProducts] = useState([]);
@@ -28,19 +31,36 @@ const ListProductRow = () => {
 	const [debounce, setDebounce] = useState("");
 
 	useEffect(() => {
-		const temp = setTimeout(() => {
-			setState((prev) => ({
-				...prev,
-				keyword: debounce,
-			}));
-		}, 1000);
-
-		return () => clearTimeout(temp);
-	}, [debounce]);
-
+		setState((prev) => ({
+			...prev,
+			keyword: debounce,
+		}));
+	}, [useDebounce(debounce, 600)]);
+	const fetchData = async () => {
+		try {
+			setLoading(true);
+			const res = await getAllProducts({
+				take: state.take,
+				page: state.page,
+				keyword: state.keyword,
+				orderBy: state.orderBy,
+			});
+			if (res.status === "success") {
+				setProducts(res.products);
+				setTotal(res.total);
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+	useEffect(() => {
+		fetchData();
+	}, [state]);
 	const handleOrderChange = (e) => {
 		const name = e.target.getAttribute("name");
-		console.log(">>> check name:", name);
+
 		if (state.orderBy[0] === name) {
 			if (state.orderBy[1] === "ASC") {
 				setState((prev) => ({
@@ -59,30 +79,8 @@ const ListProductRow = () => {
 				orderBy: [name, "ASC"],
 			}));
 		}
+		console.log(">>> check state order: ", state.orderBy);
 	};
-
-	const fetchData = async () => {
-		try {
-			setLoading(true);
-			const res = await getAllProducts(
-				state.take,
-				state.page,
-				state.keyword,
-				state.orderBy,
-			);
-			if (res.status === "success") {
-				setProducts(res.products);
-				setTotal(res.total);
-			}
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setLoading(false);
-		}
-	};
-	useEffect(() => {
-		fetchData();
-	}, [state, showModal]);
 
 	const handleUpdate = (e, product) => {
 		e.preventDefault();
@@ -92,15 +90,20 @@ const ListProductRow = () => {
 
 	const handleRemove = (e, id) => {
 		e.preventDefault();
+		setShowRemoveModal(id);
+	};
+	const handleRemoveProduct = (id) => {
 		removeProduct(id)
 			.then((res) => {
 				alert("Product removed successfully");
 				fetchData();
-				console.log(res);
 			})
 			.catch((error) => {
 				alert("Error removing product");
 				console.log(error);
+			})
+			.finally(() => {
+				setShowRemoveModal(0);
 			});
 	};
 
@@ -109,7 +112,16 @@ const ListProductRow = () => {
 			{showModal && (
 				<ProductEditModel
 					productUpdate={productEdit}
-					onClickHide={() => setShowModal(false)}
+					onClickHide={() => {
+						fetchData();
+						setShowModal(false);
+					}}
+				/>
+			)}
+			{showRemoveModal !== 0 && (
+				<ProductRemoveModal
+					onClickHide={() => setShowRemoveModal(0)}
+					onRemove={() => handleRemoveProduct(showRemoveModal)}
 				/>
 			)}
 			<div

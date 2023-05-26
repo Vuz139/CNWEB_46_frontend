@@ -1,6 +1,6 @@
 import { api, apiImage } from "./api";
 
-import { getAccessToken, setAccessToken } from "../utils/storage.util";
+import { setAccessToken } from "../utils/storage.util";
 
 export const addAvatar = async (avatar) => {
 	try {

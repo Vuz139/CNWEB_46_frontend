@@ -7,6 +7,7 @@ import UserEdit from "../../components/admin/UserEdit";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 
 import Pagination from "../../components/public/Pagination";
+import useDebounce from "../../utils/debounce";
 const ListUser = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -69,15 +70,11 @@ const ListUser = () => {
 	const [debounce, setDebounce] = useState("");
 
 	useEffect(() => {
-		const temp = setTimeout(() => {
-			setState((prev) => ({
-				...prev,
-				keyword: debounce,
-			}));
-		}, 1000);
-
-		return () => clearTimeout(temp);
-	}, [debounce]);
+		setState((prev) => ({
+			...prev,
+			keyword: debounce,
+		}));
+	}, [useDebounce(debounce, 600)]);
 
 	useEffect(() => {
 		fetchData();
