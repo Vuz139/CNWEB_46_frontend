@@ -5,9 +5,15 @@ const Home = () => {
 	return (
 		<div >
             <div class = "homebg">
-                <button id="bt_mua">
-                    Shopping now
-                </button>
+                <div class="gioithieu">
+                    <div id="slogan">
+                        <span>Buy without lifting a finger.</span>
+                    </div>
+                    <button id="bt_mua">
+                        Shopping now
+                    </button>
+                </div>
+                
                 <div class="sp_noibat">
                     <div class="sp_wrapper" id ="sp1"> 
                         <img class="sp_img" src={anh} alt="" /> 
