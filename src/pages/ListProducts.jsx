@@ -1,4 +1,4 @@
-~import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductWrapper from "../components/products/ProductWrapper";
 import useDebounce from "../utils/debounce";
 import Loading from "../components/public/Loading";
