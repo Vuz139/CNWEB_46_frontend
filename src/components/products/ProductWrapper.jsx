@@ -1,5 +1,4 @@
 import React from "react";
-import "./product.css";
 import ProductItem from "./ProductItem";
 import Loading from "../public/Loading";
 const ProductWrapper = ({ products, loading }) => {

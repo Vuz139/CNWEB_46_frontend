@@ -8,21 +8,22 @@ import FIlterStar from "../components/products/FIlterStar";
 import Slider from "../components/products/Slider";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import Pagination from "../components/public/Pagination";
 
 const ListProducts = () => {
 	const location = useLocation();
-	console.log(">>> check location:", location.search.slice(1));
 	const maxProduct = useSelector((state) => state.product);
 	const [state, setState] = useState({
-		take: 10,
+		take: 8,
 		page: 1,
+		skip: 0,
 		keyword: "",
 		price: Number(maxProduct?.price) || 30000,
 		ratings: 0,
 		category: "",
 		seller: "",
 	});
-
+	const [total, setTotal] = useState(0);
 	const [searchValue, setSearchValue] = useState(location.search?.slice(1));
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -42,11 +43,11 @@ const ListProducts = () => {
 					take: state.take,
 					page: state.page,
 					keyword: state.keyword,
-
 					query: `&ratings[gte]=${state.ratings}&category=${state.category}&seller=${state.seller}&price[lte]=${state.price}`,
 				});
 				if (res.status === "success") {
 					setProducts(res.products);
+					setTotal(res.total);
 				}
 			} catch (error) {
 				console.log(error);
@@ -185,7 +186,15 @@ const ListProducts = () => {
 					<button onClick={handleClearFilter}> Clear filter</button>
 				</div>
 			</div>
-			<ProductWrapper products={products} loading={loading} />
+			<div style={{ width: "100%" }}>
+				<ProductWrapper products={products} loading={loading} />
+				<Pagination
+					option={false}
+					state={state}
+					setState={setState}
+					numOfPages={Math.ceil(total / state.take)}
+				/>
+			</div>
 		</div>
 	);
 };

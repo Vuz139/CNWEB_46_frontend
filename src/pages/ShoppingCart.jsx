@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/CSS/cart.css";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
+import { useSelector } from "react-redux";
 const ShoppingCart = () => {
+	const cartItems = useSelector((state) => state.cart);
 	return (
 		<div class="cartWrapper">
 			<h1 className="cartTitle">Your Cart</h1>
@@ -14,15 +16,23 @@ const ShoppingCart = () => {
 				</span>
 			</div>
 			<div class="cart-items">
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
+				{cartItems && cartItems.map((p) => <CartItem product={p} />)}
 				<div class="cart-total">
 					<strong class="cart-total-title">Tổng Cộng:</strong>
-					<span class="cart-total-price">Chưa tính</span> <br />{" "}
+
+					<>
+						{" "}
+						<span class="cart-total-price">
+							{cartItems.reduce(
+								(curr, value) =>
+									curr + value.price * value.amount,
+								0,
+							)}
+							$
+						</span>
+						<br />
+					</>
+
 					<br />
 					<Button title={"Thanh toán"} />
 				</div>

@@ -4,7 +4,6 @@ import { GrUploadOption } from "react-icons/gr";
 import Comment from "../Comment";
 import { createReview, getReviews } from "../../requests/products.request";
 import Loading from "../public/Loading";
-import { useSelector } from "react-redux";
 import FIlterStar from "./FIlterStar";
 
 const CommentWrapper = ({ productId }) => {
@@ -56,6 +55,8 @@ const CommentWrapper = ({ productId }) => {
 	};
 
 	const handleSubmitComment = async () => {
+		if (commentValue.comment.trim().length < 1) return;
+
 		try {
 			setLoading(true);
 			const res = await createReview({
@@ -86,7 +87,7 @@ const CommentWrapper = ({ productId }) => {
 
 	return (
 		<div>
-			<h1 style={{}}>Đánh giá: </h1>
+			<h1 style={{ fontSize: "1.6rem" }}>Bình luận của người dùng: </h1>
 			<div
 				className="comments_wrapper"
 				style={{

@@ -4,6 +4,7 @@ import Pagination from "../../components/public/Pagination";
 import { BiDownArrow } from "react-icons/bi";
 import { getAllOrders } from "../../requests/orders.request";
 import Loading from "../../components/public/Loading";
+import { orderStatus } from "../../contrainst/orderStatus";
 const ListOrder = () => {
 	const [loading, setLoading] = useState(true);
 	const [state, setState] = useState({
@@ -51,10 +52,9 @@ const ListOrder = () => {
 						value={state.status}
 						onChange={(e) => handleFilterChange(e)}>
 						<option value="">All</option>
-						<option value="pending">Pending</option>
-						<option value="processing">Processing</option>
-						<option value="completed">Completed</option>
-						<option value="cancelled">Cancelled</option>
+						{orderStatus.map((status) => (
+							<option value={status}>{status}</option>
+						))}
 					</select>
 				</div>
 			</div>

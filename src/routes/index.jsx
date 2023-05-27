@@ -81,11 +81,9 @@ const AppRoutes = () => {
 			<Route
 				path="/cart"
 				element={
-					<>
-						<Header />
+					<AppLayout>
 						<ShoppingCart />
-						<Footer />
-					</>
+					</AppLayout>
 				}
 			/>
 			<Route

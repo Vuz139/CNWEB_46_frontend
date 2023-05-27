@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../../requests/users.request";
 import Button from "../../../components/Button";
 function SignUp() {
@@ -10,6 +10,7 @@ function SignUp() {
 		password: "",
 		confirmPassword: "",
 	});
+	const navigate = useNavigate();
 	const [avatar, setAvatar] = useState(null);
 
 	const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ function SignUp() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (formData.password != formData.confirmPassword) {
-			alert("Password do not match with confirm password");
+			alert("Mật khẩu không trùng khớp");
 			return;
 		}
 		formData.role = "user";
@@ -33,7 +34,7 @@ function SignUp() {
 
 			console.log(result);
 			if (result.success) {
-				alert("User created successfully");
+				alert("Tạo tài khoản thành công");
 				setFormData({
 					name: "",
 					email: "",
@@ -41,6 +42,7 @@ function SignUp() {
 					confirmPassword: "",
 				});
 				setAvatar(null);
+				navigate("/login");
 			}
 		} catch (error) {
 			console.log(error);

@@ -8,6 +8,7 @@ import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 
 import Pagination from "../../components/public/Pagination";
 import useDebounce from "../../utils/debounce";
+import ProductRemoveModal from "../../components/admin/ProductRemoveModal";
 const ListUser = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -21,6 +22,7 @@ const ListUser = () => {
 	const [userEdit, setUserEdit] = useState({});
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [showRemoveModal, setShowRemoveModal] = useState(0);
 	const numOfPages = Math.ceil(total / state.take);
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
@@ -47,7 +49,7 @@ const ListUser = () => {
 
 	const handleOrderChange = (e) => {
 		const name = e.target.getAttribute("name");
-		console.log(">>> check name:", name);
+
 		if (state.orderBy[0] === name) {
 			if (state.orderBy[1] === "ASC") {
 				setState((prev) => ({
@@ -95,6 +97,7 @@ const ListUser = () => {
 
 	const handleRemove = (e, id) => {
 		e.preventDefault();
+		setShowRemoveModal(id);
 	};
 
 	return (
@@ -104,6 +107,14 @@ const ListUser = () => {
 					<UserEdit
 						user={userEdit}
 						onClickHide={() => setShowModal(false)}
+					/>
+				)}
+				{showRemoveModal !== 0 && (
+					<ProductRemoveModal
+						onClickHide={() => setShowRemoveModal(0)}
+						onRemove={() => {
+							setShowRemoveModal(0);
+						}}
 					/>
 				)}
 			</div>

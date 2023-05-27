@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "../../components/public/Loading";
 import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
-import ProductEditModel from "../../components/admin/ProductEditModel";
+import ProductEditModal from "../../components/admin/ProductEditModal";
 import Pagination from "../../components/public/Pagination";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -110,7 +110,7 @@ const ListProductRow = () => {
 	return (
 		<div>
 			{showModal && (
-				<ProductEditModel
+				<ProductEditModal
 					productUpdate={productEdit}
 					onClickHide={() => {
 						fetchData();

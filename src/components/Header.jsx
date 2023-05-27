@@ -9,6 +9,7 @@ import logo from "../assets/images/logo1.png";
 const Header = () => {
 	const navigate = useNavigate();
 	const [width, setWidth] = useState(window.innerWidth);
+	const cart = useSelector((state) => state.cart);
 	const [searchInput, setSearchInput] = useState("");
 	const endPointImage =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
@@ -70,7 +71,7 @@ const Header = () => {
 			<div className="header__icons">
 				<Link to={"/cart"} className="header__cart header__icon">
 					<BsCart4 />
-					<span className="header__cart__amount">6</span>
+					<span className="header__cart__amount">{cart.length}</span>
 				</Link>
 				<span className="header__user header__icon">
 					{user && user.id ? (
