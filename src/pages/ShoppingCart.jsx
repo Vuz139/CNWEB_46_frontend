@@ -3,6 +3,7 @@ import "../assets/CSS/cart.css";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const ShoppingCart = () => {
 	const cartItems = useSelector((state) => state.cart);
 	return (
@@ -14,6 +15,7 @@ const ShoppingCart = () => {
 				<span class="cart-quantity cart-header cart-column">
 					Số Lượng
 				</span>
+				<span class="cart-action cart-header cart-column"></span>
 			</div>
 			<div class="cart-items">
 				{cartItems && cartItems.map((p) => <CartItem product={p} />)}
@@ -34,7 +36,9 @@ const ShoppingCart = () => {
 					</>
 
 					<br />
-					<Button title={"Thanh toán"} />
+					<Link to={"/order"}>
+						<Button title={"Thanh toán"} />
+					</Link>
 				</div>
 			</div>
 		</div>

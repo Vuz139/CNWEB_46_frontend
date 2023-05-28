@@ -109,14 +109,6 @@ const ListUser = () => {
 						onClickHide={() => setShowModal(false)}
 					/>
 				)}
-				{showRemoveModal !== 0 && (
-					<ProductRemoveModal
-						onClickHide={() => setShowRemoveModal(0)}
-						onRemove={() => {
-							setShowRemoveModal(0);
-						}}
-					/>
-				)}
 			</div>
 			<div
 				style={{
@@ -232,13 +224,26 @@ const ListUser = () => {
 										class="edit-button">
 										Edit
 									</button>
-									<button
-										onClick={(e) =>
-											handleRemove(e, user.id)
-										}
-										class="delete-button">
-										Delete
-									</button>
+									<span className="delete__side">
+										<button
+											onClick={(e) =>
+												handleRemove(e, user.id)
+											}
+											class="delete-button">
+											Delete
+										</button>
+										{showRemoveModal === user.id && (
+											<ProductRemoveModal
+												title="Bạn có muốn xóa user này?"
+												onClickHide={() =>
+													setShowRemoveModal(0)
+												}
+												onRemove={() =>
+													setShowRemoveModal(0)
+												}
+											/>
+										)}
+									</span>
 								</td>
 							</tr>
 						))}

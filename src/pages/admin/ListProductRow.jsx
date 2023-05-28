@@ -118,12 +118,7 @@ const ListProductRow = () => {
 					}}
 				/>
 			)}
-			{showRemoveModal !== 0 && (
-				<ProductRemoveModal
-					onClickHide={() => setShowRemoveModal(0)}
-					onRemove={() => handleRemoveProduct(showRemoveModal)}
-				/>
-			)}
+
 			<div
 				style={{
 					margin: "12px",
@@ -266,13 +261,27 @@ const ListProductRow = () => {
 										class="edit-button">
 										Edit
 									</button>
-									<button
-										onClick={(e) =>
-											handleRemove(e, product.id)
-										}
-										class="delete-button">
-										Delete
-									</button>
+									<span className="delete__side">
+										<button
+											onClick={(e) =>
+												handleRemove(e, product.id)
+											}
+											class="delete-button">
+											Delete
+										</button>
+										{showRemoveModal === product.id && (
+											<ProductRemoveModal
+												onClickHide={() =>
+													setShowRemoveModal(0)
+												}
+												onRemove={() =>
+													handleRemoveProduct(
+														showRemoveModal,
+													)
+												}
+											/>
+										)}
+									</span>
 								</td>
 								{/* <td>
 									

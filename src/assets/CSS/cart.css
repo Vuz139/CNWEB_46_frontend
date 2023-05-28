@@ -28,17 +28,21 @@
 }
 
 .cart-item {
-	width: 45%;
+	min-width: 45%;
 }
 
 .cart-price {
 	width: 20%;
-
+	justify-content: center;
 	color: #333;
 }
 
 .cart-quantity {
 	width: 35%;
+	justify-content: center;
+}
+.cart-action {
+	width: 6%;
 }
 
 .cart-item-title {

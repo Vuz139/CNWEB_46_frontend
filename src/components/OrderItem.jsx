@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getOrderById, updateOrder } from "../requests/orders.request";
 import Loading from "./public/Loading";
+import Button from "./Button";
+import { orderStatus } from "../contrainst/orderStatus";
 
 const OrderItem = ({ id }) => {
 	const [loading, setLoading] = useState(true);
@@ -30,6 +32,7 @@ const OrderItem = ({ id }) => {
 			const res = await updateOrder(id, {
 				orderStatus: e.target.value,
 			});
+			console.log(">> check order status", res);
 			if (res.status === "success") {
 				await fetchOrder();
 			}
@@ -41,52 +44,57 @@ const OrderItem = ({ id }) => {
 	};
 
 	return (
-		<div key={currOrder.id} className="order-container">
+		<div key={currOrder?.id} className="order-container">
 			{loading || !currOrder ? (
 				<Loading />
 			) : (
 				<>
 					<div className="order-info">
-						<div>Customer: {currOrder?.user?.name}</div>
-						<div>Date: {currOrder.createdAt}</div>
+						<div>Khách hàng: {currOrder?.user?.name}</div>
+						<div>Thời gian: {currOrder.createdAt}</div>
 					</div>
 					<div className="order-info">
 						<div>Payment: {currOrder.paymentInfo}</div>
-						<div>Quantity: {currOrder.totalPrice}</div>
+						<div>Giá: {currOrder.totalPrice}</div>
 					</div>
 					<div className="order-status">
-						Status: {currOrder.orderStatus || "Cancelled"}
+						Trạng thái: {currOrder.orderStatus}
 					</div>
-					{currOrder.orderStatus === "pending" && (
+					{currOrder.orderStatus === orderStatus[0] && (
 						<div className="order-actions">
-							<button
-								value={"processing"}
-								onClick={handleStatusChange}
-								className="order-action-accept">
-								Accept
-							</button>
-							<button
-								value={"rejected"}
-								onClick={handleStatusChange}
-								className="order-action-cancel">
-								Reject
-							</button>
+							<Button
+								value={orderStatus[1]}
+								color="success"
+								onClick={(e) => handleStatusChange(e)}
+								type="small">
+								Nhận đơn
+							</Button>
+							<Button
+								value={orderStatus[3]}
+								type="small"
+								color="danger"
+								onClick={(e) => handleStatusChange(e)}>
+								Từ chối
+							</Button>
 						</div>
 					)}
-					{currOrder.orderStatus === "processing" && (
+					{currOrder.orderStatus === orderStatus[1] && (
 						<div className="order-actions">
-							<button
-								value={"fullfiled"}
-								onClick={handleStatusChange}
-								className="order-action-accept">
-								Done
-							</button>
-							<button
-								value={"canceled"}
-								onClick={handleStatusChange}
-								className="order-action-cancel">
-								Cancel
-							</button>
+							<Button
+								type="small"
+								color="success"
+								value={orderStatus[2]}
+								onClick={(e) => handleStatusChange(e)}>
+								Hoàn thành
+							</Button>
+
+							<Button
+								type="small"
+								color="danger"
+								value={orderStatus[3]}
+								onClick={(e) => handleStatusChange(e)}>
+								Hủy
+							</Button>
 						</div>
 					)}
 				</>

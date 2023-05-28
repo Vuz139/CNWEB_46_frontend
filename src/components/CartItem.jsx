@@ -8,6 +8,7 @@ import {
 } from "../redux/cartSlice";
 import Button from "./Button";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const CartItem = ({ product }) => {
 	const [amount, setAmount] = useState(product.amount);
 
@@ -26,7 +27,7 @@ const CartItem = ({ product }) => {
 	const dispatch = useDispatch();
 	return (
 		<div class="cart-row">
-			<div class="cart-item cart-column">
+			<Link to={`/product/${product.id}`} class="cart-item cart-column">
 				<img
 					class="cart-item-image"
 					src={`${process.env.REACT_APP_END_POINT_IMAGE}/${product.images[0].path}`}
@@ -35,9 +36,9 @@ const CartItem = ({ product }) => {
 				/>
 				<span class="cart-item-title">
 					<h2>{product.name}</h2>
-					{product.description}
+					{product.description.slice(0, 50)}...
 				</span>
-			</div>
+			</Link>
 			<span class="cart-price cart-column">
 				${product.price * amount}
 			</span>
@@ -54,8 +55,9 @@ const CartItem = ({ product }) => {
 			</div>
 			<div className="cart-column">
 				<Button
+					color="danger"
 					onClick={() => dispatch(removeAllFromCart(product.id))}
-					type="danger">
+					type="small">
 					Xóa
 				</Button>
 			</div>

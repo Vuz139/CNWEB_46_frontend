@@ -36,15 +36,13 @@ body {
 /* button */
 
 button.btn {
-	line-height: 40px;
-	padding: 2px;
+	padding: 12px;
 	min-width: 100px;
 	margin: 2px 6px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 }
-
 .theme-button {
 	min-width: 130px;
 	cursor: pointer;
@@ -56,7 +54,6 @@ button.btn {
 	font-size: 16px;
 	text-align: center;
 	color: #fff;
-
 	padding: 14px 18px;
 	border-radius: 4px;
 	transition: 0.3s ease;
@@ -67,6 +64,15 @@ button.btn {
 }
 .danger {
 	background: rgb(248, 89, 89);
+}
+.small {
+	font-size: 1.2rem !important;
+	min-width: 50px !important;
+	padding: 8px 10px !important;
+}
+.success {
+	border: none;
+	background-color: rgb(138, 208, 33) !important;
 }
 .meta {
 	display: flex;
@@ -327,7 +333,7 @@ button.btn {
 	font-size: 1.6rem;
 	border: 1px solid #ccc;
 	padding: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 1.6rem;
 }
 
 .order-info {
@@ -343,10 +349,6 @@ button.btn {
 .order-actions {
 	display: flex;
 	justify-content: flex-end;
-}
-.order-actions button:hover {
-	opacity: 0.6;
-	color: wheat;
 }
 .order-action-accept {
 	padding: 8px;
@@ -463,10 +465,14 @@ th {
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
+	margin: 8px;
+	min-width: 60px;
 }
 .delete-button {
 	background-color: rgb(248, 89, 89);
-	margin: 4px 0;
+}
+.delete__side {
+	position: relative;
 }
 
 .edit-button:hover,
@@ -505,16 +511,17 @@ th {
 }
 /* remove modal */
 .product__remove__modal {
-	position: fixed;
+	position: absolute;
+	top: 0;
 	right: 0;
-	/* top: 80px; */
-	display: inline-block;
+	display: block;
+	min-width: 220px;
+	font-size: 1rem;
 	background-color: white;
-	overflow: auto;
-	padding: 30px;
+	padding: 10px;
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 	border-radius: 8px;
-	/* animation: topDown ease 0.4s; */
+	animation: topDown ease 0.4s;
 	z-index: 9999;
 }
 @keyframes topDown {

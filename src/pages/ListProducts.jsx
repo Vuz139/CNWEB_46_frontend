@@ -61,13 +61,14 @@ const ListProducts = () => {
 
 	const handleClearFilter = () => {
 		setSearchValue("");
-		setState({
+		setState((prev) => ({
+			...prev,
 			keyword: "",
-			price: Number(maxProduct.price),
+			price: Number(maxProduct.price) || 1000000,
 			ratings: 0,
 			category: "",
 			seller: "",
-		});
+		}));
 	};
 
 	const handleSearchChange = (e) => {

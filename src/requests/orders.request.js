@@ -19,3 +19,13 @@ export const updateOrder = async (id, body) => {
 		...body,
 	});
 };
+
+export const getUserOders = async ({
+	take = 5,
+	page = 1,
+	orderStatus = "",
+}) => {
+	return await api.get(`/user/orders`, {
+		params: { take, page, orderStatus },
+	});
+};

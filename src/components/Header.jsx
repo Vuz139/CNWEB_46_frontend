@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BsCart4, BsSearch, BsBoxArrowInRight } from "react-icons/bs";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
 import logo from "../assets/images/logo1.png";
 
@@ -36,8 +36,8 @@ const Header = () => {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
-		console.log(">>>check user: ", user);
 	};
+	const location = useLocation();
 
 	return (
 		<div className="header">
@@ -45,21 +45,23 @@ const Header = () => {
 				<img src={logo} alt="LOGO" />
 				{width > 786 && <span className="header__name">Nhóm 46</span>}
 			</Link>
-			<div className="header__search">
-				<input
-					type="text"
-					className="header__search__input"
-					placeholder="Tìm kiếm"
-					value={searchInput}
-					onChange={handleSearchInputChange}
-					onKeyDown={handleSearchSummit}
-				/>
-				<span
-					onClick={handleSearchSummit}
-					className="header__search__icon">
-					<BsSearch />
-				</span>
-			</div>
+			{!location.pathname.includes("/product") && (
+				<div className="header__search">
+					<input
+						type="text"
+						className="header__search__input"
+						placeholder="Tìm kiếm"
+						value={searchInput}
+						onChange={handleSearchInputChange}
+						onKeyDown={handleSearchSummit}
+					/>
+					<span
+						onClick={handleSearchSummit}
+						className="header__search__icon">
+						<BsSearch />
+					</span>
+				</div>
+			)}
 			{width > 786 && (
 				<div className="header__navigation">
 					<Link to={"/"}>Home</Link>
@@ -91,8 +93,8 @@ const Header = () => {
 					)}
 
 					<div className="header__user__menu">
-						<a href="#">User</a>
-						<Link to={"/admin/newProduct"}>New Product</Link>
+						<Link to={"/user/orders"}>Đơn hàng</Link>
+						<Link to={"/admin/newProduct"}>Tạo mới</Link>
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>
@@ -111,7 +113,7 @@ const Header = () => {
 								}}
 								onClick={handleLogout}>
 								<span style={{ display: "inline-flex" }}>
-									Logout
+									Đăng xuất
 								</span>
 								<span
 									style={{
@@ -124,7 +126,7 @@ const Header = () => {
 								</span>
 							</a>
 						) : (
-							<Link to={"/login"}>Login</Link>
+							<Link to={"/login"}>Đăng nhấp</Link>
 						)}
 					</div>
 				</span>

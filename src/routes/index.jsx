@@ -22,6 +22,8 @@ import NewProduct from "../pages/admin/NewProduct";
 import ListProductRow from "../pages/admin/ListProductRow";
 import ListUser from "../pages/admin/ListUser";
 import AppLayout from "../layouts/AppLayout";
+import NewOrder from "../pages/orders/NewOrder";
+import UserOrders from "../pages/orders/UserOrders";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 
@@ -30,7 +32,7 @@ const ProtectedRoute = ({ children, roles }) => {
 			return <Navigate to="/403" replace />;
 		return children;
 	}
-
+	alert("Bạn nên đăng nhập trước");
 	return <Navigate to="/login" replace />;
 };
 
@@ -48,6 +50,26 @@ const AppRoutes = () => {
 						<Home />
 						<Footer />
 					</>
+				}
+			/>
+			<Route
+				path="/order"
+				element={
+					<ProtectedRoute>
+						<AppLayout>
+							<NewOrder />
+						</AppLayout>
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path="/user/orders"
+				element={
+					<ProtectedRoute>
+						<AppLayout>
+							<UserOrders />
+						</AppLayout>
+					</ProtectedRoute>
 				}
 			/>
 			<Route
