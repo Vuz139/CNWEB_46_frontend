@@ -16,12 +16,14 @@ import Error403 from "../components/public/Error403";
 import AuthLayout from "../layouts/auth/AuthLayout";
 
 import SignUp from "../pages/auth/all_signup/Signup";
-import ListOrder from "../pages/orders/ListOrder";
+import ListOrder from "../pages/admin/ListOrder";
 import Product from "../pages/Product";
 import NewProduct from "../pages/admin/NewProduct";
 import ListProductRow from "../pages/admin/ListProductRow";
 import ListUser from "../pages/admin/ListUser";
 import AppLayout from "../layouts/AppLayout";
+import NewOrder from "../pages/orders/NewOrder";
+import UserOrders from "../pages/orders/UserOrders";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 
@@ -30,7 +32,7 @@ const ProtectedRoute = ({ children, roles }) => {
 			return <Navigate to="/403" replace />;
 		return children;
 	}
-
+	alert("Bạn nên đăng nhập trước");
 	return <Navigate to="/login" replace />;
 };
 
@@ -45,9 +47,29 @@ const AppRoutes = () => {
 				element={
 					<>
 						<Header />
+
 						<Home />
-						<Footer />
 					</>
+				}
+			/>
+			<Route
+				path="/order"
+				element={
+					<ProtectedRoute>
+						<AppLayout>
+							<NewOrder />
+						</AppLayout>
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path="/user/orders"
+				element={
+					<ProtectedRoute>
+						<AppLayout>
+							<UserOrders />
+						</AppLayout>
+					</ProtectedRoute>
 				}
 			/>
 			<Route
@@ -72,22 +94,18 @@ const AppRoutes = () => {
 			<Route
 				path="/product/:id"
 				element={
-					<>
-						<Header />
+					<AppLayout>
 						<Product />
-						<Footer />
-					</>
+					</AppLayout>
 				}
 			/>
 			<Route path="/me" element={<Me />} />
 			<Route
 				path="/cart"
 				element={
-					<>
-						<Header />
+					<AppLayout>
 						<ShoppingCart />
-						<Footer />
-					</>
+					</AppLayout>
 				}
 			/>
 			<Route

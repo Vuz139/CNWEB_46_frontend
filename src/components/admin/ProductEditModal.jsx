@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import { updateProduct } from "../../requests/products.request";
-
-const ProductEditModel = ({ productUpdate, onClickHide }) => {
+import { categories } from "../../contrainst/category";
+const ProductEditModal = ({ productUpdate, onClickHide }) => {
 	const [loading, setLoading] = useState(false);
 
 	const [product, setProduct] = useState({
@@ -116,10 +116,10 @@ const ProductEditModel = ({ productUpdate, onClickHide }) => {
 							id="category"
 							required>
 							<option value="">____Category___</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-							<option value="D">D</option>
-							<option value="E">E</option>
+
+							{categories.map((category) => (
+								<option value={category}>{category}</option>
+							))}
 						</select>
 					</div>
 
@@ -134,4 +134,4 @@ const ProductEditModel = ({ productUpdate, onClickHide }) => {
 	);
 };
 
-export default ProductEditModel;
+export default ProductEditModal;

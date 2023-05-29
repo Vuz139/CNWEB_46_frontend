@@ -22,10 +22,9 @@ export const getAllProducts = async ({
 	take = 10,
 	page = 1,
 	keyword = "",
-	orderBy = ["ratings", "desc"],
+	orderBy = ["id", "desc"],
 	query = "",
 }) => {
-	console.log(">>>check query: " + query);
 	const res = await api.get(
 		`/products?${query}&${orderBy.length > 0 && `orderBy=[${orderBy}]`}`,
 		{
@@ -38,6 +37,9 @@ export const getAllProducts = async ({
 	);
 
 	return res;
+};
+export const getProductConfigs = async () => {
+	return await api.get("/product/max");
 };
 
 export const createProduct = async (product, image = null) => {
@@ -54,4 +56,19 @@ export const updateProduct = async (product, image = null) => {
 export const removeProduct = async (productId) => {
 	const res = await api.delete(`/product/${productId}`);
 	return res;
+};
+
+export const getReviews = async ({ productId, take = 5, skip = 0 }) => {
+	return await api.get(`/reviews/${productId}`, {
+		params: {
+			take,
+			skip,
+		},
+	});
+};
+
+export const createReview = async (body) => {
+	return await api.post("/review", {
+		...body,
+	});
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import { createProduct } from "../../requests/products.request";
-
+import { categories } from "../../contrainst/category";
 const NewProduct = () => {
 	const [loading, setLoading] = useState(false);
 
@@ -136,10 +136,9 @@ const NewProduct = () => {
 						id="category"
 						required>
 						<option value="">____Category___</option>
-						<option value="B">B</option>
-						<option value="C">C</option>
-						<option value="D">D</option>
-						<option value="E">E</option>
+						{categories.map((category) => (
+							<option value={category}>{category}</option>
+						))}
 					</select>
 				</div>
 				<div className="form-group">

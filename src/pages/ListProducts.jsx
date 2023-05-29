@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
 import ProductWrapper from "../components/products/ProductWrapper";
 import useDebounce from "../utils/debounce";
-import Loading from "../components/public/Loading";
-import "./Home/oneProduct.css";
+import "./oneProduct.css";
 import { getAllProducts } from "../requests/products.request";
-import { AiFillStar, AiOutlineDown } from "react-icons/ai";
-import { BsFillStarFill } from "react-icons/bs";
+import { AiOutlineDown } from "react-icons/ai";
 import FIlterStar from "../components/products/FIlterStar";
+import Slider from "../components/products/Slider";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import Pagination from "../components/public/Pagination";
+
 const ListProducts = () => {
+	const location = useLocation();
+	const maxProduct = useSelector((state) => state.product);
+	const [total, setTotal] = useState(0);
+	const [searchValue, setSearchValue] = useState(location.search?.slice(1));
+	const [products, setProducts] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const [state, setState] = useState({
-		take: 10,
+		take: 8,
 		page: 1,
+		skip: 0,
 		keyword: "",
-		price: 10000,
+		price: Number(maxProduct?.price) || 300000,
 		ratings: 0,
 		category: "",
 		seller: "",
 	});
-	const [searchValue, setSearchValue] = useState("");
-	const maxPrice = 3000;
-	const [sliderValue, setSliderValue] = useState(50);
-	const [products, setProducts] = useState([]);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setState((prev) => ({
@@ -29,75 +34,66 @@ const ListProducts = () => {
 			keyword: searchValue,
 		}));
 	}, [useDebounce(searchValue, 600)]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setLoading(true);
-				const res = await getAllProducts({
-					take: state.take,
-					page: state.page,
-					keyword: state.keyword,
-
-					query: `&ratings[gte]=${state.ratings}&category=${state.category}&seller=${state.seller}&price[lte]=${state.price}`,
-				});
-				if (res.status === "success") {
-					setProducts(res.products);
-				}
-			} catch (error) {
-				console.log(error);
-				// alert(error);
-			} finally {
-				setLoading(false);
+	const fetchData = async () => {
+		try {
+			setLoading(true);
+			const res = await getAllProducts({
+				take: state.take,
+				page: state.page,
+				keyword: state.keyword,
+				query: `&ratings[gte]=${state.ratings}&category=${state.category}&seller=${state.seller}&price[lte]=${state.price}`,
+			});
+			console.log(">>> check res:", res);
+			if (res.status === "success") {
+				setTotal(res.total);
+				setProducts(res.products);
 			}
-		};
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+	useEffect(() => {
+		console.log(">>> check state: ", state);
+		console.log(">>> check product:", maxProduct);
 		fetchData();
 	}, [state]);
 
 	const handleClearFilter = () => {
 		setSearchValue("");
-		setState({
+		setState((prev) => ({
+			...prev,
 			keyword: "",
-			price: 10000,
+			price: Number(maxProduct.price) || 1000000,
 			ratings: 0,
 			category: "",
 			seller: "",
-		});
+		}));
 	};
 
 	const handleSearchChange = (e) => {
 		setSearchValue(e.target.value);
 	};
-	const handleDrag = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
-		const x = e.clientX - bounds.left;
-		const percentage = (x / bounds.width) * 100;
-		if (percentage > 100) setSliderValue(100);
-		else if (percentage < 0) setSliderValue(0);
-		else {
-			setSliderValue(percentage);
-		}
-	};
 
-	const handleDragEnd = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
-		const x = e.clientX - bounds.left;
-		const percentage = (x / bounds.width) * 100;
-		if (percentage > 100) setSliderValue(100);
-		else if (percentage < 0) setSliderValue(0);
-		else {
-			setSliderValue(percentage);
-		}
-	};
 	const handleRatingChange = (rate) => {
 		setState((prev) => ({
 			...prev,
 			ratings: rate,
 		}));
 	};
-
+	const handleCategoryChange = (e) => {
+		setState((prev) => ({
+			...prev,
+			category: e.target.value,
+		}));
+	};
+	const handleSellerChange = (e) => {
+		setState((prev) => ({
+			...prev,
+			seller: e.target.value,
+		}));
+	};
 	return (
 		<div className="list-product">
 			<div className="list-product__sidebar">
@@ -110,39 +106,53 @@ const ListProducts = () => {
 				/>
 
 				<div className="sidebar__categoroy">
-					<h2 className="sidebar__field-name">Category</h2>
+					<h2 className="sidebar__field-name">Thể Loại</h2>
 					<div className="category__item">
-						<button className="category__btn active">All</button>
-						<button className="category__btn">Office</button>
-						<button className="category__btn">Living Room</button>
-						<button className="category__btn">Kitchen</button>
-						<button className="category__btn">Bedroom</button>
-						<button className="category__btn">Dining</button>
-						<button className="category__btn">Kids</button>
+						<button
+							value={""}
+							onClick={handleCategoryChange}
+							className={`category__btn ${
+								state.category === "" ? "active" : ""
+							}`}>
+							Tất cả
+						</button>
+						{maxProduct?.category?.map((c) => (
+							<button
+								value={c}
+								onClick={handleCategoryChange}
+								className={`category__btn ${
+									state.category === c ? "active" : ""
+								}`}>
+								{c}
+							</button>
+						))}
 					</div>
 				</div>
 				<div className="sidebar__company">
-					<h2 className="sidebar__field-name">Company</h2>
+					<h2 className="sidebar__field-name">Nhà Cung Cấp</h2>
 					<div className="sidebar__select">
-						<label htmlFor="company">
+						<label htmlFor="seller">
 							<AiOutlineDown style={{ fontWeight: "700" }} />
 						</label>
-						<select name="company" id="company">
-							<option value="all">all</option>
-							<option value="marcos">marcos</option>
-							<option value="liddy">liddy</option>
-							<option value="ikea">ikea</option>
+						<select
+							onChange={handleSellerChange}
+							name="seller"
+							id="seller">
+							<option value="">Tất cả</option>
+							{maxProduct?.seller?.map((se) => (
+								<option value={se}>{se}</option>
+							))}
 						</select>
 					</div>
 				</div>
 				<div className="sidebar__ratings">
-					<h2 className="sidebar__field-name">Ratings</h2>
+					<h2 className="sidebar__field-name">Đánh giá</h2>
 					<div className="sidebar__rating">
 						<span
 							style={{ cursor: "pointer", userSelect: "none" }}
 							className={state.ratings === 0 && `active`}
 							onClick={() => handleRatingChange(0)}>
-							All
+							Tất cả
 						</span>
 
 						<FIlterStar
@@ -172,29 +182,22 @@ const ListProducts = () => {
 						/>
 					</div>
 				</div>
-				<div className="sidebar__price">
-					<h2 className="sidebar__field-name">Price</h2>
-					<p style={{ textAlign: "left" }}>
-						${((sliderValue * maxPrice) / 100).toFixed(2)}
-					</p>
-					<div className="volume-slider">
-						<div
-							className="bar"
-							style={{ width: `${sliderValue}%` }}></div>
-						<div
-							style={{ left: `${sliderValue}%` }}
-							draggable
-							onDrag={handleDrag}
-							onDragEnd={handleDragEnd}
-							className="handle"></div>
-					</div>
-				</div>
+				<Slider setState={setState} maxPrice={maxProduct?.price} />
 
 				<div className="sidebar__clear">
 					<button onClick={handleClearFilter}> Clear filter</button>
 				</div>
 			</div>
-			{loading ? <Loading /> : <ProductWrapper products={products} />}
+			<div style={{ width: "100%" }}>
+				<ProductWrapper products={products} loading={loading} />
+
+				<Pagination
+					option={false}
+					state={state}
+					setState={setState}
+					numOfPages={Math.ceil(total / state.take)}
+				/>
+			</div>
 		</div>
 	);
 };

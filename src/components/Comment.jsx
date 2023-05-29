@@ -1,41 +1,34 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
-const Comment = () => {
+
+import FIlterStar from "./products/FIlterStar";
+
+const Comment = ({ comment }) => {
 	return (
-		<div class="comments-container">
-			<section id="testimonials">
-				<div class="testimonial-box-container">
-					<div class="testimonial-box">
-						<div class="box-top">
-							<div class="profile">
-								<div class="profile-image">
-									<img src="#" />
-								</div>
-								<div class="name-user">
-									<strong>Me</strong>
-									<span>@me</span>
-								</div>
-							</div>
-							<div class="reviews">
-								<FaStar />
-								<FaStar />
-								<FaStar />
-								<FaStar />
-							</div>
-						</div>
-						<div class="comment">
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Quisquam, doloremque rerum
-								temporibus dolorum, similique accusamus
-								aspernatur, esse architecto nesciunt recusandae
-								deleniti quod. Laboriosam quam eius cupiditate
-								quia aut dolores reprehenderit.
-							</p>
-						</div>
-					</div>
+		<div className="product__comment">
+			<div className="comment__user">
+				<div className="comment__user__avatar">
+					<img
+						src={`${process.env.REACT_APP_END_POINT_IMAGE}/${comment.user.avatar}`}
+						alt=""
+					/>
 				</div>
-			</section>
+			</div>
+			<div>
+				<div className="comment__shortprofile">
+					<span className="comment__username">
+						{comment.user.name}
+					</span>
+					<span className="comment__star">
+						<FIlterStar offset={1} ratings={comment.rating} />
+						<FIlterStar offset={2} ratings={comment.rating} />
+						<FIlterStar offset={3} ratings={comment.rating} />
+						<FIlterStar offset={4} ratings={comment.rating} />
+						<FIlterStar offset={5} ratings={comment.rating} />
+					</span>
+					<span className="comment__time">{comment.createdAt}</span>
+				</div>
+				<div className="comment__body">{comment.comment}</div>
+			</div>
 		</div>
 	);
 };

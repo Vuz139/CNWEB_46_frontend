@@ -2,9 +2,12 @@ import React from "react";
 import Loading from "../../components/public/Loading";
 import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
-import ProductEditModel from "../../components/admin/ProductEditModel";
+import ProductEditModal from "../../components/admin/ProductEditModal";
 import Pagination from "../../components/public/Pagination";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import useDebounce from "../../utils/debounce";
+import ProductRemoveModal from "../../components/admin/ProductRemoveModal";
 const ListProductRow = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -16,6 +19,7 @@ const ListProductRow = () => {
 		orderBy: ["id", "DESC"],
 	});
 	const [showModal, setShowModal] = useState(false);
+	const [showRemoveModal, setShowRemoveModal] = useState(0);
 	const [total, setTotal] = useState(0);
 	const [productEdit, setProductEdit] = useState({});
 	const [products, setProducts] = useState([]);
@@ -27,19 +31,36 @@ const ListProductRow = () => {
 	const [debounce, setDebounce] = useState("");
 
 	useEffect(() => {
-		const temp = setTimeout(() => {
-			setState((prev) => ({
-				...prev,
-				keyword: debounce,
-			}));
-		}, 1000);
-
-		return () => clearTimeout(temp);
-	}, [debounce]);
-
+		setState((prev) => ({
+			...prev,
+			keyword: debounce,
+		}));
+	}, [useDebounce(debounce, 600)]);
+	const fetchData = async () => {
+		try {
+			setLoading(true);
+			const res = await getAllProducts({
+				take: state.take,
+				page: state.page,
+				keyword: state.keyword,
+				orderBy: state.orderBy,
+			});
+			if (res.status === "success") {
+				setProducts(res.products);
+				setTotal(res.total);
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+	useEffect(() => {
+		fetchData();
+	}, [state]);
 	const handleOrderChange = (e) => {
 		const name = e.target.getAttribute("name");
-		console.log(">>> check name:", name);
+
 		if (state.orderBy[0] === name) {
 			if (state.orderBy[1] === "ASC") {
 				setState((prev) => ({
@@ -58,30 +79,8 @@ const ListProductRow = () => {
 				orderBy: [name, "ASC"],
 			}));
 		}
+		console.log(">>> check state order: ", state.orderBy);
 	};
-
-	const fetchData = async () => {
-		try {
-			setLoading(true);
-			const res = await getAllProducts(
-				state.take,
-				state.page,
-				state.keyword,
-				state.orderBy,
-			);
-			if (res.status === "success") {
-				setProducts(res.products);
-				setTotal(res.total);
-			}
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setLoading(false);
-		}
-	};
-	useEffect(() => {
-		fetchData();
-	}, [state, showModal]);
 
 	const handleUpdate = (e, product) => {
 		e.preventDefault();
@@ -91,26 +90,35 @@ const ListProductRow = () => {
 
 	const handleRemove = (e, id) => {
 		e.preventDefault();
+		setShowRemoveModal(id);
+	};
+	const handleRemoveProduct = (id) => {
 		removeProduct(id)
 			.then((res) => {
 				alert("Product removed successfully");
 				fetchData();
-				console.log(res);
 			})
 			.catch((error) => {
 				alert("Error removing product");
 				console.log(error);
+			})
+			.finally(() => {
+				setShowRemoveModal(0);
 			});
 	};
 
 	return (
 		<div>
 			{showModal && (
-				<ProductEditModel
+				<ProductEditModal
 					productUpdate={productEdit}
-					onClickHide={() => setShowModal(false)}
+					onClickHide={() => {
+						fetchData();
+						setShowModal(false);
+					}}
 				/>
 			)}
+
 			<div
 				style={{
 					margin: "12px",
@@ -223,20 +231,22 @@ const ListProductRow = () => {
 							<tr>
 								<td>{product.id}</td>
 								<td style={{ objectFit: "cover" }}>
-									<img
-										class="product-image"
-										style={{
-											height: "100px",
-											width: "100px",
-										}}
-										src={
-											product?.images &&
-											product.images.length > 0
-												? `${endPointImg}/${product.images[0].path}`
-												: ""
-										}
-										alt="Product image"
-									/>
+									<Link to={"/product/" + product.id}>
+										<img
+											class="product-image"
+											style={{
+												height: "100px",
+												width: "100px",
+											}}
+											src={
+												product?.images &&
+												product.images.length > 0
+													? `${endPointImg}/${product.images[0].path}`
+													: ""
+											}
+											alt="Product image"
+										/>
+									</Link>
 								</td>
 								<td>{product.name}</td>
 								<td>{product.description.slice(0, 150)}...</td>
@@ -251,13 +261,27 @@ const ListProductRow = () => {
 										class="edit-button">
 										Edit
 									</button>
-									<button
-										onClick={(e) =>
-											handleRemove(e, product.id)
-										}
-										class="delete-button">
-										Delete
-									</button>
+									<span className="delete__side">
+										<button
+											onClick={(e) =>
+												handleRemove(e, product.id)
+											}
+											class="delete-button">
+											Delete
+										</button>
+										{showRemoveModal === product.id && (
+											<ProductRemoveModal
+												onClickHide={() =>
+													setShowRemoveModal(0)
+												}
+												onRemove={() =>
+													handleRemoveProduct(
+														showRemoveModal,
+													)
+												}
+											/>
+										)}
+									</span>
 								</td>
 								{/* <td>
 									

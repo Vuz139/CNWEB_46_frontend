@@ -36,15 +36,13 @@ body {
 /* button */
 
 button.btn {
-	line-height: 40px;
-	padding: 2px;
+	padding: 12px;
 	min-width: 100px;
 	margin: 2px 6px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 }
-
 .theme-button {
 	min-width: 130px;
 	cursor: pointer;
@@ -56,7 +54,6 @@ button.btn {
 	font-size: 16px;
 	text-align: center;
 	color: #fff;
-
 	padding: 14px 18px;
 	border-radius: 4px;
 	transition: 0.3s ease;
@@ -67,6 +64,15 @@ button.btn {
 }
 .danger {
 	background: rgb(248, 89, 89);
+}
+.small {
+	font-size: 1.2rem !important;
+	min-width: 50px !important;
+	padding: 8px 10px !important;
+}
+.success {
+	border: none;
+	background-color: rgb(138, 208, 33) !important;
 }
 .meta {
 	display: flex;
@@ -240,8 +246,12 @@ button.btn {
 /* loading */
 .loading {
 	font-size: 3rem;
-	width: 100vw;
-	height: 100vh;
+	/* width: 100vw; */
+	/* height: 100vh; */
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
 	align-items: center;
 }
 .loading__icon {
@@ -270,79 +280,76 @@ button.btn {
 }
 
 .error404Page {
-	width: 100vw;
-	height: 100vh;
-	background-image: url("./assets/images/page_not_found.webp");
+	/* width: 100vw;
+	height: 100vh; */
 }
 .error404Page__bg {
-	width: 100%;
+	background-image: url("./assets/images/page_not_found.webp");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: fixed;
+
+	right: 0;
+	left: 0;
+	bottom: 0;
+	top: 0;
 }
-.error404Page__bg img {
-	width: 100%;
-}
+
 .error404Page__link {
+	position: fixed;
+	margin: auto;
 	display: flex;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	top: 0;
 }
 .error404Page__link a {
 	margin: auto;
-	padding: 0.8rem;
+	padding: 1.2rem;
 	font-size: 1.6rem;
 	color: red;
 	cursor: pointer;
-	background-color: #ccc;
+	background-color: #f6f3f3;
 	border: 2px solid #fff;
 	border-radius: 8px;
+	transition: all 0.5s ease;
+}
+.error404Page__link a:hover {
+	transform: scale(150%);
 }
 .error403Page {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	background-image: url("./assets/images/403_page.jpg");
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("./assets/images/404.png");
+	background-repeat: no-repeat;
+	background-size: contain;
 	background-size: 100% 100%;
 	background-position: center;
 }
-.error403Page__link {
-	margin: auto;
-}
-.error403Page__link a {
-	margin: auto;
-	padding: 0.8rem;
-	font-size: 2rem;
-	color: greenyellow;
-	cursor: pointer;
-	background-color: #ccc;
-	border: 2px solid #fff;
-	border-radius: 8px;
-}
-.error403Page__link a:hover {
-	background-color: #999;
-}
-
 /* orders */
 .order-container {
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	border: 1px solid #ccc;
 	padding: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 1.6rem;
 }
 
 .order-info {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 5px;
-}
-
-.order-status {
-	font-weight: bold;
+	color: black;
+	font-weight: 600;
 }
 
 .order-actions {
 	display: flex;
 	justify-content: flex-end;
-}
-.order-actions button:hover {
-	opacity: 0.6;
-	color: wheat;
 }
 .order-action-accept {
 	padding: 8px;
@@ -374,10 +381,27 @@ button.btn {
 .filter-container {
 	margin-top: 10px;
 	font-size: 1.6rem;
+	margin-bottom: 12px;
 }
 
 .filter-label {
 	margin-right: 5px;
+}
+.filter-select {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row-reverse;
+	padding: 4px;
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+.filter-select .filter-selection {
+	padding: 4px;
+	border: none;
+	outline: none;
+	font-size: 1.5rem;
 }
 
 /* Add new Product form */
@@ -442,10 +466,14 @@ th {
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
+	margin: 8px;
+	min-width: 60px;
 }
 .delete-button {
 	background-color: rgb(248, 89, 89);
-	margin: 4px 0;
+}
+.delete__side {
+	position: relative;
 }
 
 .edit-button:hover,
@@ -471,7 +499,7 @@ th {
 }
 
 /* Edit modal form */
-/* CSS cho modal */
+/* CSS modal */
 .modal {
 	position: fixed;
 	left: 0;
@@ -480,7 +508,22 @@ th {
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
 	animation: topDown ease 0.4s;
-	z-index: 99;
+	z-index: 9999;
+}
+/* remove modal */
+.product__remove__modal {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	min-width: 220px;
+	font-size: 1rem;
+	background-color: white;
+	padding: 10px;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	animation: topDown ease 0.4s;
+	z-index: 9999;
 }
 @keyframes topDown {
 	from {
@@ -535,8 +578,8 @@ th {
 	display: flex;
 }
 
-.list-product__sidebar {
-}
+/* .list-product__sidebar {
+} */
 
 /* sidebả */
 .list-product__sidebar {

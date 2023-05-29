@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/CSS/cart.css";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const ShoppingCart = () => {
+	const cartItems = useSelector((state) => state.cart);
 	return (
 		<div class="cartWrapper">
 			<h1 className="cartTitle">Your Cart</h1>
@@ -12,19 +15,30 @@ const ShoppingCart = () => {
 				<span class="cart-quantity cart-header cart-column">
 					Số Lượng
 				</span>
+				<span class="cart-action cart-header cart-column"></span>
 			</div>
 			<div class="cart-items">
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
-				<CartItem />
+				{cartItems && cartItems.map((p) => <CartItem product={p} />)}
 				<div class="cart-total">
 					<strong class="cart-total-title">Tổng Cộng:</strong>
-					<span class="cart-total-price">Chưa tính</span> <br />{" "}
+
+					<>
+						{" "}
+						<span class="cart-total-price">
+							{cartItems.reduce(
+								(curr, value) =>
+									curr + value.price * value.amount,
+								0,
+							)}
+							$
+						</span>
+						<br />
+					</>
+
 					<br />
-					<Button title={"Thanh toán"} />
+					<Link to={"/order"}>
+						<Button title={"Thanh toán"} />
+					</Link>
 				</div>
 			</div>
 		</div>

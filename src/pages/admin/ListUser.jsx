@@ -7,6 +7,8 @@ import UserEdit from "../../components/admin/UserEdit";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 
 import Pagination from "../../components/public/Pagination";
+import useDebounce from "../../utils/debounce";
+import ProductRemoveModal from "../../components/admin/ProductRemoveModal";
 const ListUser = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -20,6 +22,7 @@ const ListUser = () => {
 	const [userEdit, setUserEdit] = useState({});
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [showRemoveModal, setShowRemoveModal] = useState(0);
 	const numOfPages = Math.ceil(total / state.take);
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
@@ -46,7 +49,7 @@ const ListUser = () => {
 
 	const handleOrderChange = (e) => {
 		const name = e.target.getAttribute("name");
-		console.log(">>> check name:", name);
+
 		if (state.orderBy[0] === name) {
 			if (state.orderBy[1] === "ASC") {
 				setState((prev) => ({
@@ -69,15 +72,11 @@ const ListUser = () => {
 	const [debounce, setDebounce] = useState("");
 
 	useEffect(() => {
-		const temp = setTimeout(() => {
-			setState((prev) => ({
-				...prev,
-				keyword: debounce,
-			}));
-		}, 1000);
-
-		return () => clearTimeout(temp);
-	}, [debounce]);
+		setState((prev) => ({
+			...prev,
+			keyword: debounce,
+		}));
+	}, [useDebounce(debounce, 600)]);
 
 	useEffect(() => {
 		fetchData();
@@ -98,6 +97,7 @@ const ListUser = () => {
 
 	const handleRemove = (e, id) => {
 		e.preventDefault();
+		setShowRemoveModal(id);
 	};
 
 	return (
@@ -224,13 +224,26 @@ const ListUser = () => {
 										class="edit-button">
 										Edit
 									</button>
-									<button
-										onClick={(e) =>
-											handleRemove(e, user.id)
-										}
-										class="delete-button">
-										Delete
-									</button>
+									<span className="delete__side">
+										<button
+											onClick={(e) =>
+												handleRemove(e, user.id)
+											}
+											class="delete-button">
+											Delete
+										</button>
+										{showRemoveModal === user.id && (
+											<ProductRemoveModal
+												title="Bạn có muốn xóa user này?"
+												onClickHide={() =>
+													setShowRemoveModal(0)
+												}
+												onRemove={() =>
+													setShowRemoveModal(0)
+												}
+											/>
+										)}
+									</span>
 								</td>
 							</tr>
 						))}

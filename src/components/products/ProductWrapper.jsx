@@ -1,17 +1,28 @@
 import React from "react";
-import "./product.css";
 import ProductItem from "./ProductItem";
-const ProductWrapper = ({ products }) => {
+import Loading from "../public/Loading";
+const ProductWrapper = ({ products, loading }) => {
 	return (
-		<div className="grid">
-			{products && products.length > 0 ? (
-				<div className="grid__row">
-					{products.map((product) => (
-						<ProductItem product={product} key={product.id} />
-					))}
-				</div>
+		<div className="grid mt-12">
+			{loading ? (
+				<Loading />
 			) : (
-				<h2>Không có sản phẩm nào</h2>
+				<>
+					{products && products.length > 0 ? (
+						<div className="grid__row">
+							{products.map((product) => (
+								<ProductItem
+									product={product}
+									key={product.id}
+								/>
+							))}
+						</div>
+					) : (
+						<h2 style={{ textAlign: "center" }}>
+							Không có sản phẩm nào
+						</h2>
+					)}
+				</>
 			)}
 		</div>
 	);
