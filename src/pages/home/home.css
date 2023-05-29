@@ -1,33 +1,3 @@
-.anhTest{
-    width: 30px;
-  height: 30px;
-}
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
-}
-.gird_contain{
-    display: grid;
-    grid-template-columns: 25% calc(75% - 10px);
-    width: 90%;
-    max-width: 1200px;
-    background-color: green;
-    margin: 0 auto;
-    gap : 10px;
-    /* min-height: 150rem; */
-}
-.menu{
-    display: grid;
-    background-color: aqua;
-    min-height: 70rem;
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
-
-
 
 
 .main{
@@ -99,7 +69,7 @@
     display: flex;
     width: 100%;
     height: 86vh;
-    background-image: url("bg_home.png"); 
+    background-image: url("./bg_home.png"); 
     background-repeat: no-repeat; 
     background-size: cover;
 }
