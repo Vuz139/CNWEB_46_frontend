@@ -29,3 +29,10 @@ export const getUserOders = async ({
 		params: { take, page, orderStatus },
 	});
 };
+
+export const createOrder = async (order) => {
+	// console.log("order: ", order);
+	return await api.post(`/order`, {
+		...order,
+	});
+};
