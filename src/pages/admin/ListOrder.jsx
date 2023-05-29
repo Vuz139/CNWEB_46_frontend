@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import OrderItem from "../../components/OrderItem";
 import Pagination from "../../components/public/Pagination";
-import { BiDownArrow } from "react-icons/bi";
 import { getAllOrders } from "../../requests/orders.request";
 import Loading from "../../components/public/Loading";
 import { orderStatus } from "../../contrainst/orderStatus";
+import { AiOutlineArrowDown } from "react-icons/ai";
 const ListOrder = () => {
 	const [loading, setLoading] = useState(true);
 	const [state, setState] = useState({
@@ -39,19 +39,19 @@ const ListOrder = () => {
 	}, [state]);
 	return (
 		<div>
-			<h1>List Orders</h1>
+			<h1>Danh sách đơn hàng</h1>
 			<div className="filter-container">
-				<span className="filter-label">Filter by status:</span>
+				<span className="filter-label">Lọc:</span>
 				<div className="filter-select">
 					<label htmlFor="filter-status">
-						<BiDownArrow />
+						<AiOutlineArrowDown />
 					</label>
 					<select
 						id="filter-status"
 						className="filter-selection"
 						value={state.status}
 						onChange={(e) => handleFilterChange(e)}>
-						<option value="">All</option>
+						<option value="">Tất cả đơn hàng</option>
 						{orderStatus.map((status) => (
 							<option value={status}>{status}</option>
 						))}

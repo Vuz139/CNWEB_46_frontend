@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineShop } from "react-icons/ai";
-import { BsTruck } from "react-icons/bs";
+import { BsCheckCircle, BsTruck } from "react-icons/bs";
+import { FcCancel } from "react-icons/fc";
+import { GiPerpendicularRings } from "react-icons/gi";
+import { FcProcess } from "react-icons/fc";
 import Loading from "../public/Loading";
-import { getOrderById } from "../../requests/orders.request";
+import { getOrderById, updateOrder } from "../../requests/orders.request";
 import { Link } from "react-router-dom";
+import { orderStatus } from "../../contrainst/orderStatus";
+import Button from "../Button";
+import ProductRemoveModal from "../admin/ProductRemoveModal";
 
 const UserOrderItem = ({ id }) => {
 	const [loading, setLoading] = useState(true);
 	const [orderDetails, setOrderDetails] = useState([]);
+	const [showRemoveModal, setShowRemoveModal] = useState(0);
 	const fetchOrder = async () => {
 		try {
 			setLoading(true);
 			const res = await getOrderById(id);
 			if (res.status === "success") {
-				console.log(">>>the order:", res.data);
 				setOrderDetails(res.data);
 			}
 		} catch (error) {
@@ -22,6 +28,29 @@ const UserOrderItem = ({ id }) => {
 			setLoading(false);
 		}
 	};
+	const iconStatus = [
+		<GiPerpendicularRings />,
+		<BsTruck />,
+		<BsCheckCircle />,
+		<FcCancel />,
+	];
+	const handleStatusChange = async () => {
+		try {
+			setLoading(true);
+			const res = await updateOrder(id, {
+				orderStatus: orderStatus[3],
+			});
+
+			if (res.status === "success") {
+				await fetchOrder();
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	useEffect(() => {
 		fetchOrder();
 	}, []);
@@ -29,7 +58,9 @@ const UserOrderItem = ({ id }) => {
 	return (
 		<div className="userOrder__item">
 			<div className="userOrder__item__status">
-				<BsTruck /> {orderDetails.orderStatus}
+				{iconStatus[orderStatus.indexOf(orderDetails.orderStatus)]}
+
+				{orderDetails.orderStatus}
 			</div>
 			<div className="userOrder__products">
 				{orderDetails.products.map((product) => (
@@ -74,6 +105,25 @@ const UserOrderItem = ({ id }) => {
 				</p>
 				<p>Số điện thoại: {orderDetails.shipping_info.phoneNo}</p>
 			</div>
+			{orderDetails.orderStatus === orderStatus[0] && (
+				<div className="userOrder__action">
+					<Button
+						type="small"
+						color={"danger"}
+						onClick={() => {
+							setShowRemoveModal(id);
+						}}>
+						Hủy đơn hàng
+					</Button>
+					{showRemoveModal !== 0 && (
+						<ProductRemoveModal
+							title="Bạn có muốn hủy đơn hàng này?"
+							onClickHide={() => setShowRemoveModal(0)}
+							onRemove={() => handleStatusChange()}
+						/>
+					)}
+				</div>
+			)}
 		</div>
 	);
 };

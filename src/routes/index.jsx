@@ -47,8 +47,8 @@ const AppRoutes = () => {
 				element={
 					<>
 						<Header />
+
 						<Home />
-						<Footer />
 					</>
 				}
 			/>

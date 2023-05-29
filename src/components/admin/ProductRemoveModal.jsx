@@ -13,12 +13,17 @@ const ProductRemoveModal = ({
 			</span>
 			<h2>{title} </h2>
 			<Button
-				small={true}
-				title={"Delete"}
-				type="danger"
+				title={"Xóa"}
+				type="small"
+				color="danger"
 				onClick={onRemove}
 			/>
-			<Button small={true} title={"Cancel"} onClick={onClickHide} />
+			<Button
+				type="small"
+				color="primary"
+				title={"Quay lại"}
+				onClick={onClickHide}
+			/>
 		</div>
 	);
 };

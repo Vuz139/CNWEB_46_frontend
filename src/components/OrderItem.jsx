@@ -3,6 +3,7 @@ import { getOrderById, updateOrder } from "../requests/orders.request";
 import Loading from "./public/Loading";
 import Button from "./Button";
 import { orderStatus } from "../contrainst/orderStatus";
+import UserOrderItem from "./order/UserOrderItem";
 
 const OrderItem = ({ id }) => {
 	const [loading, setLoading] = useState(true);
@@ -53,13 +54,9 @@ const OrderItem = ({ id }) => {
 						<div>Khách hàng: {currOrder?.user?.name}</div>
 						<div>Thời gian: {currOrder.createdAt}</div>
 					</div>
-					<div className="order-info">
-						<div>Payment: {currOrder.paymentInfo}</div>
-						<div>Giá: {currOrder.totalPrice}</div>
-					</div>
-					<div className="order-status">
-						Trạng thái: {currOrder.orderStatus}
-					</div>
+
+					<UserOrderItem id={id} />
+
 					{currOrder.orderStatus === orderStatus[0] && (
 						<div className="order-actions">
 							<Button
@@ -68,13 +65,6 @@ const OrderItem = ({ id }) => {
 								onClick={(e) => handleStatusChange(e)}
 								type="small">
 								Nhận đơn
-							</Button>
-							<Button
-								value={orderStatus[3]}
-								type="small"
-								color="danger"
-								onClick={(e) => handleStatusChange(e)}>
-								Từ chối
 							</Button>
 						</div>
 					)}

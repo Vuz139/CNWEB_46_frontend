@@ -101,7 +101,12 @@
 	font-weight: 600;
 }
 .userOrder__address p {
+	font-weight: 600;
 	text-align: left;
 	font-size: 1.4rem;
 	color: black;
+}
+.userOrder__action {
+	position: relative;
+	text-align: right;
 }
