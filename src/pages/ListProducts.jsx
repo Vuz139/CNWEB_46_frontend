@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductWrapper from "../components/products/ProductWrapper";
 import useDebounce from "../utils/debounce";
 import Loading from "../components/public/Loading";
-import "./oneProduct.css";
+import "./Home/oneProduct.css";
 import { getAllProducts } from "../requests/products.request";
 import { AiFillStar, AiOutlineDown } from "react-icons/ai";
 import { BsFillStarFill } from "react-icons/bs";

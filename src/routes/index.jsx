@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import ShoppingCart from "../pages/ShoppingCart";
 import { useSelector } from "react-redux";
 
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 import ListProducts from "../pages/ListProducts";
 import Error404 from "../components/public/Error404";
 import Error403 from "../components/public/Error403";
