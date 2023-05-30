@@ -667,6 +667,9 @@ th {
 .sidebar__price {
 	margin-bottom: 24px;
 }
+.sidebar__price__value {
+	font-size: 1.5rem;
+}
 .volume-slider {
 	width: 120px;
 	height: 7px;
