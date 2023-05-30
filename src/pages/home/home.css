@@ -1,0 +1,103 @@
+
+.homebg{
+    display: flex;
+    width: 100%;
+    height: 86vh;
+    background-image: url("bg_home.png"); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+.gioithieu{
+    width: 50%;
+}
+#slogan {
+    height: 50%;
+    width: 80%;
+    font-size: 120px;
+    color:white;
+    margin-top: 20%;
+    margin-left: 5%;
+}
+#bt_mua{
+    width: fit-content;
+    height: fit-content;
+    min-height: 100px;
+    padding: 10px 75px;
+    border: none;
+    background-color: #00C4CC;
+    border-radius: 50px;
+    color: black;
+    font-size: 40px;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 120px;
+    cursor: pointer;
+}
+#bt_mua:hover{
+    background-color: rgb(56, 94, 246);
+    scale: 1.1;
+}
+img{
+    width: 125px;
+    height: 125px;
+}
+.sp_noibat{
+    height: 400px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 25px 30px;
+    margin-left: 3%;
+    margin-top: 8%;
+}
+.sp_wrapper {
+    height: fit-content;
+    width: fit-content;
+    background-color: #41a4e2;
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    padding: 0%;
+}
+.sp_img {
+    height:125px;
+    object-fit: cover;  
+}
+
+.thongtin_sp {
+    margin: 0 20px;
+    font-size: 18px;
+    flex: 1;
+}
+
+.giatien {
+    margin: 0;
+    padding: 0;
+    margin-top: 8px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: black;
+}
+@media screen and (max-width: 740px){
+    
+    .homebg{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-image: url("bg_home.png"); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+
+    .gioithieu{
+        width: 50%;
+    }
+    #slogan {
+        height: 50%;
+        width: 80%;
+        font-size: 60px;
+        color:white;
+        margin-top: 20%;
+        margin-left: 5%;
+    }
+
+}
