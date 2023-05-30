@@ -23,7 +23,6 @@ function Login() {
 		try {
 			setLoading(true);
 			const result = await login(formData);
-			console.log(result);
 			if (result.success) {
 				dispatch(loginRedux(result.user));
 				navigate("/", { replace: true });
@@ -80,7 +79,11 @@ function Login() {
 						</div>
 						<div className="w3l_form align-self">
 							<div className="left_grid_info">
-								<img src={png} className="img-fluid" />
+								<img
+									src={png}
+									className="img-fluid"
+									alt="LOGIN"
+								/>
 							</div>
 						</div>
 					</div>

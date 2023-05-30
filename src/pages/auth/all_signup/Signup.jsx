@@ -22,7 +22,7 @@ function SignUp() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		if (formData.password != formData.confirmPassword) {
+		if (formData.password !== formData.confirmPassword) {
 			alert("Mật khẩu không trùng khớp");
 			return;
 		}
