@@ -280,10 +280,6 @@ button.btn {
 	}
 }
 
-.error404Page {
-	/* width: 100vw;
-	height: 100vh; */
-}
 .error404Page__bg {
 	background-image: url("./assets/images/page_not_found.webp");
 	background-position: center;

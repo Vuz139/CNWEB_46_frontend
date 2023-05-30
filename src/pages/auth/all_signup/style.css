@@ -76,7 +76,6 @@ html {
 button,
 input,
 select {
-	-webkit-appearance: none;
 	outline: none;
 }
 
@@ -156,7 +155,6 @@ ol {
 	padding: 0px 12px 0px 0px;
 	color: var(--title-color);
 	height: 45px;
-	-webkit-appearance: none;
 }
 
 .form-input {
