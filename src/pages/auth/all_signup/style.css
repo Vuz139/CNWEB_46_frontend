@@ -177,24 +177,7 @@ ol {
 }
 
 .login-remember {
-	grid-template-columns: auto auto;
-	justify-content: space-between;
-	align-items: center;
 	margin-top: 2rem;
-}
-
-.checkbox {
-	width: 16px;
-	height: 16px;
-	color: #f5f9fc;
-	background: #304659;
-	float: left;
-}
-
-p.remember {
-	font-size: 14px;
-	line-height: 18px;
-	color: var(--text-color);
 }
 
 .new-signup a {

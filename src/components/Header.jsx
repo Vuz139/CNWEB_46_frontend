@@ -36,6 +36,9 @@ const Header = () => {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
+		setTimeout(() => {
+			navigate("/login", { replace: true });
+		}, 500);
 	};
 	const location = useLocation();
 

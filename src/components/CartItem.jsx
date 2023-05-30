@@ -53,7 +53,7 @@ const CartItem = ({ product }) => {
 					</span>
 				</span>
 			</div>
-			<div className="cart-column">
+			<div className="cart-action cart-column">
 				<Button
 					color="danger"
 					onClick={() => dispatch(removeAllFromCart(product.id))}
