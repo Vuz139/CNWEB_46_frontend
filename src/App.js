@@ -1,23 +1,17 @@
-import Header from "./components/Header";
 import "./App.css";
-import Footer from "./components/Footer";
-// import Product from "./pages/Product";
-// import Login from "./pages/auth/Login";
-// import ShoppingCart from "./pages/ShoppingCart";
+import AppRoutes from "./routes";
+import { BrowserRouter } from "react-router-dom";
 
-// import logo from "./logo.svg";
-import "./App.css";
-import { Outlet, Link } from "react-router-dom";
-import { useState } from "react";
+import { Provider } from "react-redux";
+import { store } from "./redux/index";
 
 function App() {
-	const [isDidLogin, setIsDidLogin] = useState(false);
 	return (
-		<div>
-			{/* <Header /> */}
-			<Outlet />
-			{/* <Footer /> */}
-		</div>
+		<Provider store={store}>
+			<BrowserRouter>
+				<AppRoutes />
+			</BrowserRouter>
+		</Provider>
 	);
 }
 

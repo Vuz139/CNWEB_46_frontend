@@ -1,36 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import png from "./sign.png";
+import { login } from "../../../requests/users.request";
+import Button from "../../../components/Button";
+import { useDispatch } from "react-redux";
+import { loginRedux } from "../../../redux/userSlice";
 
-const Login = () => {
+function Login() {
+	const [formData, setFormData] = useState({ email: "", password: "" });
+	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const handleFormChange = (event) => {
+		const { name, value } = event.target;
+		setFormData((prevState) => ({ ...prevState, [name]: value }));
+	};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		try {
+			setLoading(true);
+			const result = await login(formData);
+			console.log(result);
+			if (result.success) {
+				dispatch(loginRedux(result.user));
+				navigate("/", { replace: true });
+			}
+		} catch (err) {
+			alert("Đăng nhập thất bại!");
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
 		<section className="w3l-hotair-form">
-			<h1>Report Login Form</h1>
+			<h1>Group 46</h1>
 			<div className="container">
 				<div className="workinghny-form-grid">
 					<div className="main-hotair">
 						<div className="content-wthree">
 							<h2>Log In</h2>
-							<form action="#" method="post">
+							<form>
 								<input
-									type="text"
+									type="email"
 									className="text"
-									name="text"
-									placeholder="User Name"
+									name="email"
+									value={formData.email}
+									onChange={handleFormChange}
+									placeholder="Your email"
 									required
 									autoFocus
 								/>
 								<input
 									type="password"
 									className="password"
+									value={formData.password}
+									onChange={handleFormChange}
 									name="password"
 									placeholder="User Password"
 									required
 									autoFocus
 								/>
-								<button className="btn" type="submit">
-									Log In
-								</button>
+								<label className="check-remaind">
+									<input type="checkbox" />
+									<span className="checkmark"></span>
+									<p className="remember">Remember me</p>
+								</label>
+								<br />
+
+								<Button
+									title={"Log In"}
+									loading={loading}
+									onClick={(e) => handleSubmit(e)}
+								/>
 							</form>
 							<p className="account">
 								Don't have an account?{" "}
@@ -39,11 +84,7 @@ const Login = () => {
 						</div>
 						<div className="w3l_form align-self">
 							<div className="left_grid_info">
-								<img
-									src="images/1.png"
-									alt=""
-									className="img-fluid"
-								/>
+								<img src={png} className="img-fluid" />
 							</div>
 						</div>
 					</div>
@@ -51,6 +92,6 @@ const Login = () => {
 			</div>
 		</section>
 	);
-};
+}
 
 export default Login;

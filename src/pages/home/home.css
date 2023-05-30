@@ -1,103 +1,109 @@
 
 .homebg{
-    display: flex;
-    width: 100%;
-    height: 86vh;
-    background-image: url("bg_home.png"); 
-    background-repeat: no-repeat; 
-    background-size: cover;
+    /* display: flex;
+    flex-wrap: wrap;
+    background-image: url("bg_home.png");
+    background-size: cover; */
 }
 .gioithieu{
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 660px;
+    background-image: url("bg_home.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-#slogan {
-    height: 50%;
-    width: 80%;
-    font-size: 120px;
-    color:white;
-    margin-top: 20%;
-    margin-left: 5%;
+
+.gioithieu h1 {
+    font-family:"Playfair Display",serif;;
+    font-size: 60px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
 }
-#bt_mua{
-    width: fit-content;
-    height: fit-content;
-    min-height: 100px;
-    padding: 10px 75px;
+  
+.gioithieu p {
+    font-family:"Playfair Display",serif;
+    font-size: 20px;
+    color: #d1d1d1;
+    text-transform: uppercase;
+    margin: 30px 0;
+    margin-bottom: 80px;
+    
+}
+.gioithieu button {
+    font-family:"Roboto",sans-serif;
+    background-color: #5edaf0;
+    color: #000;
+    padding: 25px 40px;
     border: none;
-    background-color: #00C4CC;
-    border-radius: 50px;
-    color: black;
-    font-size: 40px;
-    margin-bottom: auto;
-    margin-top: auto;
-    margin-left: 120px;
+    border-radius: 35px;
+    font-size: 25px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
 }
-#bt_mua:hover{
+
+.gioithieu button:hover{
     background-color: rgb(56, 94, 246);
     scale: 1.1;
 }
-img{
-    width: 125px;
-    height: 125px;
+
+.best_selling_bg{
+    width: 100%;
+    padding-top: 75px;
 }
-.sp_noibat{
-    height: 400px;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 25px 30px;
-    margin-left: 3%;
-    margin-top: 8%;
-}
-.sp_wrapper {
-    height: fit-content;
-    width: fit-content;
-    background-color: #41a4e2;
+
+.bs{
     display: flex;
-    margin: 20px;
-    align-items: center;
-    padding: 0%;
-}
-.sp_img {
-    height:125px;
-    object-fit: cover;  
+    font-size: 38px;
+    font-weight: 700;
+    justify-content: center;
+    font-family: "Playfair Display",serif;
+    color: #1a1a1a;
+    margin-bottom: 50px;
 }
 
+.sp_noibat{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sp_wrapper_margin{
+    padding: 10px;
+    margin: 0px 15px;
+}
+.sp_wrapper{
+    border: 1px solid black;
+}
+.sp_img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
 .thongtin_sp {
-    margin: 0 20px;
-    font-size: 18px;
-    flex: 1;
-}
+    display: block;
+    padding: 14px 20px 2px 20px;
 
-.giatien {
-    margin: 0;
-    padding: 0;
+}
+h2.tensp{
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+    font-family: "Playfair Display",serif;
+    justify-content: center;
+ }
+.giatien  {
     margin-top: 8px;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 22px;
     color: black;
-}
-@media screen and (max-width: 740px){
-    
-    .homebg{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        background-image: url("bg_home.png"); 
-        background-repeat: no-repeat; 
-        background-size: cover;
-    }
-
-    .gioithieu{
-        width: 50%;
-    }
-    #slogan {
-        height: 50%;
-        width: 80%;
-        font-size: 60px;
-        color:white;
-        margin-top: 20%;
-        margin-left: 5%;
-    }
-
+    opacity: 1;
 }

@@ -1,0 +1,37 @@
+.sp {
+	padding: 4px;
+	background-color: white;
+	box-shadow: 1px 1px 1px 1px #ccc;
+}
+.sp:hover {
+	cursor: pointer;
+	box-shadow: 3px 3px 3px 3px #ccc;
+}
+
+.anhSp {
+	display: block;
+	height: 180px;
+	width: 100%;
+}
+.thong_tin {
+	padding: 4px;
+}
+
+.sp__cost {
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.description {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 14px;
+}
+
+.rate {
+	display: inline-block;
+	margin-left: 8px;
+}
