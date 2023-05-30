@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductWrapper from "../components/products/ProductWrapper";
 import useDebounce from "../utils/debounce";
-import "./oneProduct.css";
+import "./home/oneProduct.css";
 import { getAllProducts } from "../requests/products.request";
 import { AiOutlineDown } from "react-icons/ai";
 import FIlterStar from "../components/products/FIlterStar";
