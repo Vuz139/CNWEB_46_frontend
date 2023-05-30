@@ -1,6 +1,6 @@
 import React from "react";
-import "./home/home.css";
-import anh from "./home/chup-anh-giay-dep.jpg";
+import "./home.css";
+import anh from "./chup-anh-giay-dep.jpg";
 const Home = () => {
 	return (
 		<div>
