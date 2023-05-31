@@ -1,9 +1,3 @@
-.homebg {
-	/* display: flex;
-    flex-wrap: wrap;
-    background-image: url("bg_home.png");
-    background-size: cover; */
-}
 .gioithieu {
 	display: flex;
 	flex-direction: column;
