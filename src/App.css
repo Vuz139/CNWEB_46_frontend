@@ -361,14 +361,16 @@ button.btn {
 	border: none;
 	margin: 0 4px;
 }
-.pagination {
+/* .pagination {
 	display: flex;
 	justify-content: center;
-	margin-top: 10px;
+	margin: 12px 0;
+} */
+.pagination__pagenum {
+	margin: 0 12px;
 }
-
 .pagination-button {
-	margin: 0 5px;
+	/* margin: 0 12px; */
 	padding: 8px;
 	font-size: 1.6rem;
 	background-color: rgb(244, 189, 117);
@@ -481,7 +483,7 @@ th {
 
 /* pagination in user */
 .pagination {
-	margin-top: 12px;
+	margin: 12px 0;
 	font-size: 1.6rem;
 	display: flex;
 	justify-content: space-around;

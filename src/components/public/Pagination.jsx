@@ -41,10 +41,12 @@ const Pagination = ({ state, setState, numOfPages, option = true }) => {
 						<BsChevronLeft /> Prev
 					</Button>
 				)}
-				{(state.page - 1) * state.take +
-					1 +
-					"....." +
-					state.page * state.take}
+				<span className="pagination__pagenum">
+					{(state.page - 1) * state.take +
+						1 +
+						"....." +
+						state.page * state.take}
+				</span>
 				{state.page < numOfPages && (
 					<Button
 						onClick={() =>

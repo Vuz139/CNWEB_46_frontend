@@ -24,6 +24,8 @@ import ListUser from "../pages/admin/ListUser";
 import AppLayout from "../layouts/AppLayout";
 import NewOrder from "../pages/orders/NewOrder";
 import UserOrders from "../pages/orders/UserOrders";
+import About from "../pages/About";
+import User from "../pages/User";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 
@@ -47,8 +49,8 @@ const AppRoutes = () => {
 				element={
 					<>
 						<Header />
-
 						<Home />
+						<Footer />
 					</>
 				}
 			/>
@@ -78,7 +80,7 @@ const AppRoutes = () => {
 					<>
 						<Header />
 						<Login />
-						<Footer />{" "}
+						<Footer />
 					</>
 				}
 			/>
@@ -105,6 +107,22 @@ const AppRoutes = () => {
 				element={
 					<AppLayout>
 						<ShoppingCart />
+					</AppLayout>
+				}
+			/>
+			<Route
+				path="/about"
+				element={
+					<AppLayout>
+						<About />
+					</AppLayout>
+				}
+			/>
+			<Route
+				path="/user"
+				element={
+					<AppLayout>
+						<User />
 					</AppLayout>
 				}
 			/>
