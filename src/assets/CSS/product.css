@@ -35,6 +35,14 @@
 	margin-right: 30px;
 	padding: 0px;
 }
+<<<<<<< HEAD
+=======
+/* .product-page-img iframe{
+    width: 100%;
+    height: 350px;
+    border: none;
+} */
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 .sketchfab-embed-wrapper {
 	object-fit: cover;
 	border: 2px solid #ccc;
@@ -76,7 +84,11 @@
 	font-size: 1.6rem;
 	background-color: #fcfcfc;
 	font-weight: 400;
+<<<<<<< HEAD
 	margin: 8px 0;
+=======
+	padding: 10px;
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	border: 1px solid #f7f7f7;
 }
 .product-options {
@@ -271,6 +283,7 @@ a {
 .rating:hover > input:checked ~ label:before {
 	opacity: 0.4;
 }
+<<<<<<< HEAD
 
 /* reviews */
 .product-page__reviews {
@@ -480,3 +493,5 @@ a {
 		scale: calc(0.1);
 	}
 }
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a

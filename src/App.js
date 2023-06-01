@@ -1,5 +1,8 @@
 import "./App.css";
+<<<<<<< HEAD
 import "./assets/CSS/order.css";
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import AppRoutes from "./routes";
 import { BrowserRouter } from "react-router-dom";
 

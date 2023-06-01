@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+import React from "react";
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import "../assets/CSS/cart.css";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
@@ -21,6 +25,7 @@ const ShoppingCart = () => {
 				{cartItems && cartItems.map((p) => <CartItem product={p} />)}
 				<div class="cart-total">
 					<strong class="cart-total-title">Tổng Cộng:</strong>
+<<<<<<< HEAD
 
 					<>
 						{" "}
@@ -39,6 +44,11 @@ const ShoppingCart = () => {
 					<Link to={"/order"}>
 						<Button title={"Thanh toán"} />
 					</Link>
+=======
+					<span class="cart-total-price">Chưa tính</span> <br />{" "}
+					<br />
+					<Button title={"Thanh toán"} />
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 				</div>
 			</div>
 		</div>

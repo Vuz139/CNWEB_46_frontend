@@ -1,6 +1,7 @@
 import React from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Button from "../../components/Button";
+<<<<<<< HEAD
 const Pagination = ({ state, setState, numOfPages, option = true }) => {
 	return (
 		<div className="pagination">
@@ -26,6 +27,29 @@ const Pagination = ({ state, setState, numOfPages, option = true }) => {
 						</select>
 					</>
 				)}
+=======
+const Pagination = ({ state, setState, numOfPages }) => {
+	return (
+		<div className="pagination">
+			<div className="pagination__take">
+				<label htmlFor="take">Số bảng tin</label>
+				<select
+					onChange={(e) =>
+						setState((prev) => ({
+							...prev,
+							take: Number(e.target.value),
+							skip: 0,
+							page: 1,
+						}))
+					}
+					value={state.take}
+					name="take"
+					id="take">
+					<option value={5}>5 records</option>
+					<option value={10}>10 records</option>
+					<option value={15}>15 records</option>
+				</select>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			</div>
 			<div className="pagination__page">
 				{state.page > 1 && (

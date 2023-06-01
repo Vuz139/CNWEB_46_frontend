@@ -64,7 +64,15 @@ function Login() {
 									required
 									autoFocus
 								/>
+<<<<<<< HEAD
 
+=======
+								<label className="check-remaind">
+									<input type="checkbox" />
+									<span className="checkmark"></span>
+									<p className="remember">Remember me</p>
+								</label>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 								<br />
 
 								<Button

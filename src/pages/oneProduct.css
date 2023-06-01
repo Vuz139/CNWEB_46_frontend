@@ -28,16 +28,23 @@
 	-webkit-line-clamp: 2;
 	overflow: hidden;
 	text-overflow: ellipsis;
+<<<<<<< HEAD
 	font-size: 1.4rem;
+=======
+	font-size: 14px;
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 }
 
 .rate {
 	display: inline-block;
 	margin-left: 8px;
 }
+<<<<<<< HEAD
 
 @media (max-width: 767px) {
 	.anhSp {
 		height: 300px;
 	}
 }
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a

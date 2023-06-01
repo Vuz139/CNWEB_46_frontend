@@ -22,8 +22,11 @@ import NewProduct from "../pages/admin/NewProduct";
 import ListProductRow from "../pages/admin/ListProductRow";
 import ListUser from "../pages/admin/ListUser";
 import AppLayout from "../layouts/AppLayout";
+<<<<<<< HEAD
 import NewOrder from "../pages/orders/NewOrder";
 import UserOrders from "../pages/orders/UserOrders";
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 
@@ -32,7 +35,11 @@ const ProtectedRoute = ({ children, roles }) => {
 			return <Navigate to="/403" replace />;
 		return children;
 	}
+<<<<<<< HEAD
 	alert("Bạn nên đăng nhập trước");
+=======
+
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	return <Navigate to="/login" replace />;
 };
 
@@ -47,12 +54,18 @@ const AppRoutes = () => {
 				element={
 					<>
 						<Header />
+<<<<<<< HEAD
 
 						<Home />
+=======
+						<Home />
+						{/* <Footer /> */}
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 					</>
 				}
 			/>
 			<Route
+<<<<<<< HEAD
 				path="/order"
 				element={
 					<ProtectedRoute>
@@ -73,6 +86,8 @@ const AppRoutes = () => {
 				}
 			/>
 			<Route
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 				path="/login"
 				element={
 					<>
@@ -103,9 +118,17 @@ const AppRoutes = () => {
 			<Route
 				path="/cart"
 				element={
+<<<<<<< HEAD
 					<AppLayout>
 						<ShoppingCart />
 					</AppLayout>
+=======
+					<>
+						<Header />
+						<ShoppingCart />
+						<Footer />
+					</>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 				}
 			/>
 			<Route

@@ -8,7 +8,10 @@ import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 
 import Pagination from "../../components/public/Pagination";
 import useDebounce from "../../utils/debounce";
+<<<<<<< HEAD
 import ProductRemoveModal from "../../components/admin/ProductRemoveModal";
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 const ListUser = () => {
 	const [state, setState] = useState({
 		take: 10,
@@ -22,7 +25,10 @@ const ListUser = () => {
 	const [userEdit, setUserEdit] = useState({});
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
 	const [showRemoveModal, setShowRemoveModal] = useState(0);
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	const numOfPages = Math.ceil(total / state.take);
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
@@ -49,7 +55,11 @@ const ListUser = () => {
 
 	const handleOrderChange = (e) => {
 		const name = e.target.getAttribute("name");
+<<<<<<< HEAD
 
+=======
+		console.log(">>> check name:", name);
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 		if (state.orderBy[0] === name) {
 			if (state.orderBy[1] === "ASC") {
 				setState((prev) => ({
@@ -97,7 +107,10 @@ const ListUser = () => {
 
 	const handleRemove = (e, id) => {
 		e.preventDefault();
+<<<<<<< HEAD
 		setShowRemoveModal(id);
+=======
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	};
 
 	return (
@@ -224,6 +237,7 @@ const ListUser = () => {
 										class="edit-button">
 										Edit
 									</button>
+<<<<<<< HEAD
 									<span className="delete__side">
 										<button
 											onClick={(e) =>
@@ -244,6 +258,15 @@ const ListUser = () => {
 											/>
 										)}
 									</span>
+=======
+									<button
+										onClick={(e) =>
+											handleRemove(e, user.id)
+										}
+										class="delete-button">
+										Delete
+									</button>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 								</td>
 							</tr>
 						))}

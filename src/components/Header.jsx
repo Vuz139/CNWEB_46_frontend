@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { BsCart4, BsSearch, BsBoxArrowInRight } from "react-icons/bs";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { Link, useLocation, useNavigate } from "react-router-dom";
+=======
+import { Link, useNavigate } from "react-router-dom";
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import { logout } from "../redux/userSlice";
 import logo from "../assets/images/logo1.png";
 
@@ -36,11 +40,16 @@ const Header = () => {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
+<<<<<<< HEAD
 		setTimeout(() => {
 			navigate("/login", { replace: true });
 		}, 500);
 	};
 	const location = useLocation();
+=======
+		console.log(">>>check user: ", user);
+	};
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 
 	return (
 		<div className="header">
@@ -48,6 +57,7 @@ const Header = () => {
 				<img src={logo} alt="LOGO" />
 				{width > 786 && <span className="header__name">Nhóm 46</span>}
 			</Link>
+<<<<<<< HEAD
 			{!location.pathname.includes("/product") && (
 				<div className="header__search">
 					<input
@@ -65,6 +75,23 @@ const Header = () => {
 					</span>
 				</div>
 			)}
+=======
+			<div className="header__search">
+				<input
+					type="text"
+					className="header__search__input"
+					placeholder="Tìm kiếm"
+					value={searchInput}
+					onChange={handleSearchInputChange}
+					onKeyDown={handleSearchSummit}
+				/>
+				<span
+					onClick={handleSearchSummit}
+					className="header__search__icon">
+					<BsSearch />
+				</span>
+			</div>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			{width > 786 && (
 				<div className="header__navigation">
 					<Link to={"/"}>Home</Link>
@@ -96,8 +123,13 @@ const Header = () => {
 					)}
 
 					<div className="header__user__menu">
+<<<<<<< HEAD
 						<Link to={"/user/orders"}>Đơn hàng</Link>
 						<Link to={"/admin/newProduct"}>Tạo mới</Link>
+=======
+						<a href="#">User</a>
+						<Link to={"/admin/newProduct"}>New Product</Link>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>
@@ -116,7 +148,11 @@ const Header = () => {
 								}}
 								onClick={handleLogout}>
 								<span style={{ display: "inline-flex" }}>
+<<<<<<< HEAD
 									Đăng xuất
+=======
+									Logout
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 								</span>
 								<span
 									style={{
@@ -129,7 +165,11 @@ const Header = () => {
 								</span>
 							</a>
 						) : (
+<<<<<<< HEAD
 							<Link to={"/login"}>Đăng nhấp</Link>
+=======
+							<Link to={"/login"}>Login</Link>
+>>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 						)}
 					</div>
 				</span>
