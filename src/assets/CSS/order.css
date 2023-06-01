@@ -110,3 +110,42 @@
 	position: relative;
 	text-align: right;
 }
+
+/* orders */
+.order-container {
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 1.6rem;
+}
+
+.order-info {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 8px 10px;
+	color: black;
+	font-size: 1.6rem;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 8px 10px;
+	font-weight: 600;
+}
+
+.order-actions {
+	display: flex;
+	justify-content: flex-end;
+}
+.order-action-accept {
+	padding: 8px;
+	background-color: rgb(138, 208, 33);
+	border-radius: 8px;
+	border: none;
+}
+.order-action-cancel {
+	padding: 8px;
+	background-color: rgb(158, 101, 101);
+	border-radius: 8px;
+	border: none;
+	margin: 0 4px;
+}
