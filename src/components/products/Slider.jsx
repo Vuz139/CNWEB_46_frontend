@@ -30,7 +30,7 @@ const Slider = ({ setState, maxPrice = 3000 }) => {
 	return (
 		<div className="sidebar__price">
 			<h2 className="sidebar__field-name">Price</h2>
-			<p style={{ textAlign: "left" }}>
+			<p className="sidebar__price__value">
 				${((sliderValue * maxPrice) / 100).toFixed(2)}
 			</p>
 			<div className="volume-slider">

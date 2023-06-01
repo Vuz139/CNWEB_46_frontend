@@ -29,8 +29,12 @@ function SignUp() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+<<<<<<< HEAD
 		if (formData.password != formData.confirmPassword) {
 <<<<<<< HEAD
+=======
+		if (formData.password !== formData.confirmPassword) {
+>>>>>>> 27aac00b4e26590830f3fc8371551137ad05df52
 			alert("Mật khẩu không trùng khớp");
 =======
 			alert("Password do not match with confirm password");
