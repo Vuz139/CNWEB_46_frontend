@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-const Slider = ({ setState, maxPrice = 3000 }) => {
+const Slider = ({ setState, maxPrice = 30000 }) => {
 	const [sliderValue, setSliderValue] = useState(100);
+
+	const priceSlider = useRef();
+
 	const handleDrag = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
+		// const volumeSlider = document.querySelector(".volume-slider");
+
+		const bounds = priceSlider.current.getBoundingClientRect();
 		const x = e.clientX - bounds.left;
 		const percentage = (x / bounds.width) * 100;
 		if (percentage > 100) setSliderValue(100);
@@ -15,8 +19,8 @@ const Slider = ({ setState, maxPrice = 3000 }) => {
 	};
 
 	const handleDragEnd = (e) => {
-		const volumeSlider = document.querySelector(".volume-slider");
-		const bounds = volumeSlider.getBoundingClientRect();
+		// const volumeSlider = document.querySelector(".volume-slider");
+		const bounds = priceSlider.current.getBoundingClientRect();
 		const x = e.clientX - bounds.left;
 		const percentage = (x / bounds.width) * 100;
 		const percent = Math.max(0, Math.min(percentage, 100));
@@ -33,7 +37,7 @@ const Slider = ({ setState, maxPrice = 3000 }) => {
 			<p className="sidebar__price__value">
 				${((sliderValue * maxPrice) / 100).toFixed(2)}
 			</p>
-			<div className="volume-slider">
+			<div ref={priceSlider} className="volume-slider">
 				<div className="bar" style={{ width: `${sliderValue}%` }}></div>
 				<div
 					style={{ left: `${sliderValue}%` }}
