@@ -17,12 +17,14 @@
 	color: #fff;
 	font-weight: bold;
 	text-transform: uppercase;
+	text-align: center;
 	margin: 0;
 }
 
 .gioithieu p {
 	font-family: "Playfair Display", serif;
 	font-size: 20px;
+	text-align: center;
 	color: #d1d1d1;
 	text-transform: uppercase;
 	margin: 30px 0;
@@ -52,6 +54,7 @@
 }
 
 .bs {
+	text-align: center;
 	display: flex;
 	font-size: 38px;
 	font-weight: 700;

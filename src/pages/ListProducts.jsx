@@ -43,7 +43,7 @@ const ListProducts = () => {
 				keyword: state.keyword,
 				query: `&ratings[gte]=${state.ratings}&category=${state.category}&seller=${state.seller}&price[lte]=${state.price}`,
 			});
-			console.log(">>> check res:", res);
+
 			if (res.status === "success") {
 				setTotal(res.total);
 				setProducts(res.products);
@@ -55,8 +55,6 @@ const ListProducts = () => {
 		}
 	};
 	useEffect(() => {
-		console.log(">>> check state: ", state);
-		console.log(">>> check product:", maxProduct);
 		fetchData();
 	}, [state]);
 
@@ -185,7 +183,7 @@ const ListProducts = () => {
 				<Slider setState={setState} maxPrice={maxProduct?.price} />
 
 				<div className="sidebar__clear">
-					<button onClick={handleClearFilter}> Clear filter</button>
+					<button onClick={handleClearFilter}>Clear Filter</button>
 				</div>
 			</div>
 			<div style={{ width: "100%" }}>

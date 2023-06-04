@@ -25,7 +25,7 @@ const NewOrder = () => {
 			cart.reduce((curr, value) => curr + value.price * value.amount, 0),
 		[cart],
 	);
-	const taxPrice = useMemo(() => 0.05 * itemsPrice, []);
+	const taxPrice = useMemo(() => 0.05 * itemsPrice, [itemsPrice]);
 	const totalPrice = itemsPrice + taxPrice;
 	// const [order, setOrder] = useState({
 	// 	taxPrice,
