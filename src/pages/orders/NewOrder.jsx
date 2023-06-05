@@ -4,9 +4,10 @@ import { orderStatus } from "../../contrainst/orderStatus";
 import { createOrder } from "../../requests/orders.request";
 import "./OrderStyle.css";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
 import { locals } from "../../utils/vietnamlocalselector";
+
 const NewOrder = () => {
   const [districts, setDistricts] = useState([]);
   const [communes, setCommunes] = useState([]);
@@ -31,7 +32,7 @@ const NewOrder = () => {
   // 	totalPrice,
   // 	shippingPrice: 15,
   // });
-
+  const navigate = useNavigate();
   const makeOrder = async () => {
     const orderPost = {
       shippingInfo,
@@ -44,6 +45,12 @@ const NewOrder = () => {
     };
     try {
       const res = await createOrder(orderPost);
+
+      alert("Đặt hàng thành công");
+      localStorage.removeItem("cart");
+
+      navigate("/", { replace: true });
+
       console.log("res:", res);
     } catch (error) {
       console.log(error);
