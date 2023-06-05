@@ -53,7 +53,7 @@ const NewOrder = () => {
 
 	return (
 		<div>
-			<button onClick={handleClickCreate}>Create order</button>
+			<button onClick={makeOrder}>Create order</button>
 		</div>
 	);
 };
