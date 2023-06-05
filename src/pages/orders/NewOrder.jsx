@@ -201,7 +201,7 @@ const NewOrder = () => {
             <Link to={"/cart"}>Quay lại giỏ hàng</Link>
           </div>
 
-          <Button>Đặt hàng</Button>
+          <Button title={"Đặt hàng"} onClick={(e) => makeOrder(e)} />
         </div>
       </div>
     </div>
