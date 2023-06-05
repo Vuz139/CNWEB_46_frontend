@@ -86,6 +86,7 @@ button.btn {
 	align-items: center;
 	background-color: #eaded7;
 	color: #97a9bb;
+	margin-top: 6px;
 	margin-bottom: 12px;
 }
 .meta a {
