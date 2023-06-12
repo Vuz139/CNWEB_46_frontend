@@ -32,7 +32,6 @@ export const removeUser = () => {
 	console.log("remove user");
 	localStorage.removeItem("user");
 };
-<<<<<<< HEAD
 
 export const getCart = () => {
 	return JSON.parse(localStorage.getItem("cart"));
@@ -42,5 +41,3 @@ export const setCart = (cart) => {
 		localStorage.setItem("cart", JSON.stringify(cart));
 	}
 };
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a

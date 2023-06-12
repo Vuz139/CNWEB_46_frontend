@@ -2,11 +2,7 @@ import React from "react";
 import Loading from "../../components/public/Loading";
 import { useState, useEffect } from "react";
 import { getAllProducts, removeProduct } from "../../requests/products.request";
-<<<<<<< HEAD
 import ProductEditModal from "../../components/admin/ProductEditModal";
-=======
-import ProductEditModel from "../../components/admin/ProductEditModel";
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import Pagination from "../../components/public/Pagination";
 import { BsSearch, BsArrowUp, BsArrowDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -114,11 +110,7 @@ const ListProductRow = () => {
 	return (
 		<div>
 			{showModal && (
-<<<<<<< HEAD
 				<ProductEditModal
-=======
-				<ProductEditModel
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 					productUpdate={productEdit}
 					onClickHide={() => {
 						fetchData();
@@ -126,16 +118,6 @@ const ListProductRow = () => {
 					}}
 				/>
 			)}
-<<<<<<< HEAD
-
-=======
-			{showRemoveModal !== 0 && (
-				<ProductRemoveModal
-					onClickHide={() => setShowRemoveModal(0)}
-					onRemove={() => handleRemoveProduct(showRemoveModal)}
-				/>
-			)}
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			<div
 				style={{
 					margin: "12px",
@@ -278,7 +260,6 @@ const ListProductRow = () => {
 										class="edit-button">
 										Edit
 									</button>
-<<<<<<< HEAD
 									<span className="delete__side">
 										<button
 											onClick={(e) =>
@@ -300,15 +281,6 @@ const ListProductRow = () => {
 											/>
 										)}
 									</span>
-=======
-									<button
-										onClick={(e) =>
-											handleRemove(e, product.id)
-										}
-										class="delete-button">
-										Delete
-									</button>
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 								</td>
 								{/* <td>
 									

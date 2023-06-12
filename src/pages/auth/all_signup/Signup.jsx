@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-<<<<<<< HEAD
 import { Link, useNavigate } from "react-router-dom";
-=======
-import { Link } from "react-router-dom";
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import { createUser } from "../../../requests/users.request";
 import Button from "../../../components/Button";
 function SignUp() {
@@ -14,10 +10,7 @@ function SignUp() {
 		password: "",
 		confirmPassword: "",
 	});
-<<<<<<< HEAD
 	const navigate = useNavigate();
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	const [avatar, setAvatar] = useState(null);
 
 	const [loading, setLoading] = useState(false);
@@ -29,16 +22,11 @@ function SignUp() {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-<<<<<<< HEAD
+
 		if (formData.password != formData.confirmPassword) {
-<<<<<<< HEAD
-=======
-		if (formData.password !== formData.confirmPassword) {
->>>>>>> 27aac00b4e26590830f3fc8371551137ad05df52
+
 			alert("Mật khẩu không trùng khớp");
-=======
-			alert("Password do not match with confirm password");
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
+
 			return;
 		}
 		formData.role = "user";
@@ -49,11 +37,7 @@ function SignUp() {
 
 			console.log(result);
 			if (result.success) {
-<<<<<<< HEAD
 				alert("Tạo tài khoản thành công");
-=======
-				alert("User created successfully");
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 				setFormData({
 					name: "",
 					email: "",
@@ -61,10 +45,7 @@ function SignUp() {
 					confirmPassword: "",
 				});
 				setAvatar(null);
-<<<<<<< HEAD
 				navigate("/login");
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			}
 		} catch (error) {
 			console.log(error);

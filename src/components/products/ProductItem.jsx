@@ -7,16 +7,12 @@ const ProductItem = ({ product }) => {
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 
 	return (
-<<<<<<< HEAD
 		<Link
 			onClick={() => {
 				window.scrollTo({ top: 0, behavior: "smooth" });
 			}}
 			to={`/product/${product.id}`}
 			className="col-4 m-3 sm-12">
-=======
-		<Link to={`/product/${product.id}`} className="col-4 m-3 sm-12">
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			<div className="productContainer">
 				<div className="sp">
 					<img

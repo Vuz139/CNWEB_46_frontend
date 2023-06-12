@@ -19,7 +19,6 @@ export const updateOrder = async (id, body) => {
 		...body,
 	});
 };
-<<<<<<< HEAD
 
 export const getUserOders = async ({
 	take = 5,
@@ -37,5 +36,3 @@ export const createOrder = async (order) => {
 		...order,
 	});
 };
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a

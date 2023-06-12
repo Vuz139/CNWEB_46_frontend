@@ -4,10 +4,6 @@ import { GrUploadOption } from "react-icons/gr";
 import Comment from "../Comment";
 import { createReview, getReviews } from "../../requests/products.request";
 import Loading from "../public/Loading";
-<<<<<<< HEAD
-=======
-import { useSelector } from "react-redux";
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import FIlterStar from "./FIlterStar";
 
 const CommentWrapper = ({ productId }) => {
@@ -59,11 +55,8 @@ const CommentWrapper = ({ productId }) => {
 	};
 
 	const handleSubmitComment = async () => {
-<<<<<<< HEAD
 		if (commentValue.comment.trim().length < 1) return;
 
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 		try {
 			setLoading(true);
 			const res = await createReview({
@@ -94,11 +87,7 @@ const CommentWrapper = ({ productId }) => {
 
 	return (
 		<div>
-<<<<<<< HEAD
 			<h1 style={{ fontSize: "1.6rem" }}>Bình luận của người dùng: </h1>
-=======
-			<h1 style={{}}>Đánh giá: </h1>
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			<div
 				className="comments_wrapper"
 				style={{

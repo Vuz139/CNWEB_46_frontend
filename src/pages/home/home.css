@@ -100,9 +100,11 @@ h2.tensp{
     justify-content: center;
  }
 .giatien  {
+    display: flex;
     margin-top: 8px;
     line-height: 1.6;
     font-size: 22px;
     color: black;
     opacity: 1;
+    justify-content: center;
 }

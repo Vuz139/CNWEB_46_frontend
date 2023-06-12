@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-=======
-import "./product.css";
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 import ProductItem from "./ProductItem";
 import Loading from "../public/Loading";
 const ProductWrapper = ({ products, loading }) => {

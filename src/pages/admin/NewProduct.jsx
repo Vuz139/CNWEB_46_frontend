@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import { createProduct } from "../../requests/products.request";
-<<<<<<< HEAD
 import { categories } from "../../contrainst/category";
-=======
-
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 const NewProduct = () => {
 	const [loading, setLoading] = useState(false);
 
@@ -140,17 +136,9 @@ const NewProduct = () => {
 						id="category"
 						required>
 						<option value="">____Category___</option>
-<<<<<<< HEAD
 						{categories.map((category) => (
 							<option value={category}>{category}</option>
 						))}
-=======
-						<option value="Thời trang">Thời trang</option>
-						<option value="Học tập">Học tập</option>
-						<option value="Giải trí">Giải trí</option>
-						<option value="Âm nhạc">Âm nhạc</option>
-						<option value="Khác">Khác</option>
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 					</select>
 				</div>
 				<div className="form-group">

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import "../assets/CSS/cart.css";
 import { useDispatch } from "react-redux";
@@ -26,11 +25,6 @@ const CartItem = ({ product }) => {
 	};
 
 	const dispatch = useDispatch();
-=======
-import React from "react";
-import "../assets/CSS/cart.css";
-const CartItem = () => {
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	return (
 		<div class="cart-row">
 			<Link to={`/product/${product.id}`} class="cart-item cart-column">
@@ -41,7 +35,6 @@ const CartItem = () => {
 					height="100"
 				/>
 				<span class="cart-item-title">
-<<<<<<< HEAD
 					<h2>{product.name}</h2>
 					{product.description.slice(0, 50)}...
 				</span>
@@ -58,13 +51,6 @@ const CartItem = () => {
 					<span onClick={handleDecre}>
 						<BsArrowDown />
 					</span>
-=======
-					<h2>TEN SAN PHAM</h2>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-					Quasi aut quod optio a eum, quos vitae excepturi ea
-					laboriosam tempore ad rerum perspiciatis assumenda pariatur.
-					Illo culpa sunt cupiditate labore.
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 				</span>
 			</div>
 			<div className="cart-action cart-column">

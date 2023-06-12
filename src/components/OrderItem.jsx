@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getOrderById, updateOrder } from "../requests/orders.request";
 import Loading from "./public/Loading";
-<<<<<<< HEAD
 import Button from "./Button";
 import { orderStatus } from "../contrainst/orderStatus";
 import UserOrderItem from "./order/UserOrderItem";
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 
 const OrderItem = ({ id }) => {
 	const [loading, setLoading] = useState(true);
@@ -36,10 +33,7 @@ const OrderItem = ({ id }) => {
 			const res = await updateOrder(id, {
 				orderStatus: e.target.value,
 			});
-<<<<<<< HEAD
 			console.log(">> check order status", res);
-=======
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			if (res.status === "success") {
 				await fetchOrder();
 			}
@@ -51,17 +45,12 @@ const OrderItem = ({ id }) => {
 	};
 
 	return (
-<<<<<<< HEAD
 		<div key={currOrder?.id} className="order-container">
-=======
-		<div key={currOrder.id} className="order-container">
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 			{loading || !currOrder ? (
 				<Loading />
 			) : (
 				<>
 					<div className="order-info">
-<<<<<<< HEAD
 						<div>Khách hàng: {currOrder?.user?.name}</div>
 						<div>Thời gian: {currOrder.createdAt}</div>
 					</div>
@@ -96,48 +85,6 @@ const OrderItem = ({ id }) => {
 								onClick={(e) => handleStatusChange(e)}>
 								Hủy
 							</Button>
-=======
-						<div>Customer: {currOrder?.user?.name}</div>
-						<div>Date: {currOrder.createdAt}</div>
-					</div>
-					<div className="order-info">
-						<div>Payment: {currOrder.paymentInfo}</div>
-						<div>Quantity: {currOrder.totalPrice}</div>
-					</div>
-					<div className="order-status">
-						Status: {currOrder.orderStatus || "Cancelled"}
-					</div>
-					{currOrder.orderStatus === "pending" && (
-						<div className="order-actions">
-							<button
-								value={"processing"}
-								onClick={handleStatusChange}
-								className="order-action-accept">
-								Accept
-							</button>
-							<button
-								value={"rejected"}
-								onClick={handleStatusChange}
-								className="order-action-cancel">
-								Reject
-							</button>
-						</div>
-					)}
-					{currOrder.orderStatus === "processing" && (
-						<div className="order-actions">
-							<button
-								value={"fullfiled"}
-								onClick={handleStatusChange}
-								className="order-action-accept">
-								Done
-							</button>
-							<button
-								value={"canceled"}
-								onClick={handleStatusChange}
-								className="order-action-cancel">
-								Cancel
-							</button>
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 						</div>
 					)}
 				</>

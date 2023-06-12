@@ -1,14 +1,17 @@
 import React from "react";
 import "./home/home.css";
 import anh from "./home/chup-anh-giay-dep.jpg";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Home = () => {
+	const navigate = useNavigate();
+  	function handleClick() {navigate('/products');}
 	return (
 		<div>
 			<div class="homebg">
 				<div class="gioithieu">
 					<h1>A Clothing Store</h1>
 					<p>Buy without lifting a finger</p>
-					<button>Shopping now</button>
+					<button onClick={handleClick}>Shopping now</button>
 				</div>
 				<div class="best_selling_bg">
 					<div class="container1">

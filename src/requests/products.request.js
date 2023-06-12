@@ -22,11 +22,7 @@ export const getAllProducts = async ({
 	take = 10,
 	page = 1,
 	keyword = "",
-<<<<<<< HEAD
 	orderBy = ["id", "desc"],
-=======
-	orderBy = ["ratings", "desc"],
->>>>>>> a83f9c5a3bdc026c3d8ea7b98dbf32959904e62a
 	query = "",
 }) => {
 	const res = await api.get(
