@@ -44,14 +44,24 @@ const NewOrder = () => {
       shippingPrice: 15,
     };
     try {
-      const res = await createOrder(orderPost);
+      if (
+        !shippingInfo.address ||
+        !shippingInfo.city ||
+        !shippingInfo.commune ||
+        !shippingInfo.district ||
+        !shippingInfo.phoneNo
+      ) {
+        alert("Vui lòng điền đầy đủ thông tin");
+      } else {
+        const res = await createOrder(orderPost);
 
-      alert("Đặt hàng thành công");
-      localStorage.removeItem("cart");
+        alert("Đặt hàng thành công");
+        localStorage.removeItem("cart");
 
-      navigate("/", { replace: true });
+        navigate("/", { replace: true });
 
-      console.log("res:", res);
+        console.log("res:", res);
+      }
     } catch (error) {
       console.log(error);
     }
