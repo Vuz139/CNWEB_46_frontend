@@ -1,7 +1,6 @@
 import React from "react";
-import "./home/home.css";
-import anh from "./home/chup-anh-giay-dep.jpg";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import "./home.css";
+import anh from "./chup-anh-giay-dep.jpg";
 const Home = () => {
 	const navigate = useNavigate();
   	function handleClick() {navigate('/products');}
