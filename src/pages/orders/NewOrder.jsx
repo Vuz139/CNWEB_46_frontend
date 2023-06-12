@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { orderStatus } from "../../contrainst/orderStatus";
 import { createOrder } from "../../requests/orders.request";
+import { removeAll } from "../../redux/cartSlice";
 import "./OrderStyle.css";
 import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,6 +28,7 @@ const NewOrder = () => {
   );
   const taxPrice = useMemo(() => 0.05 * itemsPrice, [itemsPrice]);
   const totalPrice = itemsPrice + taxPrice;
+  const dispatch = useDispatch();
   // const [order, setOrder] = useState({
   // 	taxPrice,
   // 	totalPrice,
@@ -56,7 +58,8 @@ const NewOrder = () => {
         const res = await createOrder(orderPost);
 
         alert("Đặt hàng thành công");
-        localStorage.removeItem("cart");
+        // localStorage.removeItem("cart");
+        dispatch(removeAll())
 
         navigate("/", { replace: true });
 
