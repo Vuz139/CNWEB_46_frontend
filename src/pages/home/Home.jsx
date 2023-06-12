@@ -8,7 +8,7 @@ const Home = () => {
 		<div>
 			<div class="homebg">
 				<div class="gioithieu">
-					<h1>A Clothing Store</h1>
+					<h1>A Store</h1>
 					<p>Buy without lifting a finger</p>
 					<button onClick={handleClick}>Shopping now</button>
 				</div>

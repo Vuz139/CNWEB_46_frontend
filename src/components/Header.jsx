@@ -69,8 +69,8 @@ const Header = () => {
 				<div className="header__navigation">
 					<Link to={"/"}>Home</Link>
 					<Link to={"/products"}>Products</Link>
-					{/* <a href="#">About</a>
-					<a href="#">Me</a> */}
+					<Link to={"/about"}>About</Link>
+					<Link to={"/user"}>Me</Link>
 				</div>
 			)}
 			<div className="header__icons">
@@ -97,13 +97,13 @@ const Header = () => {
 
 					<div className="header__user__menu">
 						<Link to={"/user/orders"}>Đơn hàng</Link>
-						<Link to={"/admin/newProduct"}>Tạo mới</Link>
+						<Link to={"/admin/newProduct"}>Quản lí sản phẩm</Link>
 						{width <= 786 && (
 							<>
 								<Link to={"/"}>Home</Link>
 								<Link to={"/products"}>Products</Link>
-								{/* <a href="#">About</a>
-								<a href="#">Me</a> */}
+								<Link to={"/about"}>About</Link>
+								<Link to={"/user"}>Me</Link>
 							</>
 						)}
 

@@ -328,47 +328,17 @@ button.btn {
 	background-size: 100% 100%;
 	background-position: center;
 }
-/* orders */
-.order-container {
-	font-size: 1.2rem;
-	border: 1px solid #ccc;
-	padding: 10px;
-	margin-bottom: 1.6rem;
-}
 
-.order-info {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 5px;
-	color: black;
-	font-weight: 600;
-}
-
-.order-actions {
-	display: flex;
-	justify-content: flex-end;
-}
-.order-action-accept {
-	padding: 8px;
-	background-color: rgb(138, 208, 33);
-	border-radius: 8px;
-	border: none;
-}
-.order-action-cancel {
-	padding: 8px;
-	background-color: rgb(158, 101, 101);
-	border-radius: 8px;
-	border: none;
-	margin: 0 4px;
-}
-.pagination {
+/* .pagination {
 	display: flex;
 	justify-content: center;
-	margin-top: 10px;
+	margin: 12px 0;
+} */
+.pagination__pagenum {
+	margin: 0 12px;
 }
-
 .pagination-button {
-	margin: 0 5px;
+	/* margin: 0 12px; */
 	padding: 8px;
 	font-size: 1.6rem;
 	background-color: rgb(244, 189, 117);
@@ -481,7 +451,7 @@ th {
 
 /* pagination in user */
 .pagination {
-	margin-top: 12px;
+	margin: 12px 0;
 	font-size: 1.6rem;
 	display: flex;
 	justify-content: space-around;
