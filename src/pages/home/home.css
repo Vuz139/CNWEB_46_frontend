@@ -1,96 +1,9 @@
-.anhTest{
-    width: 30px;
-  height: 30px;
+.homebg{
+    /* display: flex;
+    flex-wrap: wrap;
+    background-image: url("bg_home.png");
+    background-size: cover; */
 }
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
-}
-.gird_contain{
-    display: grid;
-    grid-template-columns: 25% calc(75% - 10px);
-    width: 90%;
-    max-width: 1200px;
-    background-color: green;
-    margin: 0 auto;
-    gap : 10px;
-    /* min-height: 150rem; */
-}
-.menu{
-    display: grid;
-    background-color: aqua;
-    min-height: 70rem;
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
-.main{
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap : 8px;
-    background-color: white;
-    font-size: 2rem;
-    margin-left:5px;
-    border: red 2px solid;
-    padding-top: 8px;
-    gap: 20px 10px;
-
-}
-.item{
-    display: block;
-    height: 33rem;
-    background-color: aquamarine;
-    width: 100%;
-}
-
-
-.pagination{
-
-    display: block;
-    background-color: white;
-    grid-column: 1/5;
-    margin-bottom: 5px;
-    height: 5rem;
-    text-align: center;
-    font-size: 30px;
-}
-.chuyen_trang {
-    background-color: aqua;
-    display: inline-block;
-    font-size: 30px;
-    border-radius: 0;
-}
-.chuyen_trang:hover{
-    box-shadow: 1px black;
-
-}
-@media  (min-width: 880px) and (max-width:1400px) {
-    .main{
-        display: grid;
-        grid-template-columns: repeat(3,auto);
-    }
-    .pagination{
-        grid-column: 1/4;
-    }
-}
-@media (max-width: 879px) {
-    .menu{
-        display: none;
-    }
-    .gird_contain{
-        display: grid;
-        grid-template-columns: auto;
-    }
-    .main{
-        display: grid;
-        grid-template-columns: repeat(2,auto);
-    }
-    .pagination{
-        grid-column: 1/3;
-    }
-
 .gioithieu{
     display: flex;
     flex-direction: column;
@@ -102,7 +15,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
 }
 .gioithieu h1 {
     font-family:"Playfair Display",serif;;
@@ -134,16 +46,14 @@
     cursor: pointer;
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
 }
-
 .gioithieu button:hover{
     background-color: rgb(56, 94, 246);
     scale: 1.1;
 }
-.img{
-    width: 100px;
-    height: 100px;
+.best_selling_bg{
+    width: 100%;
+    padding-top: 75px;
 }
-
 .bs{
     display: flex;
     font-size: 38px;
@@ -153,7 +63,6 @@
     color: #1a1a1a;
     margin-bottom: 50px;
 }
-
 .sp_noibat{
     display: flex;
     flex-wrap: wrap;
@@ -174,7 +83,6 @@
 .thongtin_sp {
     display: block;
     padding: 14px 20px 2px 20px;
-
 }
 h2.tensp{
     display: flex;
@@ -191,5 +99,6 @@ h2.tensp{
     line-height: 1.6;
     font-size: 22px;
     color: black;
+    opacity: 1;
+    justify-content: center;
 }
-

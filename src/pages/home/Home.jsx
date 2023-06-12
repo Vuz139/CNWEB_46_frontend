@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import "./home.css";
 import anh from "./chup-anh-giay-dep.jpg";
 const Home = () => {
@@ -8,7 +9,7 @@ const Home = () => {
 		<div>
 			<div class="homebg">
 				<div class="gioithieu">
-					<h1>A Store</h1>
+					<h1>A CLOTHES Store</h1>
 					<p>Buy without lifting a finger</p>
 					<button onClick={handleClick}>Shopping now</button>
 				</div>
