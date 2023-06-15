@@ -119,6 +119,7 @@
 
 .pi-product:hover .pi-text .pi-bottom-area{
     opacity: 1;
+    z-index: 999;
 }
 
 
@@ -137,6 +138,13 @@
     color: black;
     width: calc(50% - 10px);
     padding-top: 10px;
+}
+.pi-bottom-area .pi-cho{
+    border-radius: 0%;
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+    justify-content: center;
 }
 
 .pi-bottom-area .pi-cho:hover{
