@@ -5,7 +5,7 @@ export const api = axios.create({
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "*/*",
-		Authorization: getAccessToken()
+		Authorization: getAccessToken(),
 	},
 });
 
@@ -50,9 +50,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
 	(response) => response.data,
 	(error) => {
-		// if (error.response?.status === 401) {
-		// 	removeAccessToken();
-		// }
+		if (error.response?.status === 401) {
+			removeAccessToken();
+		}
 
 		// const configData = JSON.parse(error.config?.data);
 		// if (!configData.silent) {

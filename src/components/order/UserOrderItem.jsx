@@ -3,7 +3,6 @@ import { AiOutlineShop } from "react-icons/ai";
 import { BsCheckCircle, BsTruck } from "react-icons/bs";
 import { FcCancel } from "react-icons/fc";
 import { GiPerpendicularRings } from "react-icons/gi";
-import { FcProcess } from "react-icons/fc";
 import Loading from "../public/Loading";
 import { getOrderById, updateOrder } from "../../requests/orders.request";
 import { Link } from "react-router-dom";
@@ -28,6 +27,10 @@ const UserOrderItem = ({ id, setCurrentOrder }) => {
 			setLoading(false);
 		}
 	};
+	useEffect(() => {
+		fetchOrder();
+	}, []);
+
 	const iconStatus = [
 		<GiPerpendicularRings />,
 		<BsTruck />,
@@ -57,9 +60,6 @@ const UserOrderItem = ({ id, setCurrentOrder }) => {
 		}
 	};
 
-	useEffect(() => {
-		fetchOrder();
-	}, []);
 	if (loading) return <Loading />;
 	return (
 		<div className="userOrder__item">

@@ -33,7 +33,7 @@ const OrderItem = ({ id }) => {
 			const res = await updateOrder(id, {
 				orderStatus: e.target.value,
 			});
-			console.log(">> check order status", res);
+			// console.log(">> check order status", res);
 			if (res.status === "success") {
 				await fetchOrder();
 			}
