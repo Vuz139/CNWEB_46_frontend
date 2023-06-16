@@ -1,71 +1,84 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {FaStar} from "react-icons/fa"
-import {IoIosAdd , IoIosCart} from "react-icons/io"
-import "./ProductItem.css"
+import { FaStar } from "react-icons/fa";
+import { IoIosAdd, IoIosCart } from "react-icons/io";
+import "./ProductItem.css";
 import { addToCart } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
 	const dispatch = useDispatch();
-	
+	const [showAddToCart, setShowAddToCart] = useState(false);
 	const YesStar = [];
-	// console.log(product.ratings);
 
 	for (let i = 0; i < Math.floor(3); i++) {
 		YesStar.push(<FaStar color="yellow" />);
 	}
-	const NoStar =[];
-	let noStar = 5 - Math.floor(3)
-	for(let i = 0; i<noStar ;i++){
+	const NoStar = [];
+	let noStar = 5 - Math.floor(3);
+	for (let i = 0; i < noStar; i++) {
 		NoStar.push(<FaStar />);
 	}
-
 
 	const navigate = useNavigate();
 	const handleAddToCart = (event) => {
 		event.stopPropagation();
 		dispatch(addToCart(product));
-		// window.location.href = '/products'
-		navigate('/products',{replace:true});
-		console.log('thuc hien navigate')
+		setShowAddToCart(true);
+		setTimeout(() => {
+			setShowAddToCart(false);
+		}, 600);
 	};
 
 	const handleBuyNow = (event) => {
 		event.stopPropagation();
 		dispatch(addToCart(product));
 		// window.location.href = '/cart'
-		navigate("/order",{replace:true});
-		console.log("day la buy now");
+		navigate("/order", { replace: true });
+		// console.log("day la buy now");
 	};
-
 
 	const endPointImg =
 		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
 
 	return (
 		<div
+			style={{ cursor: "pointer" }}
 			onClick={() => {
 				window.scrollTo({ top: 0, behavior: "smooth" });
-				navigate('/product/${product.id}');  
+				navigate(`/product/${product.id}`);
 			}}
 			// to={`/product/${product.id}`}
-			className="col-4 m-3 sm-12"
-		>
-
+			className="col-4 m-3 sm-12">
 			<div className="pi-product">
 				<Link to={`/product/${product.id}`} className="pi-img-prod">
-					<img className="pi-img-fluid" src={
-						product?.images && product.images.length > 0
-							? `${endPointImg}/${product.images[0].path}`
-							: ""
-					}
+					<img
+						className="pi-img-fluid"
+						src={
+							product?.images && product.images.length > 0
+								? `${endPointImg}/${product.images[0].path}`
+								: ""
+						}
 						alt="Normal"
 					/>
+					{showAddToCart && (
+						<div
+							style={{ objectFit: "cover" }}
+							class="sketchfab-embed-wrapper productFly">
+							<img
+								style={{
+									width: "100%",
+									height: "320px",
+								}}
+								src={`http://localhost:4001/${
+									product && product.images[0]?.path
+								}`}
+								alt=""
+							/>
+						</div>
+					)}
 					<div className="pi-overlay" />
-
 				</Link>
 
 				<div className="pi-text">
@@ -86,28 +99,31 @@ const ProductItem = ({ product }) => {
 						</div>
 					</div>
 					{/* gioi thieu san pham */}
-					<h3 className="pi-des">
-						{product.description}
-					</h3>
+					<h3 className="pi-des">{product.description}</h3>
 					<div className="pi-pricing">
-						<p className="pi-price">
-							${product.price}
-						</p>
+						<p className="pi-price">${product.price}</p>
 					</div>
 					<div className="pi-seller">
 						<p>{product.seller}</p>
 					</div>
 					<p className="pi-bottom-area">
-						<button onClick={handleAddToCart}  className="pi-add-cart pi-cho">ADD TO CART<IoIosAdd /></button>
-						<button  onClick={handleBuyNow} className="pi-buy-now pi-cho">BUY NOW<IoIosCart /></button>
+						<button
+							onClick={handleAddToCart}
+							className="pi-add-cart pi-cho">
+							ADD TO CART
+							<IoIosAdd />
+						</button>
+						<button
+							onClick={handleBuyNow}
+							className="pi-buy-now pi-cho">
+							BUY NOW
+							<IoIosCart />
+						</button>
 					</p>
 				</div>
-
 			</div>
-
-
 		</div>
-	)
-}
+	);
+};
 
-export default ProductItem
+export default ProductItem;
