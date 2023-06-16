@@ -11,7 +11,7 @@ import { orderStatus } from "../../contrainst/orderStatus";
 import Button from "../Button";
 import ProductRemoveModal from "../admin/ProductRemoveModal";
 
-const UserOrderItem = ({ id }) => {
+const UserOrderItem = ({ id, setCurrentOrder }) => {
 	const [loading, setLoading] = useState(true);
 	const [orderDetails, setOrderDetails] = useState([]);
 	const [showRemoveModal, setShowRemoveModal] = useState(0);
@@ -40,6 +40,12 @@ const UserOrderItem = ({ id }) => {
 			const res = await updateOrder(id, {
 				orderStatus: orderStatus[3],
 			});
+			if (setCurrentOrder) {
+				setCurrentOrder((prev) => ({
+					...prev,
+					orderStatus: orderStatus[3],
+				}));
+			}
 
 			if (res.status === "success") {
 				await fetchOrder();

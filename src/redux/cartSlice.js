@@ -34,6 +34,10 @@ const cartSlice = createSlice({
 			}
 			setCart(state);
 		},
+		removeAll: (state, payload) => {
+			state.splice(0, state.length);
+			setCart(state);
+		}
 	},
 });
 
@@ -42,6 +46,7 @@ export const {
 	removeFromCart,
 	replaceProductCart,
 	removeAllFromCart,
+	removeAll
 } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;
