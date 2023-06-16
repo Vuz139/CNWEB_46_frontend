@@ -55,7 +55,7 @@ const OrderItem = ({ id }) => {
 						<div>Thời gian: {currOrder.createdAt}</div>
 					</div>
 
-					<UserOrderItem id={id} />
+					<UserOrderItem setCurrentOrder={setCurrOrder} id={id} />
 
 					{currOrder.orderStatus === orderStatus[0] && (
 						<div className="order-actions">
