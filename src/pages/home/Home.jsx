@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./home/home.css";
-import anh from "./home/chup-anh-giay-dep.jpg";
-import Loading from "../components/public/Loading";
+import "./home.css";
+import Loading from "../../components/public/Loading";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../requests/products.request";
+import { getAllProducts } from "../../requests/products.request";
 const Home = () => {
 	const [loading, setLoading] = useState(true);
 	const [bestProducts, setBestProducts] = useState([]);
@@ -17,7 +16,6 @@ const Home = () => {
 			if (data.status) {
 				setBestProducts(data.products);
 			}
-			console.log("data: ", data);
 		} catch (error) {
 			console.log(error);
 		} finally {
