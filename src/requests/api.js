@@ -53,11 +53,6 @@ api.interceptors.response.use(
 		if (error.response?.status === 401) {
 			removeAccessToken();
 		}
-
-		// const configData = JSON.parse(error.config?.data);
-		// if (!configData.silent) {
-		// 	message.error(error.response?.data?.message);
-		// }
 		return Promise.reject(error);
 	},
 );

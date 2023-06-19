@@ -50,3 +50,9 @@ export const login = async (body) => {
 	setAccessToken(response?.token);
 	return response;
 };
+export const refreshToken = async () => {
+	const response = await api.get("/refresh-token");
+	console.log(">>>res:", response);
+	setAccessToken(response?.token);
+	return response;
+};

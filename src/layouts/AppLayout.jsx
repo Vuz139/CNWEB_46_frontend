@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { getProductConfigs } from "../requests/products.request";
 import { setProduct } from "../redux/productSlice";
 import Loading from "../components/public/Loading";
+import { refreshToken } from "../requests/users.request";
 
 const AppLayout = ({ children }) => {
 	const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ const AppLayout = ({ children }) => {
 			try {
 				setLoading(true);
 				const res = await getProductConfigs();
+				await refreshToken();
 				if (res.status === "success") {
 					dispatch(setProduct(res.data));
 				}
@@ -29,6 +31,7 @@ const AppLayout = ({ children }) => {
 				setLoading(false);
 			}
 		};
+
 		fetProductConfig();
 	}, []);
 	return (
