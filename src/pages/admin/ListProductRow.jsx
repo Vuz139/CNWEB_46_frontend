@@ -108,7 +108,7 @@ const ListProductRow = () => {
 	};
 
 	return (
-		<div>
+		<div style={{ overflow: "auto" }}>
 			{showModal && (
 				<ProductEditModal
 					productUpdate={productEdit}

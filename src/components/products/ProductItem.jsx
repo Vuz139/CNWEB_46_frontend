@@ -12,11 +12,11 @@ const ProductItem = ({ product }) => {
 	const [showAddToCart, setShowAddToCart] = useState(false);
 	const YesStar = [];
 
-	for (let i = 0; i < Math.floor(3); i++) {
+	for (let i = 0; i < Math.floor(product.ratings); i++) {
 		YesStar.push(<FaStar color="yellow" />);
 	}
 	const NoStar = [];
-	let noStar = 5 - Math.floor(3);
+	let noStar = 5 - Math.floor(product.ratings);
 	for (let i = 0; i < noStar; i++) {
 		NoStar.push(<FaStar />);
 	}
@@ -34,14 +34,13 @@ const ProductItem = ({ product }) => {
 	const handleBuyNow = (event) => {
 		event.stopPropagation();
 		dispatch(addToCart(product));
-		// window.location.href = '/cart'
+
 		navigate("/order", { replace: true });
-		// console.log("day la buy now");
 	};
 
-	const endPointImg =
-		process.env.REACT_APP_END_POINT_IMAGE || "http://localhost:4001";
+	const endPointImg = process.env.REACT_APP_END_POINT_IMAGE;
 
+	console.log(">>>>image: ", product.id, product.images);
 	return (
 		<div
 			style={{ cursor: "pointer" }}
@@ -49,7 +48,6 @@ const ProductItem = ({ product }) => {
 				window.scrollTo({ top: 0, behavior: "smooth" });
 				navigate(`/product/${product.id}`);
 			}}
-			// to={`/product/${product.id}`}
 			className="col-4 m-3 sm-12">
 			<div className="pi-product">
 				<Link to={`/product/${product.id}`} className="pi-img-prod">
@@ -71,7 +69,7 @@ const ProductItem = ({ product }) => {
 									width: "100%",
 									height: "320px",
 								}}
-								src={`http://localhost:4001/${
+								src={`${endPointImg}/${
 									product && product.images[0]?.path
 								}`}
 								alt=""
@@ -83,13 +81,9 @@ const ProductItem = ({ product }) => {
 
 				<div className="pi-text">
 					<div className="pi-wrap-cat-rat">
-						{/* the loaji san pham */}
-
 						<div className="pi-cat">
 							<span>{product.category}</span>
 						</div>
-
-						{/* danh gia cua san pham  */}
 
 						<div className="pi-rating">
 							<p className="">
@@ -98,7 +92,7 @@ const ProductItem = ({ product }) => {
 							</p>
 						</div>
 					</div>
-					{/* gioi thieu san pham */}
+
 					<h3 className="pi-des">{product.description}</h3>
 					<div className="pi-pricing">
 						<p className="pi-price">${product.price}</p>

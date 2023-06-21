@@ -101,7 +101,7 @@ const ListUser = () => {
 	};
 
 	return (
-		<div>
+		<div style={{ overflow: "auto" }}>
 			<div>
 				{showModal && (
 					<UserEdit

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAccessToken, removeAccessToken } from "../utils/storage.util";
 export const api = axios.create({
-	baseURL: process.env.REACT_APP_END_POINT,
+	baseURL: process.env.REACT_APP_END_POINT + "api/v1",
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "*/*",
@@ -10,7 +10,7 @@ export const api = axios.create({
 });
 
 export const apiImage = axios.create({
-	baseURL: process.env.REACT_APP_END_POINT,
+	baseURL: process.env.REACT_APP_END_POINT + "api/v1",
 	headers: {
 		"Content-Type": "multipart/form-data",
 		Accept: "image/*",

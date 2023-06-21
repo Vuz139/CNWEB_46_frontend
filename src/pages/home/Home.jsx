@@ -46,11 +46,17 @@ const Home = () => {
 								bestProducts.map((value) => (
 									<Link
 										to={`/product/${value.id}`}
+										onClick={() => {
+											window.scrollTo({
+												top: 0,
+												behavior: "smooth",
+											});
+										}}
 										class="sp_wrapper_margin">
 										<div class="sp_wrapper" id="sp1">
 											<img
 												class="sp_img"
-												src={`${process.env.REACT_APP_END_POINT_IMAGE}/${value.images[0].path}`}
+												src={`${process.env.REACT_APP_END_POINT_IMAGE}/${value?.images[0]?.path}`}
 												alt="Ảnh sản phẩm"
 											/>
 											<div class="thongtin_sp">

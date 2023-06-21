@@ -7,8 +7,8 @@ export const addAvatar = async (avatar) => {
 		const formData = new FormData();
 		formData.append("file", avatar);
 		const response = await apiImage.post(`/user/avatar`, formData);
-
-		console.log("Image uploaded successfully:", response.data);
+		return response.data;
+		// console.log("Image uploaded successfully:", response.data);
 	} catch (error) {
 		console.error("Error uploading image:", error);
 	}
@@ -20,7 +20,6 @@ export const getListUsers = async (
 	keyword = "",
 	orderBy = ["id", "DESC"],
 ) => {
-	console.log("take: ", take);
 	const response = await api.get(`/admin/users?orderBy=${orderBy}`, {
 		params: {
 			take,
@@ -44,6 +43,10 @@ export const updateUser = async (id, body) => {
 	const response = await api.put(`/admin/user/${id}`, body);
 	return response;
 };
+export const updateUserSelf = async (body) => {
+	const response = await api.post(`/me/update`, body);
+	return response;
+};
 
 export const login = async (body) => {
 	const response = await api.post("/user/login", body);
@@ -52,7 +55,6 @@ export const login = async (body) => {
 };
 export const refreshToken = async () => {
 	const response = await api.get("/refresh-token");
-	console.log(">>>res:", response);
 	setAccessToken(response?.token);
 	return response;
 };

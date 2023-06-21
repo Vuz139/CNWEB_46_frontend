@@ -39,7 +39,9 @@ export const getAllProducts = async ({
 	return res;
 };
 export const getProductConfigs = async () => {
-	return await api.get("/product/max");
+	const res = await api.get("/product/max");
+	console.log(">>>res: ", res);
+	return res;
 };
 
 export const createProduct = async (product, image = null) => {

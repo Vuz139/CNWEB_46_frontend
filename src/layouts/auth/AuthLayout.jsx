@@ -3,13 +3,12 @@ import AuthSidebar from "./AuthSidebar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Meta from "../../components/Meta";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 
 const AuthLayout = ({ children }) => {
 	const location = useLocation();
 	const title = location.pathname.split("/");
-	// console.log(">>>title", title);
+
 	return (
 		<>
 			<Header />

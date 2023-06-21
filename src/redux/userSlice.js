@@ -8,17 +8,20 @@ const userSlice = createSlice({
 	initialState: userLogined,
 	reducers: {
 		loginRedux: (state, payload) => {
-			console.log(">>>check payload: ", payload.payload);
 			Object.assign(state, payload.payload);
 			setUser(payload.payload);
 		},
-		logout: (state, payload) => {
+		updateUserRedux: (state, payload) => {
+			Object.assign(state, payload.payload);
+			setUser(state);
+		},
+		logout: () => {
 			removeUser();
 			return {};
 		},
 	},
 });
 
-export const { loginRedux, logout } = userSlice.actions;
+export const { loginRedux, logout, updateUserRedux } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

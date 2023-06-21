@@ -31,8 +31,5 @@ export const getUserOders = async ({
 };
 
 export const createOrder = async (order) => {
-	// console.log("order: ", order);
-	return await api.post(`/order`, {
-		...order,
-	});
+	return await api.post(`/order`, order);
 };

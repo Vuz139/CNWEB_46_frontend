@@ -32,7 +32,6 @@ function SignUp() {
 
 			const result = await createUser(formData, avatar && avatar[0]);
 
-			console.log(result);
 			if (result.success) {
 				alert("Tạo tài khoản thành công");
 				setFormData({
