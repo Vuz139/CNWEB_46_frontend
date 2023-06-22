@@ -52,12 +52,12 @@ const OrderItem = ({ id }) => {
 				<>
 					<div className="order-info">
 						<div>Khách hàng: {currOrder?.user?.name}</div>
-						<div>Thời gian: {currOrder.createdAt}</div>
+						<div>Thời gian: {currOrder?.createdAt}</div>
 					</div>
 
 					<UserOrderItem setCurrentOrder={setCurrOrder} id={id} />
 
-					{currOrder.orderStatus === orderStatus[0] && (
+					{currOrder?.orderStatus === orderStatus[0] && (
 						<div className="order-actions">
 							<Button
 								value={orderStatus[1]}
@@ -68,7 +68,7 @@ const OrderItem = ({ id }) => {
 							</Button>
 						</div>
 					)}
-					{currOrder.orderStatus === orderStatus[1] && (
+					{currOrder?.orderStatus === orderStatus[1] && (
 						<div className="order-actions">
 							<Button
 								type="small"
