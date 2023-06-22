@@ -21,7 +21,7 @@ const AppLayout = ({ children }) => {
 			try {
 				setLoading(true);
 				const res = await getProductConfigs();
-				await refreshToken();
+				// await refreshToken();
 				if (res.status === "success") {
 					dispatch(setProduct(res.data));
 				}
@@ -34,6 +34,22 @@ const AppLayout = ({ children }) => {
 
 		fetProductConfig();
 	}, []);
+
+	useEffect(() => {
+		const fetProductConfig = async () => {
+			try {
+				setLoading(true);
+				await refreshToken();
+			} catch (error) {
+				console.log(error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetProductConfig();
+	}, []);
+
 	return (
 		<div className="appLayout">
 			<Header />

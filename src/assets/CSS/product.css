@@ -30,6 +30,12 @@
 	display: grid;
 	grid-template-columns: 0.9fr 1.1fr;
 }
+@media (max-width: 767px) {
+	#product-page {
+		display: flex;
+		flex-direction: column;
+	}
+}
 .product-page-img {
 	border: 1px solid #f1f1f1;
 	margin-right: 30px;
