@@ -188,7 +188,7 @@ const NewOrder = () => {
 						<div className="product-image">
 							<img
 								alt="Sản phẩm"
-								src={`http://localhost:4001/${prod.images[0].path}`}
+								src={`${process.env.REACT_APP_END_POINT_IMAGE}/${prod.images[0].path}`}
 								className="product-img"
 							/>
 							<div className="product-number">
