@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../assets/CSS/product.css";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getAllProducts, getProductById } from "../requests/products.request";
 import Loading from "../components/public/Loading";
 import CommentWrapper from "../components/products/CommentWrapper";
@@ -13,6 +13,7 @@ const Product = () => {
 	const [currProduct, setCurrProduct] = useState({});
 	const [loading, setLoading] = useState(true);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const params = useParams();
 	const [showAddToCart, setShowAddToCart] = useState(false);
 	const [productSuggest, setProductSuggest] = useState([]);
@@ -58,6 +59,13 @@ const Product = () => {
 			setShowAddToCart(false);
 		}, 600);
 		dispatch(addToCart(currProduct));
+	};
+
+	const handleBuyNow = (event) => {
+		event.stopPropagation();
+		dispatch(addToCart(currProduct));
+
+		navigate("/order", { replace: true });
 	};
 	return loading ? (
 		<Loading />
@@ -150,7 +158,11 @@ const Product = () => {
 							onClick={handleAddToCart}
 						/>
 
-						<Button title={"Buy now"} type="danger" />
+						<Button
+							onClick={handleBuyNow}
+							title={"Buy now"}
+							type="danger"
+						/>
 					</div>
 					<div className="product-page__reviews">
 						{"Đánh giá: "}

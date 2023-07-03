@@ -29,7 +29,7 @@ import User from "../pages/User";
 const ProtectedRoute = ({ children, roles }) => {
 	const user = useSelector((state) => state.user);
 
-	if (user) {
+	if (user && user.id) {
 		if (roles && !roles.includes(user.role))
 			return <Navigate to="/403" replace />;
 		return children;
@@ -121,9 +121,11 @@ const AppRoutes = () => {
 			<Route
 				path="/user"
 				element={
-					<AppLayout>
-						<User />
-					</AppLayout>
+					<ProtectedRoute>
+						<AppLayout>
+							<User />
+						</AppLayout>
+					</ProtectedRoute>
 				}
 			/>
 			<Route
